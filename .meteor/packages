@@ -24,3 +24,5 @@ kadira:flow-router
 aldeed:simple-schema
 twbs:bootstrap
 jquery
+accounts-ui
+accounts-password
