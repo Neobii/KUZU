@@ -1,0 +1,76 @@
+<template name="allTracks">
+
+<!-- this will list all tracks so the admin can export all the producers tracks for licencing authority-->
+<!-- also they will be able to select tracks from certain date frange from date picekr -->
+
+
+<div class="container">
+
+	<div class="row">
+
+		<section class="content" >
+				<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+
+					<div class="panel-body">
+						 <div class='col-md-4'>
+					        <div class="form-group">
+					            <div class='input-group date' id='datetimepicker6'>
+					                <input type='datepicker' class="form-control" name="dateFrom" id="dateFrom"/>
+					                <span class="input-group-addon">
+					                    <span class="glyphicon glyphicon-calendar"></span>
+					                </span>
+					            </div>
+					        </div>
+					    </div>
+					    <div class='col-md-4'>
+					        <div class="form-group">
+					            <div class='input-group date' id='datetimepicker7'>
+					                <input type='datepicker' class="form-control" name="dateTo" id="dateTo"/>
+					                <span class="input-group-addon">
+					                    <span class="glyphicon glyphicon-calendar"></span>
+					                </span>
+					            </div>
+					        </div>
+					    </div>
+					    <div class="col-md-4">
+					    	<div class="form-group">
+					    		  <button type="submit" class="btn btn-primary export">Export as csv</button>
+					    	</div>
+					    </div>
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+							{{#each Tracklists}}
+
+									<tr>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<div class="media-body">
+													<span class="media-meta pull-right">	{{playDate}}</span>
+													<h4 class="title">
+															{{songTitle}}
+													</h4>
+												</div>
+											</div>
+										</td>
+									</tr>
+									{{/each}}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+	</div>
+</div>
+
+</template>

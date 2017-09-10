@@ -1,0 +1,10 @@
+<template name='startShow'>
+
+{{#if currentUser.hasShow}}
+<!-- otherwise they will insert tracks attached to show-->
+{{else}}
+<!-- this is where the producer will make a new show -->
+<button type="submit" data-start-show>Start your show!</button>
+{{/if}}
+
+</template>
