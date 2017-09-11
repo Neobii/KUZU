@@ -1,9 +1,14 @@
 <template name='startShow'>
 
-{{#if currentUser.hasShow}}
+{{#if hasShow }}
+{{#if Template.subscriptionsReady }}
 <!-- otherwise they will insert tracks attached to show-->
+<h3>Show Start:</h3>
+<h3><span class="small">{{hasShow.showStart}}</span></h3>
+{{/if}}
 {{else}}
 <!-- this is where the producer will make a new show -->
+ {{> quickForm collection="Shows" id="insertShowForm" type="insert"}}
 <button type="submit" data-start-show>Start your show!</button>
 {{/if}}
 

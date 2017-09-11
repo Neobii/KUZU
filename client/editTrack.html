@@ -1,0 +1,16 @@
+<template name="editTrack">
+
+	  {{#autoForm id="editTrackForm" collection="Tracklists" doc=singleTrack type="update"}}
+    <fieldset>
+      <legend>Edit Track</legend>
+      {{> afQuickField name='songTitle'}}
+      {{> afQuickField name='playDate'}}
+      {{> afFieldInput name="showId" type="hidden"}}
+	  {{> afFieldInput name="userId" type="hidden"}}
+
+    </fieldset>
+    <br/>
+    <button type="submit" class="btn btn-primary">Update</button>
+ 	 {{/autoForm}}
+
+</template>

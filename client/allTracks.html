@@ -41,6 +41,8 @@
 						<div class="table-container">
 							<table class="table table-filter">
 								<tbody>
+								{{#if Template.subscriptionsReady}}
+
 							{{#each Tracklists}}
 
 									<tr>
@@ -54,14 +56,14 @@
 												<div class="media-body">
 													<span class="media-meta pull-right">	{{playDate}}</span>
 													<h4 class="title">
-															{{songTitle}}
+															<a href="{{pathFor 'edittrack' trackid=_id}}">{{songTitle}}</a>
 													</h4>
 												</div>
 											</div>
 										</td>
 									</tr>
 									{{/each}}
-
+									{{/if}}
 								</tbody>
 							</table>
 						</div>
