@@ -6,14 +6,14 @@ Template.editTrack.onCreated(function(){
 });
 
 Template.editTrack.helpers({
-	singleTrack:()=>{
+	singleTrack() {
 		return Tracklists.findOne({_id: FlowRouter.getParam("trackid")});
 	}
 });
 
 AutoForm.hooks({
     editTrackForm: {
-  		onSuccess: ()=> {
+  		onSuccess() {
 			FlowRouter.go('alltracks');          	
         }
     }
