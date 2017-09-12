@@ -10,3 +10,7 @@
  Meteor.publish('showList',()=>{
  	return Shows.find({});
  })
+
+ Meteor.publish('allProducers',()=> {
+ 	return Meteor.users.find({});
+ });
