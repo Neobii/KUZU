@@ -5,7 +5,8 @@ Template.startShow.onCreated(function(){
 });
 
 Template.startShow.helpers({
-	hasShow:()=> {
-		return Meteor.user().hasShow(Meteor.userId());
-	}
+	shows: () => { 
+		return Shows.findOne({userId: Meteor.userId()});
+		}
+	
 });

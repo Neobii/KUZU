@@ -1,3 +1,35 @@
 .table,.panel{
 	background:#100806;
 }
+
+.navs{
+	text-align:center;
+	margin-top: 65px; 
+}
+.navs a{
+	color: #fff;
+	margin-top: 90px;
+    font-size: 21px;
+    letter-spacing: 0px;
+    text-transform: none;
+    font-family: Abel;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.2em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+}
+ ul{
+ 	margin:0;
+ 	padding: 0;
+ }
+ ul li a{
+ 	margin: 0;
+ 	padding: 0;
+ }
+
+.dropdown-menu{
+	margin: 0px;
+	padding: 0px;
+}

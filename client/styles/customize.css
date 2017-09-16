@@ -1,0 +1,90 @@
+ 
+.container{  
+ font-family: "Kameron",Georgia,serif;
+ font-size: 16px;
+ letter-spacing: 0px;
+ line-height: 1.6em;
+ font-family: Source Code Pro;
+ font-weight: 400;
+ font-style: normal;
+ font-size: 14px;
+ letter-spacing: .4px;
+ line-height: 1.75em;
+ color: #fff;
+ overflow-x:hidden;
+
+}
+p {
+ display: block;
+ -webkit-margin-before: 1em;
+ -webkit-margin-after: 1em;
+ -webkit-margin-start: 0px;
+ -webkit-margin-end: 0px;
+} 
+
+nav.rightNav {
+    float: right;
+    position: relative;
+    right: 31px;
+    top: -92px;
+    font-family: Source Code Pro;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1em;
+    
+
+ }
+nav.leftNav{
+	float: left;
+    position: absolute;
+    left: 116px;
+    top: 64px;
+    font-family: Source Code Pro;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1em;
+    clear: both
+}
+nav.leftNav > a{
+	color: #fff;
+    outline: none;
+}
+nav.rightNav > a{
+	color: #fff;
+    outline: none;
+}
+
+a {
+    background: transparent;
+}
+
+nav.rightNav a:hover , visited {
+	background:transparent !important;
+	color:white;
+}
+nav.leftNav a:hover , visited {
+	background:transparent !important;
+	color:white;
+}
+
+ul.dropdown-menu {
+    background-color: #000;
+    color:white;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #000;
+    opacity: 0.6;
+}
+
+li>a:focus {
+  	color:white !important;
+  	background-color: transparent !important;
+    outline: none;
+}

@@ -1,10 +1,9 @@
 <template name='startShow'>
-
-{{#if hasShow }}
+{{#if currentUser.hasShow }}
 {{#if Template.subscriptionsReady }}
 <!-- otherwise they will insert tracks attached to show-->
 <h3>Show Start:</h3>
-<h3><span class="small">{{hasShow.showStart}}</span></h3>
+<h3><span class="small">{{shows.showStart}}</span></h3>
 {{/if}}
 {{else}}
 <!-- this is where the producer will make a new show -->
