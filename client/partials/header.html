@@ -41,12 +41,15 @@ Denton, Texas." />
   </head>
   
     <div id="site container">
+      <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
       <header id="header" role="banner">
        
     
 
   <!-- Navigation -->
   <div class="row">
+
     <nav class="leftNav">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div>
@@ -94,15 +97,16 @@ Denton, Texas." />
           </ul>
            </div><!-- /.navbar-collapse -->
     </nav>
- <div class="header-inner">
+          <div class="header-inner">
           <div id="logoWrapper" class="title-logo-wrapper" data-content-field="site-title">
             
               <h1 id="logoImage" class="tmpl-loading logo-image"><a href="/"><img src="//static1.squarespace.com/static/56d75c78356fb0d6f3fcaaf3/t/56d7a3268259b52763effb89/1504845847858/?format=1500w" alt="KUZU" /></a>
               </h1>
           </div>
           </div>
-              
-    <nav class="rightNav">
+         
+
+    <nav class="{{#if currentUser}}rightNavLogin{{else}}rightNav{{/if}}">
         <div>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -111,7 +115,7 @@ Denton, Texas." />
             <span class="icon-bar"></span>
           </button>
           
-        </div>
+    </div>
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav js-nav-add-active-class">
@@ -125,6 +129,7 @@ Denton, Texas." />
 
               </ul>
             </li>
+            {{#if currentUser}}
             <li><a href="{{pathFor 'startshow'}}">Shows</a></li>
            
             <li class="dropdown">
@@ -134,6 +139,7 @@ Denton, Texas." />
                 <li><a href="{{pathFor 'alltracks'}}">All Tracks</a></li>
               </ul>
             </li>
+            {{/if}}
                 <li class="dropdown">
               <a href="{{pathFor 'mission'}}" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu">
@@ -151,11 +157,11 @@ Denton, Texas." />
           </ul> 
         </div>
     </nav>
-     
   </div>
+     
       </header>
       </div>
-
-      
+        </div>
+  </div>
 
 </template>

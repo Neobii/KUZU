@@ -1,6 +1,11 @@
 Meteor.methods({
-	download: function() {
-  		var collection = Tracklists.find().fetch();
+	download: function(dateFrom=false,dateTo=false) {
+  		var collection = '';
+  		if(dateFrom){
+  			collection = Tracklists.find({ 'playDate' : { $gte : dateFrom, $lt: dateTo }}).fetch();
+  		}else{
+  			collection = Tracklists.find().fetch();
+  		}
   		var heading = true;
   		var delimiter = ";";
  	 return exportcsv.exportToCSV(collection, heading, delimiter);

@@ -25,8 +25,8 @@ p {
 nav.rightNav {
     float: right;
     position: relative;
-    right: 31px;
-    top: -92px;
+    right: 267px;
+    top: -89px;
     font-family: Source Code Pro;
     font-weight: 400;
     font-style: normal;
@@ -34,6 +34,23 @@ nav.rightNav {
     text-transform: uppercase;
     text-decoration: none;
     line-height: 1em;
+    clear:both;
+    
+
+ }
+ nav.rightNavLogin {
+    float: right;
+    position: relative;
+    right: 31px;
+    top: -89px;
+    font-family: Source Code Pro;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1em;
+    clear:both;
     
 
  }
@@ -55,7 +72,7 @@ nav.leftNav > a{
 	color: #fff;
     outline: none;
 }
-nav.rightNav > a{
+nav.rightNav,nav.rightNavLogin > a{
 	color: #fff;
     outline: none;
 }
@@ -64,7 +81,7 @@ a {
     background: transparent;
 }
 
-nav.rightNav a:hover , visited {
+nav.rightNav,nav.rightNavLogin  a:hover , visited {
 	background:transparent !important;
 	color:white;
 }
