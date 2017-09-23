@@ -2,8 +2,11 @@
 {{#if currentUser.hasShow }}
 {{#if Template.subscriptionsReady }}
 <!-- otherwise they will insert tracks attached to show-->
-<h3>Show Start:</h3>
-<h3><span class="small">{{shows.showStart}}</span></h3>
+<h2>Show Start:</h2>
+{{#each shows}}
+<h3><a href="{{pathFor 'showtracks' showId=_id}}">{{showName}}</a></h3>
+<h3><span class="small">{{showStart}}</span></h3>
+{{/each}}
 {{/if}}
 {{else}}
 <!-- this is where the producer will make a new show -->

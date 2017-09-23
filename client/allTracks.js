@@ -1,8 +1,11 @@
 Template.allTracks.onCreated(function(){
 	this.autorun(() => {
-		this.subscribe("TrackLists")
+		this.subscribe("TrackLists");
+		this.subscribe("showList");
 	});
 	Session.set('dateFrom', false);
+	Session.set('showId', false);
+
 });
 Template.allTracks.rendered=function() {
 	$('#dateFrom').datepicker();
@@ -10,12 +13,17 @@ Template.allTracks.rendered=function() {
 }
 
 Template.allTracks.helpers({
-	Tracklists() {
+	Tracklists:()=> {
 		if(Session.get('dateFrom')){
 			return Tracklists.find({ 'playDate' : { $gte : Session.get('dateFrom'), $lt: Session.get('dateTo') }});
+		}else if (Session.get('showId')) {
+			return Tracklists.find({showId: Session.get('showId')});
 		}else{
 			return Tracklists.find({});
 		}
+	},
+	shows:()=>{
+		return Shows.find({userId: Meteor.userId()});
 	}
 });
 
@@ -34,7 +42,13 @@ Template.allTracks.events({
 	'change #datetimepicker7':()=>{
 		var start = new Date($("#dateFrom").val());
 		var end = new Date($("#dateTo").val());
+			Session.set('showId', false);
 			Session.set('dateFrom',start);
 			Session.set('dateTo', end);
+	},
+	'click a[data-id]':(e,t)=>{
+		var showId = $(event.target).data('id');
+			Session.set('dateFrom',false);
+			Session.set('showId', showId);
 	}
 });

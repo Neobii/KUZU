@@ -1,0 +1,54 @@
+<template name="showTracks">
+
+		<div class="container">
+
+	<div class="row">
+		{{#with show}}
+		<center>
+			<h3>{{showName}}</h3>
+		</center>
+		<section class="content" >
+				<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+
+					<div class="panel-body">
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+
+							{{#each showTracks}}
+
+									<tr>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<div class="media-body">
+													<span class="media-meta pull-right">	{{playDate}}</span>
+													<h4 class="title">
+													 <a href="{{pathFor 'edittrack' trackid=_id}}">Title: {{songTitle}}</a>
+													</h4>
+													<h4 class="title">
+													<span class="pull-right"> Album: {{album}}</span>
+													Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5> 
+													</h4>
+												</div>
+											</div>
+										</td>
+									</tr>
+									{{/each}}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+				{{/with}}
+	</div>
+</div>
+
+</template>

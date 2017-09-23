@@ -38,7 +38,22 @@
 					    		  <button type="submit" id="exportcsv" class="btn btn-primary">Export as csv</button>
 					    	</div>
 					    </div>
+
 						<div class="table-container">
+							<div class="row">
+									 <div class="col-md-4">
+								<div class="dropdown">
+							  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">By Show
+							  <span class="caret"></span></button>
+							  <ul class="dropdown-menu">
+							  	{{#each shows}}
+							    <li><a href="#" data-id="{{_id}}">{{showName}}</a></li>
+							    {{/each}}
+							  </ul>
+							</div>
+									 </div>	
+							</div>
+							
 							<table class="table table-filter">
 								<tbody>
 								{{#if Template.subscriptionsReady}}
