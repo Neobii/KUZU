@@ -1,11 +1,14 @@
 Template.myTracklists.onCreated(function(){
 	this.autorun(()=>{
-		this.subscribe('singleShow',Meteor.userId());
-    this.subscribe('allShows');
+		this.subscribe('activeShow');
 	})
 })
 
-
+Template.myTracklists.helpers({
+  currentActiveShow(){
+    return Shows.findOne({isActive: true})
+  }
+})
 
 
 AutoForm.hooks({
