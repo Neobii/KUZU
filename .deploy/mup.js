@@ -3,7 +3,7 @@ module.exports = {
     one: {
       host: '104.131.129.29',
       username: 'root',
-      //password: 'kuzu929'
+      //password: 'password'
       pem: '~/.ssh/id_rsa'
       // password:
       // or leave blank for authenticate from ssh-agent
