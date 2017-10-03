@@ -2,6 +2,7 @@ Template.editTrack.onCreated(function(){
 
 	this.autorun(()=>{
 		this.subscribe('singleTrack',FlowRouter.getParam("trackid"));
+		this.subscribe('allShows');
 	});
 });
 

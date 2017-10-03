@@ -28,8 +28,5 @@ Router.route( "/insertrack/:track", function() {
   	let artist  = this.params.name;
   	let track   = this.params.query;
 
-      console.log(track);
-
-
   Tracklists.insert({songTitle: track.track, artist: track.artist, album: track.album, trackLength: track.tracklength});
 }, { where: "server" });

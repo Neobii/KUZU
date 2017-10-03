@@ -12,9 +12,7 @@
     return Tracklists.find({showId: showId});
  });
 
- Meteor.publish('showList',()=>{
- 	return Shows.find({});
- });
+
 Meteor.publish('singleShow',(showId)=>{
     return Shows.find({_id: showId});
  });
@@ -27,6 +25,10 @@ Meteor.publish('singleShow',(showId)=>{
  Meteor.publish('allShows',function () {
     return Shows.find({});
  });
+
+ Meteor.publish('activeShow',function(){
+    return Shows.find({isActive: true});
+ })
 
  /*publishComposite('topTenPosts', {
     find() {
