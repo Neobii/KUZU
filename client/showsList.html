@@ -1,0 +1,7 @@
+<template name="showsList">
+<!-- otherwise they will insert tracks attached to show-->
+{{#each shows}}
+<h3><a href="{{pathFor 'showtracks' showId=_id}}">{{showName}}</a></h3>
+<h3><span class="small">{{showStart}}</span></h3>
+{{/each}}
+</template>

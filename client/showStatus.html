@@ -1,0 +1,8 @@
+<template name='showStatus'>
+{{#with currentActiveShow}}
+<h3>Active show is <a href="{{pathFor 'showtracks' showId=_id}}">{{showName}}</a> and started at {{showStart}} by {{#each user.emails}}{{address}}{{/each}}</h3>
+<hr>
+<p>List a tracks with current show here</p>
+{{/with}}
+
+</template>

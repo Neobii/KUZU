@@ -24,6 +24,10 @@ Meteor.publish('singleShow',(showId)=>{
  	return Meteor.users.find({});
  });
 
+ Meteor.publish('allShows',function () {
+    return Shows.find({});
+ });
+
  /*publishComposite('topTenPosts', {
     find() {
         // Find top ten highest scoring posts
