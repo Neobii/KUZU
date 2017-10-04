@@ -47,14 +47,6 @@ html-tools@1.0.11
 htmljs@1.0.11
 http@1.2.12
 id-map@1.0.9
-iron:controller@1.0.12
-iron:core@1.0.11
-iron:dynamic-template@1.0.12
-iron:layout@1.0.12
-iron:location@1.0.11
-iron:middleware-stack@1.1.0
-iron:router@1.1.2
-iron:url@1.1.0
 jquery@1.11.10
 kadira:blaze-layout@2.3.0
 kadira:flow-router@2.12.1
@@ -119,6 +111,8 @@ service-configuration@1.0.11
 session@1.1.7
 sha@1.0.9
 shell-server@0.2.4
+simple:json-routes@2.1.0
+simple:rest@1.1.1
 spacebars@1.0.15
 spacebars-compiler@1.1.3
 srp@1.0.10

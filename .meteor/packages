@@ -38,4 +38,5 @@ lfergon:exportcsv
 ostrio:files
 reywood:publish-composite
 reactive-dict@1.1.9
-iron:router
+simple:rest
+simple:json-routes
