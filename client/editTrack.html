@@ -1,6 +1,6 @@
 <template name="editTrack">
 
-	  {{#autoForm id="editTrackForm" collection="Tracklists" doc=singleTrack meteormethod="editTrack" type="update"}}
+	  {{#autoForm id="editTrackForm" collection="Tracklists" doc=singleTrack meteormethod="editTrack" type="method-update"}}
     <fieldset>
       <legend>Edit Track</legend>
       {{> afQuickField name='songTitle'}}
@@ -9,10 +9,6 @@
       {{> afQuickField name='trackLength'}}
       {{> afQuickField name='label'}}
       {{> afQuickField name='playDate'}}
-      {{> afFieldInput name='timeStamp' type='hidden'}}
-      {{> afQuickField name="showId" }}
-	    {{> afFieldInput name="userId" type="hidden"}}
-
     </fieldset>
     <br/>
     <button type="submit" class="btn btn-primary">Update</button>

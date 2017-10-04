@@ -20,17 +20,29 @@ Meteor.methods({
 		Meteor.users.update({_id: userId}, {$set : {name: name, image: image, bio: bio, isProducer: true }});
 	
 	},
-	editTrack(_id, modifier){
+	editTrack(modifier, _id){
+    console.log()
     console.log(_id + ' => '+ modifier); //see here?
 		Tracklists.update({_id: _id}, modifier)
 	},
   
   getCurrentTrack(){
-    return {artistName: "Toot", songTitle: "Wow", album: "yay", label: "stuff", duration: "Weee"}
+    var track = Tracklists.findOne({}, {sort: {playDate: -1}});
+    var trackerString;
+    if(track.artist && track.songTitle) {
+        trackerString = track.artist + " - " + track.songTitle;
+      }
+      else if(track.songTitle) {
+        trackerString = track.songTitle;
+      }
+      else if(track.artistName) {
+        trackerString = track.artist;
+      }
+    return trackerString;
   }
 });
 
-Meteor.method("insertTrack", function(artist, songTitle, album, label, duration) {
+Meteor.method("insertTrack", function(jsonData) {
 
   }, {
     getArgsFromRequest: function (request) {
@@ -40,6 +52,7 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
 
       // Since form enconding doesn't distinguish numbers and strings, we need
       // to parse it manually
+      //put to array JSON.parse(content);
       return [ content.artist, content.songTitle, content.album, content.label, content.duration ];
     }
   }
