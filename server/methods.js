@@ -42,18 +42,18 @@ Meteor.methods({
   }
 });
 
-Meteor.method("insertTrack", function(jsonData) {
-
+Meteor.method("insertTrack", function(artist, songTitle, album, label, duration) {
+    Tracklists.insert({artist: artist, songTitle, songTitle, album: album, label: label, duration: duration, playDate: new Date()})
   }, {
     getArgsFromRequest: function (request) {
       // Let's say we want this function to accept a form-encoded request with
       // fields named `a` and `b`.
       var content = request.body;
-
+      var songObject = JSON.parse(request.body.jsonString);
       // Since form enconding doesn't distinguish numbers and strings, we need
       // to parse it manually
       //put to array JSON.parse(content);
-      return [ content.artist, content.songTitle, content.album, content.label, content.duration ];
+      return [ songObject.artist, songObject.track, songObject.album, songObject.label, songObject.duration ];
     }
   }
 )
