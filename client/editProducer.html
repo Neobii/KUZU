@@ -1,3 +1,6 @@
 <template name="editProducer">
+	{{> quickForm collection="Meteor.users" doc=profile id="profileUpdateForm" type="update" omitFields="createdAt,emails,registered_emails,roles,username,services,heartbeat" 
+
+	buttonContent="Save Changes"}}
 
 </template>
