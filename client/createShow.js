@@ -1,7 +1,7 @@
 AutoForm.hooks({
     insertShowForm: {
   		onSuccess: function() {
-			FlowRouter.go('showsList');          	
+			FlowRouter.go('showStatus');          	
         },
     	 onSubmit: function(insertDoc, updateDoc, currentDoc) {
     	 	Shows.update({userId: Meteor.userId}, {$set :{isActive: false}});

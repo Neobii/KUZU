@@ -1,5 +1,5 @@
  Meteor.publish('TrackLists', ()=>{
-    return Tracklists.find({});
+    return Tracklists.find({}, {limit: 50});
   });
 
  Meteor.publish('singleTrack',(trackId)=>{

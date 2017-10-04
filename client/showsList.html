@@ -1,7 +1,7 @@
 <template name="showsList">
 <!-- otherwise they will insert tracks attached to show-->
 {{#each shows}}
-<h3><a href="{{pathFor 'showtracks' showId=_id}}">{{showName}}</a></h3>
+<h3><a href="{{pathFor 'showtracks' showId=_id}}">{{showName}} - <small>{{defaultShowMeta}}</small></a>{{#if isActive}}<button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Deactivate</button>{{else}}<button class="btn btn-primary" data-activate-show-id="{{_id}}">Activate</button>{{/if}}</h3>
 <h3><span class="small">{{showStart}}</span></h3>
 {{/each}}
 </template>

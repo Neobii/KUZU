@@ -25,8 +25,18 @@ Meteor.methods({
     console.log(_id + ' => '+ modifier); //see here?
 		Tracklists.update({_id: _id}, modifier)
 	},
-  
+  deactivateShow(showId) {
+    Shows.update({_id: showId}, {$set: {isActive: false}});
+  },
+  activateShow(showId) {
+    Shows.update({isActive: true}, {$set: {isActive: false}}, {multi: true});
+    Shows.update({_id: showId}, {$set: {isActive: true}});
+  },
   getCurrentTrack(){
+    var show = Shows.findOne({isActive: true});
+    if(show && show.isShowingDefaultMeta){
+      return show.defaultMeta;
+    }
     var track = Tracklists.findOne({}, {sort: {playDate: -1}});
     var trackerString;
     if(track.artist && track.songTitle) {
@@ -39,11 +49,19 @@ Meteor.methods({
         trackerString = track.artist;
       }
     return trackerString;
+  },
+  stopDefaultTracking(showId) {
+    Shows.update({_id: showId}, {$set: {isShowingDefaultMeta: false}})
+  },
+  startDefaultTracking(showId) {
+    Shows.update({_id: showId}, {$set: {isShowingDefaultMeta: true}});
   }
 });
 
 Meteor.method("insertTrack", function(artist, songTitle, album, label, duration) {
+  if(!Shows.findOne({isActive: true})) {
     Tracklists.insert({artist: artist, songTitle, songTitle, album: album, label: label, duration: duration, playDate: new Date()})
+  }
   }, {
     getArgsFromRequest: function (request) {
       // Let's say we want this function to accept a form-encoded request with

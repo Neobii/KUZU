@@ -19,7 +19,7 @@ Template.allTracks.helpers({
 		}else if (Session.get('showId')) {
 			return Tracklists.find({showId: Session.get('showId')});
 		}else{
-			return Tracklists.find({});
+			return Tracklists.find({}, {sort: {playDate: -1}});
 		}
 	},
 	shows:()=>{

@@ -1,7 +1,9 @@
-<template name="startShow">
+<template name="createShow">
 <!-- this is where the producer will make a new show -->
  {{#autoForm collection="Shows" id="insertShowForm" type="insert"}}
  {{> afQuickField name="showName"}}
- <button class="btn btn-primary" type="submit">Start Show</button>
+ {{> afQuickField name="defaultMeta"}}
+ {{> afQuickField name="isShowingDefaultMeta"}}
+ <button class="btn btn-primary" type="submit">Create Show</button>
  {{/autoForm}}
 </template>
