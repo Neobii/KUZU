@@ -49,11 +49,10 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
       // Let's say we want this function to accept a form-encoded request with
       // fields named `a` and `b`.
       var content = request.body;
-      var songObject = JSON.parse(request.body.jsonString);
       // Since form enconding doesn't distinguish numbers and strings, we need
       // to parse it manually
       //put to array JSON.parse(content);
-      return [ songObject.artist, songObject.track, songObject.album, songObject.label, songObject.duration ];
+      return [ content.artist, content.track, content.album, content.label, content.duration ];
     }
   }
 )

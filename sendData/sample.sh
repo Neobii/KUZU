@@ -1,1 +1,1 @@
-echo -e "wow\r\n" | nc 127.0.0.1 9876
+cat track.json | nc -q 0 127.0.0.1 9876
