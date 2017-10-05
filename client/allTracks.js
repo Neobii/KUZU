@@ -50,5 +50,11 @@ Template.allTracks.events({
 		var showId = $(event.target).data('id');
 			Session.set('dateFrom',false);
 			Session.set('showId', showId);
-	}
+	},
+	 "click [data-delete-trackid]"(e, t) {
+	    if(confirm("Are You sure want to delete this?")){
+	      var trackId = $(e.currentTarget).attr("data-delete-trackid");
+	      Meteor.call("removeTrack", trackId);
+	    }
+	   }
 });

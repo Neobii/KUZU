@@ -25,12 +25,18 @@ Meteor.methods({
     console.log(_id + ' => '+ modifier); //see here?
 		Tracklists.update({_id: _id}, modifier)
 	},
+  removeTrack(trackId){
+      Tracklists.remove(trackId);
+  },
   deactivateShow(showId) {
     Shows.update({_id: showId}, {$set: {isActive: false}});
   },
   activateShow(showId) {
     Shows.update({isActive: true}, {$set: {isActive: false}}, {multi: true});
     Shows.update({_id: showId}, {$set: {isActive: true}});
+  },
+  removeShow(showId){
+    Shows.remove(showId);
   },
   getCurrentTrack(){
     var show = Shows.findOne({isActive: true});

@@ -19,5 +19,11 @@ Template.showsList.events({
     var showId = $(e.currentTarget).attr("data-activate-show-id");
     Meteor.call("activateShow", showId);
     FlowRouter.go("showStatus")
+  },
+   "click [data-delete-id]"(e, t) {
+    if(confirm("Are You sure want to delete this?")){
+      var showId = $(e.currentTarget).attr("data-delete-id");
+      Meteor.call("removeShow", showId);
+    }
   }
 })
