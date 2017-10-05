@@ -30,6 +30,10 @@ Meteor.publish('singleShow',(showId)=>{
     return Shows.find({isActive: true});
  })
 
+ Meteor.publish('activeShowTracks', function(){
+    var showId = Shows.findOne({isActive: true})._id;
+    return Tracklists.find({showId: showId})
+ })
  /*publishComposite('topTenPosts', {
     find() {
         // Find top ten highest scoring posts

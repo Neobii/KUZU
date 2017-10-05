@@ -1,7 +1,7 @@
 Template.showStatus.onCreated(function(){
 	this.autorun(()=> {
 		this.subscribe('activeShow');
-		this.subscribe('TrackLists');
+		this.subscribe('activeShowTracks');
 	})
 });
 
