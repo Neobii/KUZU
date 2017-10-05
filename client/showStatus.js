@@ -23,5 +23,9 @@ Template.showStatus.events({
   "click [data-start-default-tracking]"() {
     var showId = Shows.findOne({isActive: true})._id;
     Meteor.call("startDefaultTracking", showId);
+  },
+  "click [data-start-track-id]"(e, t) {
+    var trackId = $(e.currentTarget).attr("data-start-track-id");
+    Meteor.call("startTrack", trackId);
   }
 })

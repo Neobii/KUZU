@@ -56,6 +56,9 @@ Meteor.methods({
       }
     return trackerString;
   },
+  startTrack(trackId) {
+    Tracklists.update({_id: trackId}, {$set: {playDate: new Date()}})
+  },
   stopDefaultTracking(showId) {
     Shows.update({_id: showId}, {$set: {isShowingDefaultMeta: false}})
   },

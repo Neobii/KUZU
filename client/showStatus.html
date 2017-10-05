@@ -34,7 +34,11 @@
 										<td>
 											<div class="media">
 												<div class="media-body">
+													{{#if playDate}}
 													<span class="media-meta pull-right">	{{playDate}}</span>
+													{{else}}
+														<button class='btn btn-primary' data-start-track-id="{{_id}}">Start Track</button>
+													{{/if}}
 													<h4 class="title">
 													 <a href="{{pathFor 'edittrack' trackid=_id}}">Title: {{songTitle}}</a>
 													</h4>
