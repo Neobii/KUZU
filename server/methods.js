@@ -81,6 +81,11 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
   }
 )
 
+Meteor.method('removeUser',function(userId){
+      if(this.userId == userId){
+        Meteor.users.remove(userId);
+      }
+});
 // Enable cross origin requests for all endpoints
 JsonRoutes.setResponseHeaders({
   "Cache-Control": "no-store",

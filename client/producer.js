@@ -6,7 +6,7 @@ Template.producer.onCreated(function(){
 
 
 Template.producer.helpers({
-	Shows(){
-		return Shows.find({userId: Meteor.userId()});
+	producer(){
+		return Meteor.users.find({_id: Meteor.userId()}).fetch();
 	}
 })
