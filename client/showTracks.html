@@ -5,7 +5,7 @@
 	<div class="row">
 		{{#with show}}
 		<center>
-			<h3>{{showName}}</h3>
+			<h3>{{showName}} <small><a href="{{pathFor 'addTrackToShow' showId=_id}}">Add Track To Show</a></small></h3>
 		</center>
 		<section class="content" >
 				<div class="col-md-8 col-md-offset-2">
@@ -15,7 +15,6 @@
 						<div class="table-container">
 							<table class="table table-filter">
 								<tbody>
-
 							{{#each showTracks}}
 
 									<tr>
