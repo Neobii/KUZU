@@ -1,0 +1,4 @@
+<template name="editShow">
+		<h1>edit show</h1>
+			{{> quickForm collection="Shows" doc=show id="editShowForm" type="update" omitFields="showStart,isShowingDefaultMeta,isActive"	buttonContent="Save Changes"}}
+</template>
