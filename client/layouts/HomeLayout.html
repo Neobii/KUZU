@@ -2,7 +2,7 @@
 	{{> header}}
 		 <div id="siteWrapper" class="clearfix">
       </div>
-      <!--<a href="{{pathFor 'showStatus'}}">There's an active show right now</a>-->
+      {{#with currentActiveShow}}<div><a style="text-align:center;" href="{{pathFor 'showStatus'}}"><p>{{showName}} is active!</p></a></div>{{/with}}
 		{{> MainLayout }}
 	
 	{{> Footer}}

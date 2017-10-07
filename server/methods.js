@@ -33,7 +33,7 @@ Meteor.methods({
 		Tracklists.update({_id: _id}, modifier)
 	},
   removeTrack(trackId){
-      Tracklists.remove(trackId);
+    Tracklists.remove(trackId);
   },
   deactivateShow(showId) {
     Shows.update({_id: showId}, {$set: {isActive: false}});
@@ -64,7 +64,7 @@ Meteor.methods({
     return trackerString;
   },
   startTrack(trackId) {
-    var track = Trackslists.findOne({_id: trackId});
+    var track = Tracklists.findOne({_id: trackId});
     Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: false}});
     Tracklists.update({_id: trackId}, {$set: {playDate: new Date()}})
   },
