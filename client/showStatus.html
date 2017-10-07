@@ -3,12 +3,12 @@
 <h3>Active show is <a href="{{pathFor 'showtracks' showId=_id}}">{{showName}}</a> and started at {{showStart}} by {{#each user.emails}}{{address}}{{/each}}
 <h4>{{defaultMeta}}</h4>
 </h3>
- <button class="btn btn-error" data-stop-show>Stop Show</button>
+ <button class="btn btn-danger" data-stop-show>Stop Show</button>
 
 {{#if isShowingDefaultMeta}}
-<button class="btn btn-warning" data-stop-default-tracking>Show song meta data instead of default show meta</button>
+<button class="btn btn-warning" data-stop-default-tracking>Display show title</button>
 {{else}}
-<button class="btn btn-primary" data-start-default-tracking>Send only show tracking to media player meta data</button>
+<button class="btn btn-primary" data-start-default-tracking>Display song title</button>
 {{/if}}
 <hr>
 
@@ -35,9 +35,9 @@
 											<div class="media">
 												<div class="media-body">
 													{{#if playDate}}
-													<span class="media-meta pull-right">	{{playDate}}</span>
+													<span class="media-meta pull-right"><button class="btn btn-warning" data-restart-track-id="{{_id}}">Restart Track</button>	{{playDate}}</span>
 													{{else}}
-														<button class='btn btn-primary' data-start-track-id="{{_id}}">Start Track</button>
+														<button class='btn btn-success' data-start-track-id="{{_id}}">Start Track</button>
 													{{/if}}
 													<h4 class="title">
 													 <a href="{{pathFor 'edittrack' trackid=_id}}">Title: {{songTitle}}</a>

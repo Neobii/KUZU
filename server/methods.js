@@ -9,7 +9,14 @@ Meteor.methods({
   		var heading = true;
   		var delimiter = ";";
  	 return exportcsv.exportToCSV(collection, heading, delimiter);
-	}
+	},
+    downloadShowTracks: function(showId) {
+      collection = Tracklists.find({showId: showId}, {fields: {userId: 0, showId: 0}}).fetch();
+      collection.forEach(function(v){ delete v._id });
+      var heading = true;
+      var delimiter = "\t";
+   return exportcsv.exportToCSV(collection, heading, delimiter);
+  }
 });
 
 //SimpleRest.setMethodOptions('insertTrack', options);
@@ -57,6 +64,8 @@ Meteor.methods({
     return trackerString;
   },
   startTrack(trackId) {
+    var track = Trackslists.findOne({_id: trackId});
+    Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: false}});
     Tracklists.update({_id: trackId}, {$set: {playDate: new Date()}})
   },
   stopDefaultTracking(showId) {
