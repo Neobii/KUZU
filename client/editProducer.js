@@ -1,5 +1,14 @@
 Template.editProducer.helpers({
 	profile(){
-		return Meteor.users(Meteor.userId());
+		return Meteor.users.findOne(Meteor.userId());
 	}
 })
+
+
+AutoForm.hooks({
+    profileUpdateForm: {
+  		onSuccess() {
+			FlowRouter.go('producer');          	
+        }
+    }
+});

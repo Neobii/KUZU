@@ -1,24 +1,24 @@
- Meteor.publish('TrackLists', ()=>{
+ Meteor.publish('TrackLists', function(){
     return Tracklists.find({}, {limit: 50});
   });
 
- Meteor.publish('singleTrack',(trackId)=>{
+ Meteor.publish('singleTrack',function(trackId){
  	check(trackId, String);
  	return Tracklists.find({_id: trackId});
  });
 
-  Meteor.publish('showTracks',(showId)=>{
+  Meteor.publish('showTracks',function(showId){
     check(showId, String);
     return Tracklists.find({showId: showId});
  });
 
 
-Meteor.publish('singleShow',(showId)=>{
+Meteor.publish('singleShow',function(showId){
     return Shows.find({_id: showId});
  });
 
 
- Meteor.publish('allProducers',()=> {
+ Meteor.publish('allProducers',function() {
  	return Meteor.users.find({});
  });
 
@@ -33,6 +33,13 @@ Meteor.publish('singleShow',(showId)=>{
  Meteor.publish('activeShowTracks', function(){
     var showId = Shows.findOne({isActive: true})._id;
     return Tracklists.find({showId: showId})
+ })
+ Meteor.publish('productionList',function(){
+    return ProductionStatuses.find({});
+ })
+
+ Meteor.publish('singleProduction',function(productionId){
+    return ProductionStatuses.find({_id: productionId});
  })
  /*publishComposite('topTenPosts', {
     find() {

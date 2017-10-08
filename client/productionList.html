@@ -1,0 +1,17 @@
+<template name="productionList">
+		<h1>production list</h1>
+	{{#each prodlist}}
+		 <div class="media">
+			<div class="media-body">
+				
+				<h4 class="title">
+				 <a href="{{pathFor 'productionedit' productionId=_id}}">{{productionStatusName}}</a>
+				</h4>
+				<h4 class="title">
+				<span >{{additionalContent}}</span>
+				</h4>
+			</div>
+		</div>
+	{{/each}}	 
+
+</template>
