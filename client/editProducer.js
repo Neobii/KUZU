@@ -4,6 +4,13 @@ Template.editProducer.helpers({
 	}
 })
 
+Template.editProducer.events({
+	'click .cancel':function(e,t){
+		if(confirm("Are You sure want to cancel?")){
+			FlowRouter.go('producer');
+		}
+	}
+})
 
 AutoForm.hooks({
     profileUpdateForm: {

@@ -11,6 +11,13 @@ Template.productionEdit.helpers({
 	}
 })
 
+Template.productionEdit.events({
+	'click .cancel':function(e,t){
+		if(confirm('Are You sure want to cancel?')){
+				FlowRouter.go('productionlist');          	
+		}
+	}
+})
 
 AutoForm.hooks({
     productionUpdateForm: {

@@ -7,3 +7,7 @@ Template.registerHelper('json', function(a) {
     }
 
 });
+
+Template.registerHelper('isAdmin',function(){
+	return 	Roles.userIsInRole(Meteor.userId(),['admin']);
+})

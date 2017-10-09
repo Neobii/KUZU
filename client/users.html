@@ -1,0 +1,24 @@
+<template name="users">
+		<h1>Users List</h1>
+
+		<table class="table table-inverse">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Full Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  	{{#each  users}}
+    <tr>
+    {{#each emails}}
+      <td>{{address}}</td>
+     {{/each}}
+      <td>{{profile.name}}</td>
+      <td><button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</template>
