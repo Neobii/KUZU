@@ -1,6 +1,16 @@
+Template.producers.onCreated(function(){
+	this.autorun(()=>{
+		this.subscribe('allProducers');
+	})
+})
+
 Template.producers.helpers({
 	producers(){
-		return Meteor.users.find({}).fetch();
+		if(Roles.userIsInRole(Meteor.userId(),'admin')) {
+				return Meteor.users.find({}).fetch();
+          }else{
+				return Meteor.users.find({_id: Meteor.userId()},{isProducer: true}).fetch();
+          }
 	}
 })
 

@@ -58,7 +58,6 @@ lfergon:exportcsv@0.0.8
 livedata@1.0.18
 localstorage@1.1.1
 logging@1.1.17
-matb33:collection-hooks@0.8.4
 mdg:validation-error@0.5.1
 meteor@1.7.2
 meteor-base@1.1.0

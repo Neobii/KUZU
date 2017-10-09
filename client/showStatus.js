@@ -8,6 +8,12 @@ Template.showStatus.onCreated(function(){
 Template.showStatus.helpers({
 	currentActiveShow() {
     return Shows.findOne({isActive: true})
+    if(Roles.userIsInRole(Meteor.userId(),'admin')) {
+              return Shows.findOne({isActive:true});
+
+          }else{
+              return Shows.findOne({userId: Meteor.userId()},{isActive: true});
+    }
   }
 });
 

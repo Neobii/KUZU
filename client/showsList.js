@@ -6,7 +6,12 @@ Template.showsList.onCreated(function(){
 
 Template.showsList.helpers({
 	shows() {
-		return Shows.find({}, {sort: {showStart: -1}});
+      if(Roles.userIsInRole(Meteor.userId(),'admin')) {
+        return Shows.find({}, {sort: {showStart: -1}});
+
+      }else{
+    		return Shows.find({userId: Meteor.userId()}, {sort: {showStart: -1}});
+      }
 	}
 });
 

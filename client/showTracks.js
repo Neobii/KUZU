@@ -7,7 +7,12 @@ Template.showTracks.onCreated(function(){
 
 Template.showTracks.helpers({
 	show:()=>{
-		return Shows.findOne({_id: FlowRouter.getParam('showId')});
+          if(Roles.userIsInRole(Meteor.userId(),'admin')) {
+              return Shows.findOne({},{_id: FlowRouter.getParam('showId')});
+
+          }else{
+		          return Shows.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam('showId')});
+          }
 	}
 })
 
