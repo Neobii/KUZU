@@ -4,6 +4,15 @@
  {{> afQuickField name="showName"}}
  {{> afQuickField name="defaultMeta"}}
  {{> afQuickField name="isShowingDefaultMeta"}}
+ <h4 class="page-header">Upload a CSV</h4>
+
+  {{#unless uploading}}
+    <input type="file" name="uploadCSV">
+  {{else}}
+    <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+  {{/unless}}
+  <br>
  <button class="btn btn-primary" type="submit">Create Show</button>
+ <br>
  {{/autoForm}}
 </template>
