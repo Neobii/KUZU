@@ -21,8 +21,12 @@ Meteor.methods({
 
 //SimpleRest.setMethodOptions('insertTrack', options);
 SimpleRest.setMethodOptions('getCurrentTrack', {httpMethod: "get"});
+SimpleRest.setMethodOptions('getCurrentAdditionalInfo', {httpMethod: "get"});
 
 Meteor.methods({
+  togglePrivledge(userId, userRole){
+    //add/remove them to admin or as producer
+  },
 	updateProducerProfile: function (userId,name,image,bio) {
 		Meteor.users.update({_id: userId}, {$set : {name: name, image: image, bio: bio, isProducer: true }});
 	
@@ -62,6 +66,15 @@ Meteor.methods({
         trackerString = track.artist;
       }
     return trackerString;
+  },
+  getCurrentAdditionalInfo(){
+    var show = Shows.findOne({isActive: true});
+    var ps = ProductionStatuses.findOne({isActive: true});
+    if(ps && ps.isShowingAdditionalContent) {
+      return ps.additionalContent;
+    }
+    if(show)
+      return show.description;
   },
   startTrack(trackId) {
     var track = Tracklists.findOne({_id: trackId});
