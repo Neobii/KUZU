@@ -40,5 +40,11 @@ Template.showStatus.events({
     if(result) {
       Meteor.call("startTrack", trackId)
     }
+  },
+  "click [data-show-description]"() {
+    Meteor.call("toggleShowDescription", true)
+  },
+  "click [data-hide-description]"() {
+    Meteor.call("toggleShowDescription", false)
   }
 })

@@ -79,8 +79,9 @@ Meteor.methods({
     if(ps && ps.isShowingAdditionalContent) {
       return ps.additionalContent;
     }
-    if(show)
+    if(show && show.isShowingDescription)
       return show.description;
+    return "";
   },
   startTrack(trackId) {
     var track = Tracklists.findOne({_id: trackId});
@@ -92,6 +93,9 @@ Meteor.methods({
   },
   startDefaultTracking(showId) {
     Shows.update({_id: showId}, {$set: {isShowingDefaultMeta: true}});
+  },
+  toggleShowDescription(isShowing){
+    Shows.update({isActive: true}, {$set: {isShowingDescription: isShowing}});
   }
 });
 

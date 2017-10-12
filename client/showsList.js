@@ -10,7 +10,8 @@ Template.showsList.helpers({
         return Shows.find({}, {sort: {showStart: -1}});
 
       }else{
-    		return Shows.find({userId: Meteor.userId()}, {sort: {showStart: -1}});
+        return Shows.find({}, {sort: {showStart: -1}});
+    		//return Shows.find({userId: Meteor.userId()}, {sort: {showStart: -1}});
       }
 	}
 });

@@ -10,6 +10,11 @@
 {{else}}
 <button class="btn btn-primary" data-start-default-tracking>Display show title</button>
 {{/if}}
+{{#unless isShowingDescription}}
+<button class="btn btn-warning" data-show-description>Show Description</button>
+{{else}}
+<button class="btn btn-primary" data-hide-description>Hide Description</button>
+{{/unless}}
 <hr>
 
 
