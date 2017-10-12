@@ -6,6 +6,11 @@ Template.productionList.onCreated(function(){
 
 Template.productionList.helpers({
 	prodlist(){
-		return ProductionStatuses.find({});
+		if(Meteor.user().profile.isAdmin) {
+				return ProductionStatuses.find({});
+		}else{
+				return ProductionStatuses.find({userId: Meteor.userId()});
+		}
+
 	}
 })

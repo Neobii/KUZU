@@ -7,9 +7,8 @@ Template.showTracks.onCreated(function(){
 
 Template.showTracks.helpers({
 	show:()=>{
-          if(Roles.userIsInRole(Meteor.userId(),'admin')) {
+          if(Meteor.user().profile.isAdmin) {
               return Shows.findOne({},{_id: FlowRouter.getParam('showId')});
-
           }else{
 		          return Shows.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam('showId')});
           }

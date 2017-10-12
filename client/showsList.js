@@ -6,7 +6,7 @@ Template.showsList.onCreated(function(){
 
 Template.showsList.helpers({
 	shows() {
-      if(Roles.userIsInRole(Meteor.userId(),'admin')) {
+      if(Meteor.user().profile.isAdmin) {
         return Shows.find({}, {sort: {showStart: -1}});
 
       }else{

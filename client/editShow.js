@@ -8,7 +8,11 @@ Template.editShow.onCreated(function(){
 
 Template.editShow.helpers({
 	show(){
-		return Shows.findOne({_id: FlowRouter.getParam('showid')});
+		if(Meteor.user().profile.isAdmin){
+			return Shows.findOne({},{_id: FlowRouter.getParam('showid')});
+		}else{
+			return Shows.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam('showid')});
+		}
 	}
 });
 

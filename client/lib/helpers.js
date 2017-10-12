@@ -9,5 +9,9 @@ Template.registerHelper('json', function(a) {
 });
 
 Template.registerHelper('isAdmin',function(){
-	return 	Roles.userIsInRole(Meteor.userId(),['admin']);
+	if(check == 0){
+		return true;
+	}else{
+		return 	Meteor.user().profile.isAdmin;
+	}
 })

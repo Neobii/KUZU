@@ -1,6 +1,8 @@
 Template.users.helpers({
 	users(){
-		return Meteor.users.find({}).fetch();
+		if(Meteor.user().profile.isAdmin){
+			return Meteor.users.find({}).fetch();
+		}
 	}
 })
 

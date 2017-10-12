@@ -6,7 +6,7 @@ Template.producers.onCreated(function(){
 
 Template.producers.helpers({
 	producers(){
-		if(Roles.userIsInRole(Meteor.userId(),'admin')) {
+		if(Meteor.user().profile.isAdmin) {
 				return Meteor.users.find({}).fetch();
           }else{
 				return Meteor.users.find({_id: Meteor.userId()},{isProducer: true}).fetch();

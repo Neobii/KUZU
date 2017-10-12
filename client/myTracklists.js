@@ -6,7 +6,11 @@ Template.myTracklists.onCreated(function(){
 
 Template.myTracklists.helpers({
   currentActiveShow(){
-    return Shows.findOne({isActive: true})
+    if(Meteor.user().profile.isAdmin){
+      return Tracklists.findOne({_id: FlowRouter.getParam("trackid")});
+    }else{
+      return Shows.findOne({userId: Meteor.userId()},{isActive: true})
+    }
   }
 })
 

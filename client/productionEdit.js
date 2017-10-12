@@ -7,7 +7,11 @@ Template.productionEdit.onCreated(function(){
 
 Template.productionEdit.helpers({
 	production(){
-		return ProductionStatuses.findOne({_id: FlowRouter.getParam('productionId')});
+		if(Meteor.user().profile.isAdmin) {
+			return ProductionStatuses.findOne({_id: FlowRouter.getParam('productionId')});
+		}else{
+			return ProductionStatuses.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam('productionId')});
+		}
 	}
 })
 

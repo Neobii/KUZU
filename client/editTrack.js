@@ -8,7 +8,11 @@ Template.editTrack.onCreated(function(){
 
 Template.editTrack.helpers({
 	singleTrack() {
-		return Tracklists.findOne({_id: FlowRouter.getParam("trackid")});
+		if(Meteor.user().profile.isAdmin){
+			return Tracklists.findOne({_id: FlowRouter.getParam("trackid")});
+		}else{
+			return Tracklists.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam("trackid")});
+		}
 	}
 });
 

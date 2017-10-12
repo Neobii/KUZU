@@ -2,7 +2,10 @@
 
 {{#autoForm collection="Meteor.users" doc=profile id="profileUpdateForm" type="update"}}
 	{{> afQuickField name="profile.name"}}
+	{{#if isAdmin}}
 	{{> afQuickField name="profile.isProducer"}}
+	{{> afQuickField name="profile.isAdmin"}}
+	{{/if}}
 	{{> afQuickField name="profile.bio"}}
 	{{> afQuickField name="profile.image"}}
   <div>
