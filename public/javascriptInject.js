@@ -15,11 +15,18 @@ setInterval(function(){
 }, 1000);
 
 setInterval(function() {
-  //document.querySelector(".sqs-layout").innerHTML = "";
+  if(!document.querySelector("#additional-info-inject")){
+    var elem = document.createElement("div");
+    elem.id = "additional-info-inject";
+    document.querySelector(".sqs-layout").appendChild(elem);
+  }
+  //
   var ajax = new XMLHttpRequest();
   ajax.onreadystatechange = function() {
     if (ajax.readyState == 4 && ajax.status == 200) {
-      console.log(ajax.responseText)
+      var res = ajax.responseText.substr(1, ajax.responseText.length-2).replace(/\\"/g, '"');
+      document.querySelector("#additional-info-inject").innerHTML = res;
+      //console.log(ajax.responseText)
       //var data = JSON.parse(ajax.responseText);
       /*if(document.querySelector(".player .title")){
         document.querySelector(".player .title").innerHTML = data;

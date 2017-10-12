@@ -24,7 +24,13 @@ SimpleRest.setMethodOptions('getCurrentTrack', {httpMethod: "get"});
 SimpleRest.setMethodOptions('getCurrentAdditionalInfo', {httpMethod: "get"});
 
 Meteor.methods({
-  togglePrivledge(userId, userRole){
+  changePrivledge(userId, userRole, action){
+    if(action == "add"){
+      Roles.addUsersToRoles(userId, userRole, Roles.GLOBAL_GROUP)
+    }
+    else {
+      //Roles.addUsersToRoles(userId)
+    }
     //add/remove them to admin or as producer
   },
 	updateProducerProfile: function (userId,name,image,bio) {
