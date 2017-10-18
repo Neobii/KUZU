@@ -5,7 +5,9 @@
   <thead>
     <tr>
       <th>Email</th>
+      {{#if profile.name}}
       <th>Full Name</th>
+      {{/if}}
       <th></th>
     </tr>
   </thead>
@@ -15,7 +17,7 @@
     {{#each emails}}
       <td>{{address}}</td>
      {{/each}}
-      <td>{{profile.name}}</td>
+      <td>{{#if profile.name}}{{profile.name}}{{/if}}</td>
       <td><button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
     </tr>
     {{/each}}
