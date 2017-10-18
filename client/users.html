@@ -12,7 +12,7 @@
   <tbody>
   	{{#each  users}}
     <tr>
-      <td><a href="{{pathFor 'producer'}}">{{getEmail emails}}</a></td>
+      <td><a href="{{pathFor 'editproducer' userId=_id}}">{{getEmail emails}}</a></td>
       <td>{{#if profile.name}}{{profile.name}}{{/if}}</td>
       <td><button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
     </tr>
