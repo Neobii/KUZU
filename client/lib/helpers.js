@@ -9,9 +9,9 @@ Template.registerHelper('json', function(a) {
 });
 
 Template.registerHelper('isAdmin',function(){
-	if(check == 0){
-		return true;
-	}else{
 		return 	Meteor.user().profile.isAdmin;
-	}
+})
+
+Template.registerHelper('getEmail',function(emails){
+	 return emails[0].address != 'undefined'  ? emails[0].address : '';
 })
