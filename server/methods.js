@@ -117,9 +117,11 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
 )
 
 Meteor.method('removeUser',function(userId){
-      if(this.userId == userId){
+    if(Meteor.user().profile.isAdmin){
         Meteor.users.remove(userId);
-      }
+    }else if(this.userId === userId){
+        Meteor.users.remove(userId);
+    }
 });
 Meteor.method('isQueuedForNext',function(showId){
     Tracklists.update({showId: showId},$set: {isQueuedForNext: true});

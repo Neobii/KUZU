@@ -17,7 +17,6 @@ Template.users.events({
 		if(confirm("Are sure want to delete this?")){
 			var userId = $(e.currentTarget).attr("data-remove-userid");
 			    Meteor.call("removeUser", userId);
-
 		}
 	}
 })
