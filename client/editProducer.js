@@ -1,6 +1,18 @@
+Template.editProducer.onCreated(function(){
+	this.userId = FlowRouter.getParam('userId');
+	this.autorun(()=>{
+		this.subscribe('oneProducer',this.userId);
+	})
+})
+
+
 Template.editProducer.helpers({
 	profile(){
-		return Meteor.users.findOne(Meteor.userId());
+		if(Meteor.user().profile.isAdmin){
+			return Meteor.users.findOne({_id: FlowRouter.getParam('userId')})	
+		}else{
+			return Meteor.users.findOne(Meteor.userId());
+		}
 	}
 })
 
@@ -15,7 +27,11 @@ Template.editProducer.events({
 AutoForm.hooks({
     profileUpdateForm: {
   		onSuccess() {
-			FlowRouter.go('producer');          	
+  			if(Meteor.user().profile.isAdmin){
+  				FlowRouter.go('producers');
+  			}else{
+				FlowRouter.go('producer');          		
+  			}
         }
     }
 });

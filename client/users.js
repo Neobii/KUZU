@@ -1,3 +1,9 @@
+Template.users.onCreated(function(){
+	this.autorun(()=>{
+		this.subscribe('allProducers')
+	})
+})
+
 Template.users.helpers({
 	users(){
 		if(Meteor.user().profile.isAdmin){

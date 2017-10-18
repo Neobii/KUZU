@@ -5,18 +5,14 @@
   <thead>
     <tr>
       <th>Email</th>
-      {{#if profile.name}}
       <th>Full Name</th>
-      {{/if}}
       <th></th>
     </tr>
   </thead>
   <tbody>
   	{{#each  users}}
     <tr>
-    {{#each emails}}
-      <td>{{address}}</td>
-     {{/each}}
+      <td><a href="{{pathFor 'producer'}}">{{getEmail emails}}</a></td>
       <td>{{#if profile.name}}{{profile.name}}{{/if}}</td>
       <td><button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
     </tr>

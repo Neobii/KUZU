@@ -22,6 +22,15 @@ Meteor.publish('singleShow',function(showId){
  	return Meteor.users.find({});
  });
 
+  Meteor.publish('oneProducer',function(userId) {
+    if(Meteor.user().profile.isAdmin){
+        return Meteor.users.find({});
+    }else if( this.userId === userId){
+        return Meteor.users.find({_id: userId});
+    }
+ });
+
+
  Meteor.publish('allShows',function () {
     return Shows.find({});
  });
