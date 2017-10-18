@@ -7,7 +7,7 @@ Template.showStatus.onCreated(function(){
 
 Template.showStatus.helpers({
 	currentActiveShow() {
-    if(Meteor.user().profile.isAdmin) {
+    if(Meteor.user().isAdmin) {
               return Shows.findOne({isActive:true});
           }else{
               return Shows.findOne({userId: Meteor.userId()},{isActive: true});

@@ -7,7 +7,7 @@ Template.addTrackToShow.onCreated(function(){
 
 Template.addTrackToShow.helpers({
   show(){
-  	if(Meteor.user().profile.isAdmin){
+  	if(Meteor.user().isAdmin){
   		    return Shows.findOne({_id: FlowRouter.getParam('showId')});
   		}else{
     		  return Shows.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam('showId')});

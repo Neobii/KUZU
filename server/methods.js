@@ -117,7 +117,7 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
 )
 
 Meteor.method('removeUser',function(userId){
-    if(Meteor.user().profile.isAdmin){
+    if(Meteor.user().isAdmin){
         Meteor.users.remove(userId);
     }else if(this.userId === userId){
         Meteor.users.remove(userId);

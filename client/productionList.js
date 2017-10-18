@@ -6,7 +6,7 @@ Template.productionList.onCreated(function(){
 
 Template.productionList.helpers({
 	prodlist(){
-		if(Meteor.user().profile.isAdmin) {
+		if(Meteor.user().isAdmin) {
 				return ProductionStatuses.find({});
 		}else{
 				return ProductionStatuses.find({userId: Meteor.userId()});

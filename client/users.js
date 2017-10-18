@@ -6,7 +6,7 @@ Template.users.onCreated(function(){
 
 Template.users.helpers({
 	users(){
-		if(Meteor.user().profile.isAdmin){
+		if(Meteor.user().isAdmin){
 			return Meteor.users.find({}).fetch();
 		}
 	}

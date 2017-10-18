@@ -23,7 +23,7 @@ Meteor.publish('singleShow',function(showId){
  });
 
   Meteor.publish('oneProducer',function(userId) {
-    if(Meteor.user().profile.isAdmin){
+    if(Meteor.user().isAdmin){
         return Meteor.users.find({});
     }else if( this.userId === userId){
         return Meteor.users.find({_id: userId});

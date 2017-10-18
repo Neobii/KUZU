@@ -7,7 +7,7 @@ Template.productionEdit.onCreated(function(){
 
 Template.productionEdit.helpers({
 	production(){
-		if(Meteor.user().profile.isAdmin) {
+		if(Meteor.user().isAdmin) {
 			return ProductionStatuses.findOne({_id: FlowRouter.getParam('productionId')});
 		}else{
 			return ProductionStatuses.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam('productionId')});

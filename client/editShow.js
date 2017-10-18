@@ -8,7 +8,7 @@ Template.editShow.onCreated(function(){
 
 Template.editShow.helpers({
 	show(){
-		if(Meteor.user().profile.isAdmin){
+		if(Meteor.user().isAdmin){
 			return Shows.findOne({},{_id: FlowRouter.getParam('showid')});
 		}else{
 			return Shows.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam('showid')});

@@ -18,14 +18,14 @@ Template.allTracks.helpers({
 			return Tracklists.find({userId: Meteor.userId()},{ 'playDate' : { $gte : Session.get('dateFrom'), $lt: Session.get('dateTo') }});
 		}else if (Session.get('showId')) {
 			return Tracklists.find({userId: Meteor.userId()},{showId: Session.get('showId')});
-		}else if(Meteor.user().profile.isAdmin){
+		}else if(Meteor.user().isAdmin){
 			return Tracklists.find({}, {sort: {playDate: -1}});
 		}else{
 			return Tracklists.find({userId: Meteor.userId()}, {sort: {playDate: -1}});
 		}
 	},
 	shows:()=>{
-		  	if(Meteor.user().profile.isAdmin){
+		  	if(Meteor.user().isAdmin){
 				return Shows.find({});
 		  	}else{
 				return Shows.find({userId: Meteor.userId()});
