@@ -121,6 +121,10 @@ Meteor.method('removeUser',function(userId){
         Meteor.users.remove(userId);
       }
 });
+Meteor.method('isQueuedForNext',function(showId){
+    Tracklists.update({showId: showId},$set: {isQueuedForNext: true});
+});
+
 // Enable cross origin requests for all endpoints
 JsonRoutes.setResponseHeaders({
   "Cache-Control": "no-store",
