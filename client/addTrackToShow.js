@@ -19,7 +19,7 @@ Template.addTrackToShow.helpers({
 AutoForm.hooks({
     insertTracklistFormShow: {
       onSuccess: function() {
-        console.log(FlowRouter.getParam('showId'))
+        Tracklists.update({showId: FlowRouter.getParam('showId')},$set: {isQueuedForNext: true});
         FlowRouter.go('showtracks',{showId: FlowRouter.getParam('showId')});            
       }
     }
