@@ -15,6 +15,7 @@ Meteor.publish(null, function(){
  });
 
   Meteor.publish('showTracks',function(showId){
+    console.log("showId wo", showId)
     check(showId, String);
     return Tracklists.find({showId: showId});
  });

@@ -1,5 +1,5 @@
 Template.editShow.onCreated(function(){
-	this.showId = FlowRouter.getParam('showid');
+	this.showId = FlowRouter.getParam('showId');
 	this.autorun(()=>{
 		this.subscribe('singleShow',this.showId);
 	})
@@ -8,18 +8,18 @@ Template.editShow.onCreated(function(){
 
 Template.editShow.helpers({
 	show(){
-		if(Meteor.user().isAdmin){
-			return Shows.findOne({},{_id: FlowRouter.getParam('showid')});
+		if(Meteor.user() && Meteor.user().isAdmin){
+			return Shows.findOne({_id: FlowRouter.getParam('showId')});
 		}else{
-			return Shows.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam('showid')});
+			return Shows.findOne({userId: Meteor.userId(), _id: FlowRouter.getParam('showId')});
 		}
 	}
 });
 
 AutoForm.hooks({
-    editShowForm: {
-  		onSuccess() {
-			FlowRouter.go('showsList');          	
-        }
+  editShowForm: {
+		onSuccess() {
+		  FlowRouter.go('showsList');          	
     }
+  }
 });

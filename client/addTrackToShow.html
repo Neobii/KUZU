@@ -1,5 +1,5 @@
 <template name="addTrackToShow">
-{{#with show}}
+{{#with mainShow}}
 <h1>Add Track to <a href="">{{showName}}</a></h1>
   {{#autoForm collection="Tracklists" id="insertTracklistFormShow" type="insert"}}
   {{> afQuickField name="songTitle"}}
