@@ -1,4 +1,5 @@
 <template name='showStatus'>
+{{#if currentUser}}
 {{#with currentActiveShow}}
 <h3>Active show is <a href="{{pathFor 'showtracks' showId=_id}}">{{showName}}</a> and started at {{showStart}} by {{#each user.emails}}{{address}}{{/each}}
 <h4>{{defaultMeta}}</h4>
@@ -72,5 +73,5 @@
 	</div>
 
 {{/with}}
-
+{{/if}}
 </template>

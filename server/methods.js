@@ -25,13 +25,10 @@ SimpleRest.setMethodOptions('getCurrentAdditionalInfo', {httpMethod: "get"});
 
 Meteor.methods({
   changePrivledge(userId, userRole, action){
-    if(action == "add"){
-      Roles.addUsersToRoles(userId, userRole, Roles.GLOBAL_GROUP)
-    }
-    else {
-      //Roles.addUsersToRoles(userId)
-    }
-    //add/remove them to admin or as producer
+    var obj =  {};
+    obj[userRole] = !!action;
+    console.log(userId, obj);
+    Meteor.users.update({_id: userId}, {$set: obj});
   },
 	updateProducerProfile: function (userId,name,image,bio) {
 		Meteor.users.update({_id: userId}, {$set : {name: name, image: image, bio: bio, isProducer: true }});
