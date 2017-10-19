@@ -14,6 +14,9 @@ Template.showStatus.helpers({
     }else{
         return Shows.findOne({userId: Meteor.userId()}, {isActive: true});
     }
+  },
+  queuedNextSong() {
+    return Tracklists.findOne({isQueuedForNext: true});
   }
 });
 
@@ -46,5 +49,9 @@ Template.showStatus.events({
   },
   "click [data-hide-description]"() {
     Meteor.call("toggleShowDescription", false)
+  },
+  "click [data-queue-song-id]"(e, t) {
+    var trackId = $(e.currentTarget).attr("data-queue-song-id");
+    Meteor.call("queueSong", trackId);
   }
 })

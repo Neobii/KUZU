@@ -16,13 +16,41 @@
 {{else}}
 <button class="btn btn-primary" data-hide-description>Hide Description</button>
 {{/unless}}
-<hr>
 {{#with queuedNextSong}}
-<div class="row">
-<!-- display song here with play song button that will set the play date and take isQueued off-->
-</div>
+<table class="table table-filter">
+		<tbody>
+			<tr>
+				<td>
+					<a href="javascript:;" class="star">
+						<i class="glyphicon glyphicon-star"></i>
+					</a>
+				</td>
+				<td>
+					<div class="media">
+						<div class="media-body">
+						
+							<button class='btn btn-success' data-start-track-id="{{_id}}">Start Track</button>
+							<h4 class="title">
+							 <a href="{{pathFor 'edittrack' trackid=_id}}">Title: {{songTitle}}</a>
+							</h4>
+							<h4 class="title">
+							<span class="pull-right"> Album: {{album}}</span>
+							Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5> 
+							</h4>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
 {{/with}}
-<hr>
+{{#autoForm collection="Tracklists" type="insert" id="activeShowInsertTrack"}}
+{{> afQuickField name="songTitle"}}
+{{> afQuickField name="artist"}}
+{{> afFieldInput type="hidden" name="showId" value=_id}}
+<button class="btn btn-primary" type="submit">Add Track</button>
+{{/autoForm}}
 <!-- Add song track to this show here-->
 <hr>
 <div class="row">
@@ -46,6 +74,9 @@
 										<td>
 											<div class="media">
 												<div class="media-body">
+													{{#unless isQueuedForNext}}
+														<button class="btn btn-info" data-queue-song-id="{{_id}}">Queue Song</button>
+													{{/unless}}
 													{{#if playDate}}
 													<span class="media-meta pull-right"><button class="btn btn-warning" data-restart-track-id="{{_id}}">Restart Track</button>	{{playDate}}</span>
 													{{else}}

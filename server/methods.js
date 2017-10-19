@@ -93,6 +93,10 @@ Meteor.methods({
   },
   toggleShowDescription(isShowing){
     Shows.update({isActive: true}, {$set: {isShowingDescription: isShowing}});
+  },
+  queueSong(trackId){
+    Tracklists.update({isQueuedForNext: true}, {$set: {isQueuedForNext: false}}, {multi: true});
+    Tracklists.update({_id: trackId}, {$set: {isQueuedForNext: true}});
   }
 });
 
