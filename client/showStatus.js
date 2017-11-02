@@ -35,10 +35,12 @@ Template.showStatus.events({
   },
   "click [data-start-track-id]"(e, t) {
     var trackId = $(e.currentTarget).attr("data-start-track-id");
+    window.scroll(0, 0);
     Meteor.call("startTrack", trackId);
   },
   "click [data-restart-track-id]"(e, t) {
     var trackId = $(e.currentTarget).attr("data-restart-track-id");
+    window.scroll(0, 0);
     result = window.confirm("Are you sure you want to restart the track?");
     if(result) {
       Meteor.call("startTrack", trackId)
