@@ -35,10 +35,10 @@ Template.allTracks.helpers({
 
 Template.allTracks.events({
 	'click #exportcsv': function (event) {
-		  var nameFile = 'fileDownloaded.csv';
 		  var dateFrom = Session.get('dateFrom');
 		  var dateTo   = Session.get('dateTo');
-		  Meteor.call('download',dateFrom,dateTo, function (error, fileContent) {
+		  var nameFile = 'tracks_' + dateFrom + "___" + dateTo + '_.tsv';
+		  Meteor.call('downloadTracksTSV',dateFrom, dateTo, function (error, fileContent) {
 		  	if(fileContent){
 		  		 var blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
       			 saveAs(blob, nameFile);
