@@ -20,7 +20,7 @@ module.exports = {
       serverOnly: true,*/
     },
     docker: {
-      image: 'abernix/meteord:base'
+      image: 'abernix/meteord:node-8.4.0-base'
     },
     env: {
       ROOT_URL: 'http://producer.kuzu.fm',

@@ -45,6 +45,13 @@ Template.allTracks.events({
 		  	}
 		  });
 	},
+	'change #datetimepicker6':()=>{
+		var start = new Date($("#dateFrom").val());
+		var end = new Date($("#dateTo").val());
+			Session.set('showId', false);
+			Session.set('dateFrom',start);
+			Session.set('dateTo', end);
+	},
 	'change #datetimepicker7':()=>{
 		var start = new Date($("#dateFrom").val());
 		var end = new Date($("#dateTo").val());
