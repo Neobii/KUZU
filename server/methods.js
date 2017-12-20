@@ -34,6 +34,31 @@ Meteor.methods({
       var heading = true;
       var delimiter = "\t";
    return exportcsv.exportToCSV(collection, heading, delimiter);
+  },
+  duplicateShow(showId, showName) {
+    var show = Shows.findOne({_id: showId});
+    Shows.insert({
+      showName: showName,
+      defaultMeta: show.defaultMeta,
+      isShowingDefaultMeta: show.isShowingDefaultMeta,
+      description: show.description,
+      isShowingDescription: show.isShowingDescription
+    }, function(err, docInserted) {
+      var trackLists = Tracklists.find({showId: show._id}).fetch();
+      console.log(trackLists)
+      _.each(trackLists, function(trackList){
+        Tracklists.insert({
+          showId: docInserted,
+          songTitle: trackList.songTitle,
+          artist: trackList.artist,
+          album: trackList.album,
+          label: trackList.label,
+          trackLength: trackList.trackLength,
+          playDateOffset: trackList.playDateOffset
+        })
+      })
+    });
+
   }
 });
 
@@ -143,7 +168,7 @@ Meteor.method('removeUser',function(userId){
     }
 });
 Meteor.method('isQueuedForNext',function(showId){
-    Tracklists.update({showId: showId},$set: {isQueuedForNext: true});
+    Tracklists.update({showId: showId}, {$set: {isQueuedForNext: true}});
 });
 
 // Enable cross origin requests for all endpoints

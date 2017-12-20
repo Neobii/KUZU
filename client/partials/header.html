@@ -60,27 +60,35 @@ Denton, Texas." />
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        
-            {{#if currentUser}}
-             <li class="dropdown">
-              <a href="{{pathFor 'shows'}}" class="dropdown-toggle" data-toggle="dropdown">Producers <b class="caret"></b></a>
+          {{#if currentUser.isAdmin}}
+            <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{{pathFor 'producer'}}">Me</a></li>
                 <li><a href="{{pathFor 'producers'}}">Producers</a></li>
                 <li><a href="{{pathFor 'productionstatus'}}">Add Production Status</a></li>
                 <li><a href="{{pathFor 'productionlist'}}">Production Status List</a></li>
-                  {{#if isAdmin}}
                 <li><a href="{{pathFor 'users'}}">Users</a></li>
+              </ul>
+            </li>
+          {{/if}}
+            {{#if currentUser}}
+             <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown">Producers <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{pathFor 'producer'}}">Me</a></li>
+                <li><a href="{{pathFor 'showsList'}}">Shows</a></li>
+                <li><a href="{{pathFor 'startshow'}}">Create New Show</a></li>
+                  {{#if isAdmin}}
+                
                   {{/if}}
 
               </ul>
             </li>
 
             <li class="dropdown">
-              <a href="{{pathFor 'shows'}}" class="dropdown-toggle" data-toggle="dropdown">Shows <b class="caret"></b></a>
+              <a href="{{pathFor 'shows'}}" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{{pathFor 'showsList'}}">Shows</a></li>
-                <li><a href="{{pathFor 'startshow'}}">Create New Show</a></li>
+
                 <li><a href="{{pathFor 'allTracks'}}">Tracks</a></li>
               </ul>
             </li>

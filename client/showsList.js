@@ -32,8 +32,10 @@ Template.showsList.events({
     }
   },
   "click [data-duplicate-id]" (e, t) {
+    var showId = $(e.currentTarget).attr('data-duplicate-id');
     var showName = prompt("Duplicate Show Name?");
-    console.log(showName);
-    
+    if(showName && showId) { 
+      Meteor.call("duplicateShow", showId, showName)
+    }
   }
 })
