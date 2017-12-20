@@ -1,18 +1,17 @@
 Template.showsList.onCreated(function(){
-	this.autorun(()=>{
-		this.subscribe('allShows');
+	this.autorun(() => {
+		this.subscribe('showsList');
 	})
 })
 
 Template.showsList.helpers({
 	shows() {
-      if(Meteor.user().isAdmin) {
-        return Shows.find({}, {sort: {showStart: -1}});
+    if(Meteor.user().isAdmin) {
+      return Shows.find({}, {sort: {showStart: -1}});
 
-      }else{
-        return Shows.find({}, {sort: {showStart: -1}});
-    		//return Shows.find({userId: Meteor.userId()}, {sort: {showStart: -1}});
-      }
+    } else {
+      return Shows.find({userId: Meteor.userId()}, {sort: {showStart: -1}});
+    }
 	}
 });
 
