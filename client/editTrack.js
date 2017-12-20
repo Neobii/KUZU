@@ -17,9 +17,9 @@ Template.editTrack.helpers({
 });
 
 AutoForm.hooks({
-    editTrackForm: {
-  		onSuccess() {
-			FlowRouter.go('alltracks');          	
-        }
+  editTrackForm: {
+		onSuccess() {
+		  window.history.back();
     }
+  }
 });

@@ -26,4 +26,8 @@ Template.showTracks.events({
       }
     });
   },
+  'click [data-remove-track]'(e, t) {
+    var trackId = $(e.currentTarget).attr("data-remove-track");
+    Meteor.call("removeTrack", trackId);
+  }
 })
