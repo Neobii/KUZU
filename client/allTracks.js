@@ -1,8 +1,8 @@
 Template.allTracks.onCreated(function(){
-	this.autorun(() => {
+	/*this.autorun(() => {
 		this.subscribe("TrackLists");
 		this.subscribe("showList");
-	});
+	});*/
 	Session.set('dateFrom', false);
 	Session.set('showId', false);
 
@@ -13,7 +13,7 @@ Template.allTracks.rendered=function() {
 }
 
 Template.allTracks.helpers({
-	Tracklists:()=> {
+	/*Tracklists:()=> {
 		if(Session.get('dateFrom')){
 			return Tracklists.find({userId: Meteor.userId()},{ 'playDate' : { $gte : Session.get('dateFrom'), $lt: Session.get('dateTo') }});
 		}else if (Session.get('showId')) {
@@ -30,7 +30,7 @@ Template.allTracks.helpers({
 		  	}else{
 				return Shows.find({userId: Meteor.userId()});
 		  	}
-	}
+	}*/
 });
 
 Template.allTracks.events({

@@ -5,6 +5,13 @@ Meteor.publish(null, function(){
     return Meteor.users.find({_id: this.userId})
 });
 
+Meteor.publish(null, function(){
+  if(!this.userId){
+    return this.ready();
+  }
+  return ProductionStatuses.find({isActive: true});
+})
+
  Meteor.publish('TrackLists', function(){
     return Tracklists.find({}, {limit: 50});
   });

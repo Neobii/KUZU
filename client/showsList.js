@@ -25,10 +25,15 @@ Template.showsList.events({
     Meteor.call("activateShow", showId);
     FlowRouter.go("showStatus")
   },
-   "click [data-delete-id]"(e, t) {
+ "click [data-delete-id]"(e, t) {
     if(confirm("Are You sure want to delete this?")){
       var showId = $(e.currentTarget).attr("data-delete-id");
       Meteor.call("removeShow", showId);
     }
+  },
+  "click [data-duplicate-id]" (e, t) {
+    var showName = prompt("Duplicate Show Name?");
+    console.log(showName);
+    
   }
 })

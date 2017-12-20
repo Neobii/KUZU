@@ -3,8 +3,9 @@
       </div>
  	<main id="page">
           <div id="content" class="main-content"> 
-		
+		  {{#if currentUser}}
 				{{> Template.dynamic template=main }}
+      {{/if}}
 		 
 		 </div>
 	</main>

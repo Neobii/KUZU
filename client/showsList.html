@@ -1,7 +1,15 @@
 <template name="showsList">
 <!-- otherwise they will insert tracks attached to show-->
 {{#each shows}}
-<h3><a href="{{pathFor 'showTracks' showId=_id}}">{{showName}} - <small>{{defaultShowMeta}}</small></a>{{#if isActive}}<button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Deactivate</button>{{else}}<button class="btn btn-primary" data-activate-show-id="{{_id}}">Start Show</button>{{/if}}&nbsp;<button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button></h3><a href="{{pathFor 'editShow' showId=_id}}" class="btn btn-primary">Edit</a>
+<h3><a href="{{pathFor 'showTracks' showId=_id}}">{{showName}}<small>{{#if defaultShowMeta}} - {{defaultShowMeta}}{{/if}}</small></a></h3>
 <h3><span class="small">{{showStart}}</span></h3>
+{{#if isActive}}
+<button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Stop Show</button>{{else}}
+<button class="btn btn-primary" data-activate-show-id="{{_id}}">Start Show</button>
+{{/if}}
+&nbsp;
+<a href="{{pathFor 'editShow' showId=_id}}" class="btn btn-primary">Edit</a>
+<button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
+<button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
 {{/each}}
 </template>
