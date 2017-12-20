@@ -11,7 +11,7 @@ Meteor.methods({
  	 return exportcsv.exportToCSV(collection, heading, delimiter);
 	},
   downloadTracksTSV(dateFrom, dateTo) {
-    tracks = Tracklists.find({ 'playDate' : { $gte : dateFrom, $lt: dateTo }}, {fields: {playDateOffset: 0, userId: 0, showId: 0, isQueuedForNext: 0}}).fetch();
+    tracks = Tracklists.find({ 'playDate' : { $gte : dateFrom, $lt: dateTo }}, {fields: {playDateOffset: 0, userId: 0, showId: 0, isQueuedForNext: 0}, sort: {playDate: 1}}).fetch();
       tracks.forEach(function(v){ 
         delete v._id 
       });
@@ -25,7 +25,7 @@ Meteor.methods({
         return track;
       })
       var heading = true;
-      var delimiter = "\t";
+      var delimiter = "\t\t";
    return exportcsv.exportToCSV(tracks, heading, delimiter);
   },
     downloadShowTracks: function(showId) {
@@ -45,7 +45,6 @@ Meteor.methods({
       isShowingDescription: show.isShowingDescription
     }, function(err, docInserted) {
       var trackLists = Tracklists.find({showId: show._id}).fetch();
-      console.log(trackLists)
       _.each(trackLists, function(trackList){
         Tracklists.insert({
           showId: docInserted,

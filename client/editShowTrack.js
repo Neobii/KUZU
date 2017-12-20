@@ -19,7 +19,7 @@ Template.editShowTrack.helpers({
 AutoForm.hooks({
     editShowTrackForm: {
   		onSuccess() {
-			 FlowRouter.go('showTracks', {showId: FlowRouter.getParam("showId")});          	
-        }
+			  window.history.back();    	
+      }
     }
 });
