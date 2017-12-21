@@ -3,16 +3,16 @@
 <h4>Search Shows {{> EasySearch.Input index=showsIndex}}</h4>
 {{#EasySearch.Each index=showsIndex}}
 <div>
-  <h3><a href="{{pathFor 'showTracks' showId=_id}}">{{showName}}<small>{{#if defaultShowMeta}} - {{defaultShowMeta}}{{/if}}</small></a></h3>
+  <h3><a href="{{pathFor 'showTracks' showId=__originalId}}">{{showName}}<small>{{#if defaultShowMeta}} - {{defaultShowMeta}}{{/if}}</small></a></h3>
 <h3><span class="small">{{showStart}}</span></h3>
 {{#if isActive}}
-<button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Stop Show</button>{{else}}
-<button class="btn btn-primary" data-activate-show-id="{{_id}}">Start Show</button>
+<button class="btn btn-warning" data-deactivate-show-id="{{__originalId}}">Stop Show</button>{{else}}
+<button class="btn btn-primary" data-activate-show-id="{{__originalId}}">Start Show</button>
 {{/if}}
 &nbsp;
-<a href="{{pathFor 'editShow' showId=_id}}" class="btn btn-primary">Edit</a>
-<button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
-<button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
+<a href="{{pathFor 'editShow' showId=__originalId}}" class="btn btn-primary">Edit</a>
+<button class="btn btn-danger" data-delete-id="{{__originalId}}">Delete</button>
+<button class="btn btn-success" data-duplicate-id="{{__originalId}}">Duplicate</button>
 <hr>
 </div>
 {{/EasySearch.Each}}
