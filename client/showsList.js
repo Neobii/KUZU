@@ -1,18 +1,7 @@
-Template.showsList.onCreated(function(){
-	this.autorun(() => {
-		this.subscribe('showsList');
-	})
-})
-
 Template.showsList.helpers({
-	shows() {
-    if(Meteor.user().isAdmin) {
-      return Shows.find({}, {sort: {showStart: -1}});
-
-    } else {
-      return Shows.find({userId: Meteor.userId()}, {sort: {showStart: -1}});
-    }
-	}
+  showsIndex() {
+    return ShowsIndex;
+  }
 });
 
 Template.showsList.events({

@@ -25,7 +25,7 @@ Meteor.methods({
         return track;
       })
       var heading = true;
-      var delimiter = "\t\t";
+      var delimiter = "|";
    return exportcsv.exportToCSV(tracks, heading, delimiter);
   },
     downloadShowTracks: function(showId) {

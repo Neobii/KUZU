@@ -52,10 +52,10 @@ Meteor.publish('singleShow',function(showId){
 Meteor.publish("showsList", function(){
   var user = Meteor.users.findOne({_id: this.userId});
   if(user.isAdmin) {
-    return Shows.find({}, {sort: {showStart: -1}, limit: 30});
+    return Shows.find({}, {sort: {showStart: -1}});
   }
   else {
-    return Shows.find({userId: this.userId}, {sort: {showStart: -1}, limit: 30});
+    return Shows.find({userId: this.userId}, {sort: {showStart: -1}});
   }
 })
 
