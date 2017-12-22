@@ -13,6 +13,9 @@ Template.allTracks.rendered=function() {
 }
 
 Template.allTracks.helpers({
+	tracksIndex() {
+		return TracklistsIndex;
+	}
 	/*Tracklists:()=> {
 		if(Session.get('dateFrom')){
 			return Tracklists.find({userId: Meteor.userId()},{ 'playDate' : { $gte : Session.get('dateFrom'), $lt: Session.get('dateTo') }});

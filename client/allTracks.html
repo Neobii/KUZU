@@ -53,12 +53,10 @@
 							</div>
 									 </div>	
 							</div>
-							<!--
+							<h4>Search Tracks {{> EasySearch.Input index=tracksIndex}}</h4>
 							<table class="table table-filter">
 								<tbody>
-								{{#if Template.subscriptionsReady}}
-
-							{{#each Tracklists}}
+									{{#EasySearch.Each index=tracksIndex}}
 
 									<tr>
 										<td>
@@ -71,21 +69,19 @@
 												<div class="media-body">
 													<span class="media-meta pull-right">	{{playDate}}</span>
 													<h4 class="title">
-													 <a href="{{pathFor 'edittrack' trackid=_id}}">Title: {{songTitle}}</a>
+													 <a href="{{pathFor 'edittrack' trackid=__originalId}}">Title: {{songTitle}}</a>
 													</h4>
 													<h4 class="title">
 													<span class="pull-right"> Album: {{album}}</span>
-													Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5> <button class="btn btn-danger pull-right" data-delete-trackid="{{_id}}">Delete</button>
+													Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5> <button class="btn btn-danger pull-right" data-delete-trackid="{{__originalId}}">Delete</button>
 													</h4>
 												</div>
 											</div>
 										</td>
 									</tr>
-									{{/each}}
-									{{/if}}
+									{{/EasySearch.Each}}
 								</tbody>
 							</table>
-							-->
 						</div>
 					</div>
 				</div>
