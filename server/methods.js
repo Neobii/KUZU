@@ -69,16 +69,12 @@ Meteor.methods({
   changePrivledge(userId, userRole, action){
     var obj =  {};
     obj[userRole] = !!action;
-    console.log(userId, obj);
     Meteor.users.update({_id: userId}, {$set: obj});
   },
 	updateProducerProfile: function (userId,name,image,bio) {
 		Meteor.users.update({_id: userId}, {$set : {name: name, image: image, bio: bio, isProducer: true }});
-	
 	},
 	editTrack(modifier, _id){
-    console.log()
-    console.log(_id + ' => '+ modifier); //see here?
 		Tracklists.update({_id: _id}, modifier)
 	},
   removeTrack(trackId){
@@ -97,20 +93,20 @@ Meteor.methods({
   getCurrentTrack(){
     var show = Shows.findOne({isActive: true});
     if(show && show.isShowingDefaultMeta){
-      return show.defaultMeta;
+      return show.defaultMeta || " ";
     }
     var track = Tracklists.findOne({}, {sort: {playDate: -1}});
     var trackerString;
     if(track.artist && track.songTitle) {
-        trackerString = track.artist + " - " + track.songTitle;
-      }
-      else if(track.songTitle) {
-        trackerString = track.songTitle;
-      }
-      else if(track.artistName) {
-        trackerString = track.artist;
-      }
-    return trackerString;
+      trackerString = track.artist + " - " + track.songTitle;
+    }
+    else if(track.songTitle) {
+      trackerString = track.songTitle;
+    }
+    else if(track.artistName) {
+      trackerString = track.artist;
+    }
+    return trackerString || " ";
   },
   getCurrentAdditionalInfo(){
     var show = Shows.findOne({isActive: true});
@@ -120,7 +116,7 @@ Meteor.methods({
     }
     if(show && show.isShowingDescription)
       return show.description;
-    return "";
+    return " ";
   },
   startTrack(trackId) {
     var track = Tracklists.findOne({_id: trackId});

@@ -64,9 +64,13 @@ Meteor.publish("showsList", function(){
  })
 
  Meteor.publish('activeShowTracks', function(){
-    var showId = Shows.findOne({isActive: true})._id;
-    return Tracklists.find({showId: showId})
+    var activeShow = Shows.findOne({isActive: true});
+    if(activeShow) {
+      return Tracklists.find({showId: activeShow._id});
+    }
+    return this.ready();
  })
+ 
  Meteor.publish('productionList',function(){
     return ProductionStatuses.find({});
  })
