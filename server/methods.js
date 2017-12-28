@@ -146,6 +146,7 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
     getArgsFromRequest: function (request) {
       // Let's say we want this function to accept a form-encoded request with
       // fields named `a` and `b`.
+      console.log(request.body);
       var content = request.body;
       // Since form enconding doesn't distinguish numbers and strings, we need
       // to parse it manually
