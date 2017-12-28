@@ -9,6 +9,14 @@
 			<!-- <button data-download-csv class="btn btn-info">Download CSV</button> -->
 		</center>
 					{{{description}}}
+					<h4 class="page-header">Upload a CSV From Reaper</h4>
+
+  {{#unless uploading}}
+    <input type="file" name="uploadCSV">
+  {{else}}
+    <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+  {{/unless}}
+  <br>
 		<section class="content" >
 
 				<div class="col-md-8 col-md-offset-2">

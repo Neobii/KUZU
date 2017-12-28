@@ -182,21 +182,3 @@ Router.route( "/insertrack/:track", function() {
 
   Tracklists.insert({songTitle: track.track, artist: track.artist, album: track.album, trackLength: track.tracklength});
 }, { where: "server" });*/
-
-
-Meteor.methods({
-  parseUpload( data ) {
-    check( data, Array );
-    console.log(data);
-    for ( let i = 1; i < data.length; i++ ) {
-      let item   = data[ i ];
-     console.log(item.Name);
-     if(item){
-
-      //insert here
-     }
-
-   }
-  }
-});
-

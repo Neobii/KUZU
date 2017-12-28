@@ -1,11 +1,15 @@
 Template.showTracks.onCreated(function(){
-		this.autorun(()=>{
-			this.subscribe('singleShow',FlowRouter.getParam('showId'));
-			this.subscribe('showTracks',FlowRouter.getParam('showId'));
-		})
+  Template.instance().uploading = new ReactiveVar( false );
+	this.autorun(()=>{
+		this.subscribe('singleShow',FlowRouter.getParam('showId'));
+		this.subscribe('showTracks',FlowRouter.getParam('showId'));
+	})
 })
 
 Template.showTracks.helpers({
+  uploading() {
+    return Template.instance().uploading.get();
+  },
 	showMain() {
     if(Meteor.user() && Meteor.user().isAdmin) {
         return Shows.findOne({_id: FlowRouter.getParam('showId')});
@@ -29,5 +33,22 @@ Template.showTracks.events({
   'click [data-remove-track]'(e, t) {
     var trackId = $(e.currentTarget).attr("data-remove-track");
     Meteor.call("removeTrack", trackId);
+  },
+  'change [name="uploadCSV"]' ( event, template ) {
+    template.uploading.set( true );
+
+    Papa.parse( event.target.files[0], {
+      header: true,
+      complete( results, file ) {
+        Meteor.call( 'reaperParseUpload', FlowRouter.getParam('showId'), results.data, ( error, response ) => {
+          if ( error ) {
+            console.log( error.reason );
+          } else {
+            template.uploading.set( false );
+            alert( 'Upload complete!', 'success', 'growl-top-right' );
+          }
+        });
+      }
+    });
   }
 })
