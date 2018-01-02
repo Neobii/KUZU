@@ -5,6 +5,7 @@ while true;do
   IFS='|'
   json=""
   counter=0
+  data=`echo data | sed "s/\"/\\\"/g"`
   for item in $(echo "$data"); do
     if [ $counter -eq 0 ]
       then
@@ -14,21 +15,22 @@ while true;do
       then
         json="$json'songTitle': '$item', "
     fi
-    if [ $counter -eq 3 ]
+    if [ $counter -eq 2 ]
       then
         json="$json'album': '$item', "
     fi
-    if [ $counter -eq 4 ]
+    if [ $counter -eq 3 ]
       then
         json="$json'label': '$item', "
     fi
-    if [ $counter -eq 5 ]
+    if [ $counter -eq 4 ]
       then
         json="$json'trackLength': '$item'}"
     fi
     counter=$((counter+1))
   done
   unset IFS
+  echo $json
   #curl -X POST -H "Content-Type: application/json" -d "$data" "http://producer.kuzu.fm/methods/insertTrack" &
   #curl -X POST -H "Content-Type: application/json" -d "$data" "http://localhost:3000/methods/insertTrack" &
 done
