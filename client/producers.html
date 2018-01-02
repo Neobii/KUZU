@@ -3,6 +3,6 @@
 <!-- you can click on their name and it will go to their page-->
 
 {{#each producers}}
-<h2><a href="{{pathFor 'editproducer' userId=_id}}">{{#if profile.name}}{{profile.name}}{{else}}{{getEmail emails}}{{/if}}</a> <button class="btn btn-danger" data-delete-userid="{{_id}}">Delete</button></h2>
+<h3><a href="{{pathFor 'editproducer' userId=_id}}">{{#if profile.name}}{{profile.name}}{{else}}{{getEmail emails}}{{/if}}</a> <button class="btn btn-danger" data-delete-userid="{{_id}}">Delete</button></h3>
 {{/each}}
 </template>

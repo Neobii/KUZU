@@ -1,6 +1,6 @@
 <template name="showsList">
 <!-- otherwise they will insert tracks attached to show-->
-<h4>Search Shows {{> EasySearch.Input index=showsIndex}}</h4>
+<div class="form-holder"><h4>Search Shows {{> EasySearch.Input index=showsIndex}}</h4></div>
 {{#EasySearch.Each index=showsIndex}}
 <div>
   <h3><a href="{{pathFor 'showTracks' showId=__originalId}}">{{showName}}<small>{{#if defaultShowMeta}} - {{defaultShowMeta}}{{/if}}</small></a></h3>

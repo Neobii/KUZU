@@ -1,5 +1,5 @@
 <template name="productionEdit">
-
+<div class="form-holder">
 {{#autoForm collection="ProductionStatuses" doc=production id="productionUpdateForm" type="update"}}
 	{{> afQuickField name="productionStatusName"}}
 	{{> afQuickField name="metaData"}}
@@ -13,4 +13,5 @@
       <button type="button" class="btn btn-default cancel">Cancel</button>
   </div>
 {{/autoForm}}
+</div>
 </template>

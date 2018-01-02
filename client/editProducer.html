@@ -1,5 +1,5 @@
 <template name="editProducer">
-
+<div class="form-holder">
 {{#autoForm collection="Meteor.users" doc=profile id="profileUpdateForm" type="update"}}
 	{{> afQuickField name="profile.name"}}
 	{{#if isAdmin}}
@@ -13,4 +13,5 @@
       <button type="button" class="btn btn-default cancel">Cancel</button>
   </div>
 {{/autoForm}}
+</div>
 </template>

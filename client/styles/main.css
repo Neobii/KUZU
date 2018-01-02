@@ -36,3 +36,9 @@
 .dropdown-menu > li > a {
     color: #777 !important;
 }
+
+.form-holder {
+    background-color:#CCC;
+    padding:10px;
+    border-radius: 5px;
+}
