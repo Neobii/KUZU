@@ -5,27 +5,27 @@ while true;do
   IFS='|'
   json=""
   counter=0
-  data=`echo data | sed "s/\"/\\\"/g"`
   for item in $(echo "$data"); do
+    item=`echo $item | sed -e 's|\"|\\\"|g'`
     if [ $counter -eq 0 ]
       then
-        json="{'artist': '$item', "
+        json="{\"artist\": \"$item\", "
     fi
     if [ $counter -eq 1 ]
       then
-        json="$json'songTitle': '$item', "
+        json="$json\"songTitle\": \"$item\", "
     fi
     if [ $counter -eq 2 ]
       then
-        json="$json'album': '$item', "
+        json="$json\"album\": \"$item\", "
     fi
     if [ $counter -eq 3 ]
       then
-        json="$json'label': '$item', "
+        json="$json\"label\": \"$item\", "
     fi
     if [ $counter -eq 4 ]
       then
-        json="$json'trackLength': '$item'}"
+        json="$json\"trackLength\": \"$item\"}"
     fi
     counter=$((counter+1))
   done
