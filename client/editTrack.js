@@ -1,7 +1,7 @@
 Template.editTrack.onCreated(function(){
 
 	this.autorun(()=>{
-		this.subscribe('singleTrack',FlowRouter.getParam("trackid"));
+		this.subscribe('singleTrack',FlowRouter.getParam("trackId"));
 		this.subscribe('allShows');
 	});
 });
@@ -9,9 +9,9 @@ Template.editTrack.onCreated(function(){
 Template.editTrack.helpers({
 	singleTrack() {
 		if(Meteor.user().isAdmin){
-			return Tracklists.findOne({_id: FlowRouter.getParam("trackid")});
+			return Tracklists.findOne({_id: FlowRouter.getParam("trackId")});
 		}else{
-			return Tracklists.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam("trackid")});
+			return Tracklists.findOne({userId: Meteor.userId()},{_id: FlowRouter.getParam("trackId")});
 		}
 	}
 });
