@@ -1,4 +1,5 @@
 <template name="addTrackToShow">
+<div class="form-holder">
 {{#with mainShow}}
 <h1>Add Track to <a href="">{{showName}}</a></h1>
   {{#autoForm collection="Tracklists" id="insertTracklistFormShow" type="insert"}}
@@ -11,4 +12,5 @@
   <button class="btn btn-submit">Submit</button>
   {{/autoForm}}
 {{/with}}
+</div>
 </template>

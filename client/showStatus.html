@@ -45,12 +45,14 @@
 	</table>
 	<hr>
 {{/with}}
+<div class="form-holder">
 {{#autoForm collection="Tracklists" type="insert" id="activeShowInsertTrack"}}
 {{> afQuickField name="songTitle"}}
 {{> afQuickField name="artist"}}
 {{> afFieldInput type="hidden" name="showId" value=_id}}
 <button class="btn btn-primary" type="submit">Add Track</button>
 {{/autoForm}}
+</div>
 <!-- Add song track to this show here-->
 <hr>
 <div class="row">
