@@ -32,10 +32,20 @@ Meteor.methods({
     return " ";
   },
   getNicecastMeta() {
-    var artist = "Johnny";
-    var track = "Petersz";
+    var artist = "";
+    var trackName = "";
     var album = "";
-    return `Title: ${track}|Artist: ${artist}|Album: ${album}|Time: 00:00`;
+    var show = Shows.findOne({isActive: true});
+    if(show && show.isShowingDefaultMeta){
+      artist = show.defaultMeta || " ";
+    }
+    else {
+      var track = Tracklists.findOne({}, {sort: {playDate: -1}});
+      artist = track.artist;
+      trackName = track.songTitle;
+      album = track.album;
+    }
+    return `Title: ${trackName}|Artist: ${artist}|Album: ${album}|Time: 00:00`;
   },
   getCurrentAdditionalInfoHash(){
 
