@@ -39,13 +39,8 @@ Meteor.methods({
         })
       })
     });
-
   }
 });
-
-//SimpleRest.setMethodOptions('insertTrack', options);
-SimpleRest.setMethodOptions('getCurrentTrack', {httpMethod: "get"});
-SimpleRest.setMethodOptions('getCurrentAdditionalInfo', {httpMethod: "get"});
 
 Meteor.methods({
   changePrivledge(userId, userRole, action){
@@ -72,34 +67,6 @@ Meteor.methods({
   removeShow(showId){
     Shows.remove(showId);
   },
-  getCurrentTrack(){
-    var show = Shows.findOne({isActive: true});
-    if(show && show.isShowingDefaultMeta){
-      return show.defaultMeta || " ";
-    }
-    var track = Tracklists.findOne({}, {sort: {playDate: -1}});
-    var trackerString;
-    if(track.artist && track.songTitle) {
-      trackerString = track.artist + " - " + track.songTitle;
-    }
-    else if(track.songTitle) {
-      trackerString = track.songTitle;
-    }
-    else if(track.artistName) {
-      trackerString = track.artist;
-    }
-    return trackerString || " ";
-  },
-  getCurrentAdditionalInfo(){
-    var show = Shows.findOne({isActive: true});
-    var ps = ProductionStatuses.findOne({isActive: true});
-    if(ps && ps.isShowingAdditionalContent) {
-      return ps.additionalContent;
-    }
-    if(show && show.isShowingDescription)
-      return show.description;
-    return " ";
-  },
   startTrack(trackId) {
     var track = Tracklists.findOne({_id: trackId});
     Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: false}});
@@ -120,23 +87,6 @@ Meteor.methods({
   }
 });
 
-Meteor.method("insertTrack", function(artist, songTitle, album, label, duration) {
-  if(!Shows.findOne({isActive: true})) {
-    Tracklists.insert({artist: artist, songTitle: songTitle, album: album, label: label, duration: duration, playDate: new Date()})
-  }
-  }, {
-    getArgsFromRequest: function (request) {
-      // Let's say we want this function to accept a form-encoded request with
-      // fields named `a` and `b`.
-      var content = request.body;
-      // Since form enconding doesn't distinguish numbers and strings, we need
-      // to parse it manually
-      //put to array JSON.parse(content);
-      return [ content.artist, content.songTitle, content.album, content.label, content.duration ];
-    }
-  }
-)
-
 Meteor.method('removeUser',function(userId){
     if(Meteor.user().isAdmin){
         Meteor.users.remove(userId);
@@ -144,22 +94,7 @@ Meteor.method('removeUser',function(userId){
         Meteor.users.remove(userId);
     }
 });
+
 Meteor.method('isQueuedForNext',function(showId){
     Tracklists.update({showId: showId}, {$set: {isQueuedForNext: true}});
 });
-
-// Enable cross origin requests for all endpoints
-JsonRoutes.setResponseHeaders({
-  "Cache-Control": "no-store",
-  "Pragma": "no-cache",
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
-});
-/*
-Router.route( "/insertrack/:track", function() {
-  	let artist  = this.params.name;
-  	let track   = this.params.query;
-
-  Tracklists.insert({songTitle: track.track, artist: track.artist, album: track.album, trackLength: track.tracklength});
-}, { where: "server" });*/
