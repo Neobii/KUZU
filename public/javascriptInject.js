@@ -14,6 +14,8 @@ setInterval(function(){
   ajax.send();
 }, 1000);
 
+var oldRes = "";
+
 setInterval(function() {
   if(!document.querySelector("#additional-info-inject")){
     var elem = document.createElement("div");
@@ -25,7 +27,9 @@ setInterval(function() {
   ajax.onreadystatechange = function() {
     if (ajax.readyState == 4 && ajax.status == 200) {
       var res = ajax.responseText.substr(1, ajax.responseText.length-2).replace(/\\"/g, '"');
-      document.querySelector("#additional-info-inject").innerHTML = res;
+      if(oldRes != res){
+        document.querySelector("#additional-info-inject").innerHTML = res;
+      }
       //console.log(ajax.responseText)
       //var data = JSON.parse(ajax.responseText);
       /*if(document.querySelector(".player .title")){
