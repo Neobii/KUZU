@@ -1,7 +1,7 @@
 #!/bin/bash
 
 while true;do
-  data=$(nc -l -p 9876);
+  data=$(nc -l -v 9876); # -p for linux bash
   IFS='|'
   json=""
   counter=0

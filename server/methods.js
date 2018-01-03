@@ -122,18 +122,17 @@ Meteor.methods({
 
 Meteor.method("insertTrack", function(artist, songTitle, album, label, duration) {
   if(!Shows.findOne({isActive: true})) {
-    Tracklists.insert({artist: artist, songTitle, songTitle, album: album, label: label, duration: duration, playDate: new Date()})
+    Tracklists.insert({artist: artist, songTitle: songTitle, album: album, label: label, duration: duration, playDate: new Date()})
   }
   }, {
     getArgsFromRequest: function (request) {
       // Let's say we want this function to accept a form-encoded request with
       // fields named `a` and `b`.
-      console.log(request.body);
       var content = request.body;
       // Since form enconding doesn't distinguish numbers and strings, we need
       // to parse it manually
       //put to array JSON.parse(content);
-      return [ content.artist, content.track, content.album, content.label, content.duration ];
+      return [ content.artist, content.songTitle, content.album, content.label, content.duration ];
     }
   }
 )
