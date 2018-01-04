@@ -1,5 +1,5 @@
 <template name="editShowTrack">
-
+  <div class="form-holder">
 	  {{#autoForm id="editShowTrackForm" collection="Tracklists" doc=singleTrack meteormethod="editTrack" type="method-update"}}
     <fieldset>
       <legend>Edit Track</legend>
@@ -13,5 +13,5 @@
     <br/>
     <button type="submit" class="btn btn-primary">Update</button>
  	 {{/autoForm}}
-
+   </div>
 </template>

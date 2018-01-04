@@ -57,7 +57,7 @@ Meteor.methods({
 
 Meteor.method("insertTrack", function(artist, songTitle, album, label, duration) {
   if(!Shows.findOne({isActive: true})) {
-    Tracklists.insert({artist: artist, songTitle: songTitle, album: album, label: label, duration: duration, playDate: new Date()})
+    Tracklists.insert({artist: artist, songTitle: songTitle, album: album, label: label, trackLength: duration, playDate: new Date()})
   }
   }, {
     getArgsFromRequest: function (request) {
