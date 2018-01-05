@@ -70,6 +70,22 @@ Meteor.methods({
   deactivateShow(showId) {
     Shows.update({_id: showId}, {$set: {isActive: false}});
   },
+  incrementPosition(trackId) {
+		var track = Tracklists.findOne({_id: trackId});
+		if(track) {
+			console.log(track.showId, track.indexNumber);
+			Tracklists.update({showId: track.showId, indexNumber: track.indexNumber + 1}, {$set: {indexNumber: track.indexNumber}});
+			Tracklists.update({_id: trackId}, {$inc: {indexNumber: 1}});
+		}
+		},
+  decrementPosition(trackId) {
+    var track = Tracklists.findOne({_id: trackId});
+		if(track) {
+			console.log(track.showId, track.indexNumber);
+			Tracklists.update({showId: track.showId, indexNumber: track.indexNumber - 1}, {$set: {indexNumber: track.indexNumber}});
+    	Tracklists.update({_id: trackId}, {$inc: {indexNumber: -1}});
+		}
+  },
   activateShow(showId) {
     Shows.update({isActive: true}, {$set: {isActive: false}}, {multi: true});
     Shows.update({_id: showId}, {$set: {isActive: true}});

@@ -34,6 +34,14 @@ Template.showTracks.events({
     var trackId = $(e.currentTarget).attr("data-remove-track");
     Meteor.call("removeTrack", trackId);
   },
+  'click [data-move-up]'(e, t) {
+    var trackId = $(e.currentTarget).attr("data-move-up");
+    Meteor.call("decrementPosition", trackId);
+  },
+  'click [data-move-down]'(e, t) {
+    var trackId = $(e.currentTarget).attr("data-move-down");
+    Meteor.call("incrementPosition", trackId);
+  },
   'change [name="uploadCSV"]' ( event, template ) {
     template.uploading.set( true );
 

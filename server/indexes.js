@@ -4,4 +4,5 @@ Meteor.startup(() => {
   Shows.rawCollection().createIndex({showStart: -1});
   Tracklists.rawCollection().createIndex({playDate:-1});
   Tracklists.rawCollection().createIndex({showId:1});
+  Tracklists.rawCollection().createIndex({showId:1, indexNumber:1});
 })
