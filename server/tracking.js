@@ -1,5 +1,6 @@
 SimpleRest.setMethodOptions('getCurrentTrack', {httpMethod: "get"});
 SimpleRest.setMethodOptions('getCurrentAdditionalInfo', {httpMethod: "get"});
+SimpleRest.setMethodOptions('getCurrentAdditionalInfoHash', {httpMethod: "get"});
 SimpleRest.setMethodOptions('getNicecastMeta', {httpMethod: "get"});
 
 Meteor.methods({
@@ -48,12 +49,11 @@ Meteor.methods({
     return `Title: ${trackName}|Artist: ${artist}|Album: ${album}|Time: 00:00`;
   },
   getCurrentAdditionalInfoHash(){
-
+    return currentHash;
   }
 });
 
-
-
+var currentHash = "";
 
 Meteor.method("insertTrack", function(artist, songTitle, album, label, duration) {
   if(!Shows.findOne({isActive: true})) {
@@ -78,4 +78,12 @@ JsonRoutes.setResponseHeaders({
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
+});
+
+Meteor.startup(function(){
+  Meteor.setInterval(function(){
+    Meteor.call("getCurrentAdditionalInfo", function(err, res){
+      currentHash = CryptoJS.SHA1(res).toString();
+    });
+  }, 5000);
 });

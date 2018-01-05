@@ -50,3 +50,4 @@ tsega:bootstrap3-datetimepicker@=3.1.3_3
 raix:handlebar-helpers
 okgrow:router-autoscroll
 kadira:flow-router
+jparker:crypto-sha1

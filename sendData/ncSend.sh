@@ -7,6 +7,7 @@ while true;do
   json=""
   counter=0
   for item in $(echo "$data"); do
+    item=`echo $item | sed -e 's/[[:space:]]\+/ /g'`
     item=`echo $item | sed -e 's|\"|\\\"|g'`
     item=`echo $item | sed -e 's|^ ||g'`
     item=`echo $item | sed -e 's| $||g'`
