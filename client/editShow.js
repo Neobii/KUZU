@@ -19,7 +19,7 @@ Template.editShow.helpers({
 AutoForm.hooks({
   editShowForm: {
 		onSuccess() {
-		  FlowRouter.go('showsList');          	
+		  window.history.back();
     }
   }
 });
