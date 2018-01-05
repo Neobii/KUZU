@@ -26,18 +26,22 @@ setInterval(function() {
   var ajax = new XMLHttpRequest();
   ajax.onreadystatechange = function() {
     if (ajax.readyState == 4 && ajax.status == 200) {
-      var res = ajax.responseText.substr(1, ajax.responseText.length-2).replace(/\\"/g, '"');
-      if(oldRes != res){
-        document.querySelector("#additional-info-inject").innerHTML = res;
+      if(oldRes != ajax.responseText) {
+        oldRes = ajax.responseText;
+        var reqAjax = new XMLHttpRequest();
+        reqAjax.onreadystatechange = function() {
+          if (reqAjax.readyState == 4 && reqAjax.status == 200) {
+            var res = reqAjax.responseText.substr(1, reqAjax.responseText.length-2).replace(/\\"/g, '"');
+            document.querySelector("#additional-info-inject").innerHTML = res;  
+          }
+        }
+        reqAjax.open("GET", "http://producer.kuzu.fm/methods/getCurrentAdditionalInfo", true);
+
+        reqAjax.send();
       }
-      //console.log(ajax.responseText)
-      //var data = JSON.parse(ajax.responseText);
-      /*if(document.querySelector(".player .title")){
-        document.querySelector(".player .title").innerHTML = data;
-      }*/
     }
   }
-  ajax.open("GET", "http://producer.kuzu.fm/methods/getCurrentAdditionalInfo", true);
+  ajax.open("GET", "http://producer.kuzu.fm/methods/getCurrentAdditionalInfoHash", true);
 
   ajax.send();
 }, 2000);
