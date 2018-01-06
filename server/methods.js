@@ -27,7 +27,7 @@ Meteor.methods({
       isShowingDescription: show.isShowingDescription
     });
   },
-  duplicateShowWithSongs(showId, showName) {
+  duplicateShowWithTracks(showId, showName) {
     var show = Shows.findOne({_id: showId});
     Shows.insert({
       showName: showName,
@@ -45,7 +45,8 @@ Meteor.methods({
           album: trackList.album,
           label: trackList.label,
           trackLength: trackList.trackLength,
-          playDateOffset: trackList.playDateOffset
+          playDateOffset: trackList.playDateOffset//,
+//					indexNumber: trackList.indexNumber
         })
       })
     });
@@ -72,18 +73,22 @@ Meteor.methods({
   },
   incrementPosition(trackId) {
 		var track = Tracklists.findOne({_id: trackId});
-		if(track) {
-			console.log(track.showId, track.indexNumber);
+		if(track.indexNumber) {
+			//console.log(track.showId, track.indexNumber);
 			Tracklists.update({showId: track.showId, indexNumber: track.indexNumber + 1}, {$set: {indexNumber: track.indexNumber}});
 			Tracklists.update({_id: trackId}, {$inc: {indexNumber: 1}});
+		} else {
+			Tracklists.update({_id:trackId}, {$set: {indexNumber:0}})
 		}
-		},
+	},
   decrementPosition(trackId) {
     var track = Tracklists.findOne({_id: trackId});
-		if(track) {
-			console.log(track.showId, track.indexNumber);
+		if(track.indexNumber) {
+			//console.log(track.showId, track.indexNumber);
 			Tracklists.update({showId: track.showId, indexNumber: track.indexNumber - 1}, {$set: {indexNumber: track.indexNumber}});
     	Tracklists.update({_id: trackId}, {$inc: {indexNumber: -1}});
+		} else {
+			Tracklists.update({_id:trackId}, {$set: {indexNumber:0}})
 		}
   },
   activateShow(showId) {

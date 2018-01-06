@@ -29,17 +29,16 @@
 							{{#each showTracks}}
 									<tr>
 										<td>
-
-										{{#if $neq indexNumber 0}}
-											<a href="javascript:;" data-move-up="{{_id}}">
-													<i class="glyphicon glyphicon-chevron-up"></i>
-											</a>
-										{{/if}}
-{{#if $neq indexNumber ../getHighestTrackNumber}}
-												<a href="javascript:;" data-move-down="{{_id}}">
-														<i class="glyphicon glyphicon-chevron-down"></i>
+											{{#if $neq indexNumber 0}}
+												<a href="javascript:;" data-move-up="{{_id}}">
+														<i class="glyphicon glyphicon-chevron-up"></i>
 												</a>
-{{/if}}
+											{{/if}}
+											{{#if $neq indexNumber ../getHighestTrackNumber}}
+													<a href="javascript:;" data-move-down="{{_id}}">
+															<i class="glyphicon glyphicon-chevron-down"></i>
+													</a>
+											{{/if}}
 										</td>
 										<td>
 											<a href="javascript:;" class="star">
@@ -54,8 +53,11 @@
 													 <a href="{{pathFor 'editShowTrack' showId=../_id trackId=_id}}">Title: {{songTitle}}</a>
 													</h4>
 													<h4 class="title">
-													<span class="pull-right"> Album: {{album}}</span>
-													Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5>
+														<span class="pull-right"> Album: {{album}}</span>
+														Artist: {{artist}}
+														<h5>
+															Length: <span class="media-meta"> {{trackLength}} </span>
+														</h5>
 													</h4>
 													<h4 class="title">
 															Track order: {{indexNumber}}
