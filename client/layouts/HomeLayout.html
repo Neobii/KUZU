@@ -4,9 +4,17 @@
 
 		 <div id="siteWrapper" class="clearfix">
       </div>
-      {{#unless $eq currentRouteName "showStatus"}}{{#with currentActiveShow}}<div><a style="text-align:center;" href="{{pathFor 'showStatus'}}"><h2>{{showName}} is active!</h2></a></div>{{/with}}{{/unless}}
+      {{#unless $eq currentRouteName "showStatus"}}
+				{{#with currentActiveShow}}
+				<div>
+					<a style="text-align:center;" href="{{pathFor 'showStatus'}}">
+						<h2>{{showName}} is active!</h2>
+					</a>
+				</div>
+				{{/with}}
+			{{/unless}}
 		{{> MainLayout }}
-	
+
 	{{> Footer}}
   {{/if}}
 </template>

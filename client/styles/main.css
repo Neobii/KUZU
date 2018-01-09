@@ -48,3 +48,11 @@
 	bottom:0;
 	width:100%;
 }
+
+.special-track {
+	background-color: #333;
+}
+
+.track {
+	color:#fff;
+}

@@ -1,7 +1,7 @@
 Meteor.methods({
   downloadTracksCSV(dateFrom, dateTo) {
     var tracksArray = [];
-    tracks = Tracklists.find({ 'playDate' : { $gte : dateFrom, $lt: dateTo }}, {fields: {playDateOffset: 0, userId: 0, showId: 0, isQueuedForNext: 0}, sort: {playDate: 1}}).fetch();
+    tracks = Tracklists.find({ 'playDate' : { $gte : dateFrom, $lt: dateTo }, 'trackType':{$eq:'song'}}, {fields: {playDateOffset: 0, userId: 0, showId: 0, isQueuedForNext: 0}, sort: {playDate: 1}}).fetch();
       tracks = _.each(tracks, function(track){
         var cleanTrack = {};
         cleanTrack.playDate = track.playDate || "NA";
