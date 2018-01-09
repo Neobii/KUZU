@@ -28,15 +28,18 @@
 				<td>
 					<div class="media">
 						<div class="media-body">
-						
+
 							<button class='btn btn-success' data-start-track-id="{{_id}}">Start Track</button>
 							<h4 class="title">
 							 <a href="{{pathFor 'edittrack' trackid=_id}}">Title: {{songTitle}}</a>
 							</h4>
 							<h4 class="title">
 							<span class="pull-right"> Album: {{album}}</span>
-							Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5> 
+							Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5>
 							</h4>
+              <h4 class="title">
+                  Track order: {{indexNumber}}
+              </h4>
 						</div>
 					</div>
 				</td>
@@ -59,15 +62,26 @@
 		<section class="content" >
 				<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
-					
+
 					<div class="panel-body">
 						<div class="table-container">
 							<table class="table table-filter">
 								<tbody>
 								<h3>Active show tracks</h3>
 							{{#each showTracks}}
-
 									<tr>
+                    <td>
+                      {{#if $neq indexNumber 0}}
+                        <a href="javascript:;" data-move-up="{{_id}}">
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+                        </a>
+                      {{/if}}
+                      {{#if $neq indexNumber ../getHighestTrackNumber}}
+                          <a href="javascript:;" data-move-down="{{_id}}">
+                              <i class="glyphicon glyphicon-chevron-down"></i>
+                          </a>
+                      {{/if}}
+                    </td>
 										<td>
 											<a href="javascript:;" class="star">
 												<i class="glyphicon glyphicon-star"></i>
@@ -76,9 +90,9 @@
 										<td>
 											<div class="media">
 												<div class="media-body">
-													{{#unless isQueuedForNext}}
+													<!-- {{#unless isQueuedForNext}}
 														<button class="btn btn-info" data-queue-song-id="{{_id}}">Queue Song</button>
-													{{/unless}}
+													{{/unless}} -->
 													{{#if playDate}}
 													<span class="media-meta pull-right"><button class="btn btn-warning" data-restart-track-id="{{_id}}">Restart Track</button>	{{playDate}}</span>
 													{{else}}
@@ -89,8 +103,11 @@
 													</h4>
 													<h4 class="title">
 													<span class="pull-right"> Album: {{album}}</span>
-													Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5> 
+													Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5>
 													</h4>
+                          <h4 class="title">
+                              Track order: {{indexNumber}}
+                          </h4>
 												</div>
 											</div>
 										</td>

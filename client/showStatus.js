@@ -14,9 +14,9 @@ Template.showStatus.helpers({
     }else{
         return Shows.findOne({userId: Meteor.userId()}, {isActive: true});
     }
-  },
-  queuedNextSong() {
-    return Tracklists.findOne({isQueuedForNext: true});
+  // },
+  // queuedNextSong() {
+  //   return Tracklists.findOne({isQueuedForNext: true});
   }
 });
 
@@ -24,6 +24,14 @@ Template.showStatus.events({
   "click [data-stop-show]"() {
     Meteor.call("deactivateShow", Shows.findOne({isActive: true})._id);
     FlowRouter.go("showsList")
+  },
+  'click [data-move-up]'(e, t) {
+    var trackId = $(e.currentTarget).attr("data-move-up");
+    Meteor.call("decrementPosition", trackId);
+  },
+  'click [data-move-down]'(e, t) {
+    var trackId = $(e.currentTarget).attr("data-move-down");
+    Meteor.call("incrementPosition", trackId);
   },
   "click [data-stop-default-tracking]"() {
     var showId = Shows.findOne({isActive: true})._id;
@@ -51,9 +59,9 @@ Template.showStatus.events({
   },
   "click [data-hide-description]"() {
     Meteor.call("toggleShowDescription", false)
-  },
-  "click [data-queue-song-id]"(e, t) {
-    var trackId = $(e.currentTarget).attr("data-queue-song-id");
-    Meteor.call("queueSong", trackId);
-  }
+//  },
+  // "click [data-queue-song-id]"(e, t) {
+  //   var trackId = $(e.currentTarget).attr("data-queue-song-id");
+  //   Meteor.call("queueSong", trackId);
+ }
 })

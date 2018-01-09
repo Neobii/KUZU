@@ -20,8 +20,8 @@ Template.addTrackToShow.helpers({
 AutoForm.hooks({
     insertTracklistFormShow: {
       onSuccess: function() {
-        Meteor.call('isQueuedForNext', FlowRouter.getParam('showId'));
-        FlowRouter.go('showTracks',{showId: FlowRouter.getParam('showId')});            
+        //Meteor.call('isQueuedForNext', FlowRouter.getParam('showId'));
+        FlowRouter.go('showTracks',{showId: FlowRouter.getParam('showId')});
       }
     }
 });

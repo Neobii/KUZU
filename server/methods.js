@@ -111,10 +111,10 @@ Meteor.methods({
   },
   toggleShowDescription(isShowing){
     Shows.update({isActive: true}, {$set: {isShowingDescription: isShowing}});
-  },
-  queueSong(trackId){
-    Tracklists.update({isQueuedForNext: true}, {$set: {isQueuedForNext: false}}, {multi: true});
-    Tracklists.update({_id: trackId}, {$set: {isQueuedForNext: true}});
+  // },
+  // queueSong(trackId){
+  //   Tracklists.update({isQueuedForNext: true}, {$set: {isQueuedForNext: false}}, {multi: true});
+  //   Tracklists.update({_id: trackId}, {$set: {isQueuedForNext: true}});
   }
 });
 
@@ -126,6 +126,6 @@ Meteor.method('removeUser',function(userId){
     }
 });
 
-Meteor.method('isQueuedForNext',function(showId){
-    Tracklists.update({showId: showId}, {$set: {isQueuedForNext: true}});
-});
+// Meteor.method('isQueuedForNext',function(showId){
+//     Tracklists.update({showId: showId}, {$set: {isQueuedForNext: true}});
+// });
