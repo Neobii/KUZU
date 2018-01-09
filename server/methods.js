@@ -101,21 +101,24 @@ Meteor.methods({
   startTrack(trackId) {
     var track = Tracklists.findOne({_id: trackId});
     Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: false}});
-    Tracklists.update({_id: trackId}, {$set: {playDate: new Date()}})
+    Tracklists.update({_id: trackId}, {$set: {playDate: new Date(), isHighlighted:true}});
   },
   stopDefaultTracking(showId) {
-    Shows.update({_id: showId}, {$set: {isShowingDefaultMeta: false}})
+    Shows.update({_id: showId}, {$set: {isShowingDefaultMeta: false}});
   },
   startDefaultTracking(showId) {
     Shows.update({_id: showId}, {$set: {isShowingDefaultMeta: true}});
   },
   toggleShowDescription(isShowing){
     Shows.update({isActive: true}, {$set: {isShowingDescription: isShowing}});
-  // },
+	},
+	clearHighlighted() {
+		Tracklists.update({isHighlighted:true}, {$set: {isHighlighted:false}}, {multi:true});
+	}
   // queueSong(trackId){
   //   Tracklists.update({isQueuedForNext: true}, {$set: {isQueuedForNext: false}}, {multi: true});
   //   Tracklists.update({_id: trackId}, {$set: {isQueuedForNext: true}});
-  }
+  //},
 });
 
 Meteor.method('removeUser',function(userId){

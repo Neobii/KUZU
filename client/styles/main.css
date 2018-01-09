@@ -4,7 +4,7 @@
 
 .navs{
 	text-align:center;
-	margin-top: 65px; 
+	margin-top: 65px;
 }
 .navs a{
 	color: #fff;
@@ -41,4 +41,10 @@
     background-color:#CCC;
     padding:10px;
     border-radius: 5px;
+}
+
+.show-control-panel {
+	position:fixed;
+	bottom:0;
+	width:100%;
 }

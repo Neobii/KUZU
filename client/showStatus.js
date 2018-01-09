@@ -17,13 +17,19 @@ Template.showStatus.helpers({
   // },
   // queuedNextSong() {
   //   return Tracklists.findOne({isQueuedForNext: true});
-  }
+},
+highlightedTracks() {
+	return Tracklists.find({isHighlighted: true});
+}
 });
 
 Template.showStatus.events({
   "click [data-stop-show]"() {
     Meteor.call("deactivateShow", Shows.findOne({isActive: true})._id);
     FlowRouter.go("showsList")
+  },
+  'click [data-clear-highlighted]'(e, t) {
+    Meteor.call("clearHighlighted");
   },
   'click [data-move-up]'(e, t) {
     var trackId = $(e.currentTarget).attr("data-move-up");
@@ -43,12 +49,12 @@ Template.showStatus.events({
   },
   "click [data-start-track-id]"(e, t) {
     var trackId = $(e.currentTarget).attr("data-start-track-id");
-    window.scroll(0, 0);
+    //window.scroll(0, 0);
     Meteor.call("startTrack", trackId);
   },
   "click [data-restart-track-id]"(e, t) {
     var trackId = $(e.currentTarget).attr("data-restart-track-id");
-    window.scroll(0, 0);
+    //window.scroll(0, 0);
     result = window.confirm("Are you sure you want to restart the track?");
     if(result) {
       Meteor.call("startTrack", trackId)
