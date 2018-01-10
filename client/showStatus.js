@@ -65,9 +65,12 @@ Template.showStatus.events({
   },
   "click [data-hide-description]"() {
     Meteor.call("toggleShowDescription", false)
-//  },
+  },
   // "click [data-queue-song-id]"(e, t) {
   //   var trackId = $(e.currentTarget).attr("data-queue-song-id");
   //   Meteor.call("queueSong", trackId);
- }
+  "click #autoplayToggle"(e, t) {
+		var showId = $(e.currentTarget).attr("");
+ 	 Meteor.call("toggleAutoPlay", )
+  }
 })
