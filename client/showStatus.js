@@ -17,10 +17,10 @@ Template.showStatus.helpers({
   // },
   // queuedNextSong() {
   //   return Tracklists.findOne({isQueuedForNext: true});
-},
-highlightedTracks() {
-	return Tracklists.find({isHighlighted: true});
-}
+	},
+	highlightedTracks() {
+		return Tracklists.find({isHighlighted: true});
+	}
 });
 
 Template.showStatus.events({

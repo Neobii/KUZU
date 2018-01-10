@@ -17,7 +17,7 @@
 <!-- Add song track to this show here-->
 <hr>
 <div class="row">
-		<section class="content" >
+		<section class="content">
 				<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
 
@@ -96,6 +96,11 @@
  <button class="btn btn-primary" data-hide-description>Hide Description</button>
  {{/unless}}
  <button class="btn btn-warning" data-clear-highlighted>Clear Starred Tracks</button>
+ {{#autoForm collection="Shows" type="update" id="autoplayToggle" autoSave="true"}}
+
+ {{> afQuickField name="isAutoPlaying" type="toggle-checkbox"}}
+
+ {{/autoForm}}
 </div>
 {{/with}}
 {{/if}}
