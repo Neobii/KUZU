@@ -3,7 +3,7 @@ Meteor.methods({
     check( data, Array );
     for ( let i = 1; i < data.length; i++ ) {
       let item   = data[ i ];
-      var regex = "%[.*]%";
+      var regex = /%(.*)%/;
       if(item && item.Name){
         var match = item.albumName.match(regex)[1];
         if(!match) {
