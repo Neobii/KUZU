@@ -51,3 +51,5 @@ raix:handlebar-helpers
 okgrow:router-autoscroll
 kadira:flow-router
 jparker:crypto-sha1
+matb33:collection-hooks
+mayankchhabra:autoform-switchery

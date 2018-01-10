@@ -1,3 +1,4 @@
+abpetkov:switchery@0.1.0
 accounts-base@1.4.1
 accounts-password@1.5.0
 accounts-ui@1.2.0
@@ -10,6 +11,7 @@ aldeed:collection2-core@1.2.0
 aldeed:schema-deny@1.1.0
 aldeed:schema-index@1.1.1
 aldeed:simple-schema@1.5.3
+aldeed:template-extension@3.4.3
 allow-deny@1.1.0
 apinf:autoform-bs-datepicker@1.1.2
 arillo:flow-router-helpers@0.5.2
@@ -66,6 +68,8 @@ lfergon:exportcsv@0.0.8
 livedata@1.0.18
 localstorage@1.2.0
 logging@1.1.19
+matb33:collection-hooks@0.8.4
+mayankchhabra:autoform-switchery@0.0.2
 mdg:validation-error@0.5.1
 meteor@1.8.2
 meteor-base@1.2.0
