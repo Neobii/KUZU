@@ -86,7 +86,9 @@
 <div class="show-control-panel">
   <button class="btn btn-danger" data-stop-show>Stop Show</button>
  {{#if isShowingDefaultMeta}}
+ {{#unless trackIsShowMeta}}
  <button class="btn btn-warning" data-stop-default-tracking>Display song title</button>
+ {{/unless}}
  {{else}}
  <button class="btn btn-primary" data-start-default-tracking>Display show title</button>
  {{/if}}
@@ -96,11 +98,10 @@
  <button class="btn btn-primary" data-hide-description>Hide Description</button>
  {{/unless}}
  <button class="btn btn-warning" data-clear-highlighted>Clear Starred Tracks</button>
- {{#autoForm collection="Shows" type="update" id="autoplayToggle" autoSave="true"}}
-
- {{> afQuickField name="isAutoPlaying" type="toggle-checkbox"}}
-
+ <div class="pull-right">{{#autoForm collection="Shows" type="update" id="autoplayToggle" doc=this autosave=true}}
+ {{> afQuickField name="isAutoPlaying"}}
  {{/autoForm}}
+</div>
 </div>
 {{/with}}
 {{/if}}
