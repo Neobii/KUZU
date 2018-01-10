@@ -17,10 +17,14 @@ Template.showStatus.helpers({
   // },
   // queuedNextSong() {
   //   return Tracklists.findOne({isQueuedForNext: true});
-},
-highlightedTracks() {
-	return Tracklists.find({isHighlighted: true});
-}
+  },
+  highlightedTracks() {
+  	return Tracklists.find({isHighlighted: true});
+  },
+  trackIsShowMeta(){
+    var currentTrack = Tracklists.findOne({}, {sort: {playDate: -1}, limit: 1});
+    return currentTrack && (currentTrack.trackType == "showMeta");
+  }
 });
 
 Template.showStatus.events({
