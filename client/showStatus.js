@@ -68,3 +68,18 @@ Template.showStatus.events({
     Meteor.call("toggleShowDescription", false)
   }
 })
+
+
+AutoForm.hooks({
+  insertTracklistModal: {
+    before: {
+      insert(doc){
+        var show = Shows.findOne({isActive: true});
+        if(show) {
+          doc.showId = show._id;  
+        }
+        return doc;
+      }
+    }
+  }
+});

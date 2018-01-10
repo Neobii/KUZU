@@ -91,7 +91,7 @@
  <button class="btn btn-primary" data-hide-description>Hide Description</button>
  {{/unless}}
  <button class="btn btn-warning" data-clear-highlighted>Clear Starred Tracks</button>
- {{#afModal class="btn btn-primary" collection="Tracklists" operation="insert"}}
+ {{#afModal formId="insertTracklistModal" class="btn btn-primary" collection="Tracklists" operation="insert" omitFields="isHighlighted,showId,indexNumber,playDate"}}
   Add a new track
 {{/afModal}}
 </div>
