@@ -103,7 +103,28 @@ Meteor.methods({
     Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: false}});
     Tracklists.update({_id: trackId}, {$set: {playDate: new Date(), isHighlighted:true}});
 
-		var trackLength = track.trackLength
+		//console.log(track.trackLength);
+		if(track.trackLength) {
+
+			var trackLenArray = track.trackLength.match(/(\d*):(\d*)/);
+			var trackLengthMilliseconds = (((trackLenArray[1]*60) + (trackLenArray[2]))*1000);
+
+			if(trackLenArray[3]) {
+				trackLengthMilliseconds +=  trackLenArray[3];
+			}
+			//console.log(trackLengthMilliseconds);
+
+			Meteor.setTimeout(function() {
+				var nextTrack = Tracklists.findOne({indexNumber: track.indexNumber + 1});
+				startTrack(nextTrack.trackId);
+			}), trackLengthMilliseconds);
+
+		} else {
+		//	console.log("else " + track.showId);
+			Shows.update({_id:track.showId}, {$set: {isAutoPlaying: false}});
+			var check = Shows.findOne({_id: track.showId});
+		//	console.log(check.isAutoPlaying);
+		}
 
   },
   stopDefaultTracking(showId) {
