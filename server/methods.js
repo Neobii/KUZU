@@ -100,7 +100,9 @@ Meteor.methods({
   },
   startTrack(trackId) {
     var track = Tracklists.findOne({_id: trackId});
-    Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: false}});
+    var showObj = {};
+    showObj.isShowingDefaultMeta = (track.trackType == "showMeta");
+    Shows.update({_id: track.showId}, {$set: showObj});
     Tracklists.update({_id: trackId}, {$set: {playDate: new Date(), isHighlighted:true}});
   },
   stopDefaultTracking(showId) {
