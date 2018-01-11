@@ -46,7 +46,6 @@
 .show-control-panel {
 	position:fixed;
 	bottom:0;
-	width:100%;
 }
 
 .special-track {
@@ -55,4 +54,11 @@
 
 .track {
 	color:#fff;
+}
+
+.autoplay-label {
+  font-size:18px;
+  display:inline-block;
+  color:#FFF;
+  margin-right:20px;
 }

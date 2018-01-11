@@ -5,15 +5,6 @@
 <h3>@ {{showStart}} by {{#each user.emails}}{{address}}{{/each}}</h3>
 <h4>{{defaultMeta}}</h4>
 
-<div class="form-holder">
-{{#autoForm collection="Tracklists" type="insert" id="activeShowInsertTrack"}}
-{{> afQuickField name="songTitle"}}
-{{> afQuickField name="artist"}}
-{{> afQuickField name="trackType"}}
-{{> afFieldInput type="hidden" name="showId" value=_id}}
-<button class="btn btn-primary" type="submit">Add Track</button>
-{{/autoForm}}
-</div>
 <!-- Add song track to this show here-->
 <hr>
 <div class="row">
@@ -84,6 +75,8 @@
 		</section>
 	</div>
 <div class="show-control-panel">
+  <div class="pull-right">
+    <div class="autoplay-label">AutoPlay</div>
   <button class="btn btn-danger" data-stop-show>Stop Show</button>
  {{#if isShowingDefaultMeta}}
  {{#unless trackIsShowMeta}}
@@ -98,8 +91,13 @@
  <button class="btn btn-primary" data-hide-description>Hide Description</button>
  {{/unless}}
  <button class="btn btn-warning" data-clear-highlighted>Clear Starred Tracks</button>
- <div class="pull-right">{{#autoForm collection="Shows" type="update" id="autoplayToggle" doc=this autosave=true}}
- {{> afQuickField name="isAutoPlaying"}}
+ {{#afModal formId="insertTracklistModal" class="btn btn-primary" collection="Tracklists" operation="insert" omitFields="isHighlighted,showId,indexNumber,playDate"}}
+  Add a new track
+{{/afModal}}
+</div>
+<div class="pull-left">
+{{#autoForm collection="Shows" type="update" id="autoplayToggle" doc=this autosave=true}}
+ {{> afFieldInput name="isAutoPlaying"}}
  {{/autoForm}}
 </div>
 </div>
