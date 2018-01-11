@@ -117,7 +117,7 @@ Meteor.methods({
 			Meteor.setTimeout(function() {
 				var nextTrack = Tracklists.findOne({indexNumber: track.indexNumber + 1});
 				startTrack(nextTrack.trackId);
-			}), trackLengthMilliseconds);
+			}, trackLengthMilliseconds);
 
 		} else {
 		//	console.log("else " + track.showId);
