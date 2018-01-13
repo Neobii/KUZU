@@ -32,12 +32,18 @@ Meteor.methods({
     var show = Shows.findOne({isActive: true});
     var nextTrack = Tracklists.findOne({showId: show._id, playDate: {$exists: false}}, {sort: {indexNumber: 1}, limit: 1});
     if(nextTrack) {
-      //console.log(nextTrack._id)
       Meteor.call("startTrack", nextTrack._id);
     }
     else {
       Shows.update({isActive: true}, {$set: {isAutoPlaying: false}});
     }
+  },
+  autoplayNextTrack() {
+    Shows.update({isActive: true}, {$set: {isAutoPlaying: true}})
+    Meteor.call("startNextTrack");
+  },
+  pauseAutoplay() {
+    Shows.update({isActive: true}, {$set: {isAutoPlaying: false}});
   },
   stopDefaultTracking(showId) {
     Shows.update({_id: showId}, {$set: {isShowingDefaultMeta: false}});

@@ -1,20 +1,11 @@
 Template.showStatus.onCreated(function(){
-  this.reloadAutoplay = new ReactiveVar(false);
 	this.autorun(()=> {
-    //("[name=isAutoPlaying]").click()
 		this.subscribe('activeShow');
 		this.subscribe('activeShowTracks');
-    var show = Shows.findOne({isActive: true});
-    if(show && show.isAutoPlaying != $("[name='isAutoPlaying']").val()) {
-      this.reloadAutoplay.set(true);
-    }
 	})
 });
 
 Template.showStatus.helpers({
-  reloadAutoplay() {
-    return Template.instance().reloadAutoplay.get();
-  },
 	currentActiveShow() {
     if(Meteor.user().isAdmin) {
       return Shows.findOne({isActive:true});
@@ -25,9 +16,6 @@ Template.showStatus.helpers({
 	highlightedTracks() {
 		return Tracklists.find({isHighlighted: true});
 	},
-  setAutoPlay() {
-    Template.instance().reloadAutoplay.set(false);
-  }
 });
 
 Template.showStatus.events({
@@ -73,10 +61,13 @@ Template.showStatus.events({
   "click [data-hide-description]"() {
     Meteor.call("toggleShowDescription", false)
   },
-  /*"click #autoplayToggle"(e, t) {
-		var showId = $(e.currentTarget).attr("");
- 	  Meteor.call("toggleAutoPlay", )
-  }*/
+  "click [data-autoplay]"(){
+    Meteor.call("autoplayNextTrack")
+    //Meteor.call("startNextTrack");
+  },
+  "click [data-pause-autoplay]"(){
+    Meteor.call("pauseAutoplay");
+  }
 })
 
 
