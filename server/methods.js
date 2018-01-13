@@ -101,8 +101,8 @@ Meteor.methods({
 
 Meteor.method('removeUser',function(userId){
     if(Meteor.user().isAdmin){
-        Meteor.users.remove(userId);
+      Meteor.users.remove(userId);
     }else if(this.userId === userId){
-        Meteor.users.remove(userId);
+      Meteor.users.remove(userId);
     }
 });

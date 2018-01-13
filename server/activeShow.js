@@ -12,23 +12,23 @@ Meteor.methods({
     Tracklists.update({_id: trackId}, {$set: {playDate: new Date(), isHighlighted:true}});
     var show = Shows.findOne({_id: track.showId});
     if(track.trackLength && show.isAutoPlaying) {
-
-      var trackLenArray = track.trackLength.match(/(\d*):(\d*)/);
-      var trackLengthMilliseconds = (((trackLenArray[1]*60) + (trackLenArray[2]))*1000);
-
-      if(trackLenArray[3]) {
-        trackLengthMilliseconds +=  trackLenArray[3];
-      }
+      var splitIndex = track.trackLength.indexOf(":");
+      var min = track.trackLength.substr(0, splitIndex) || 0;
+      var sec = track.trackLength.substr(splitIndex + 1, track.trackLength.length) || 0;
+      var trackLengthMillis = ((+min * 60) + +sec) * 1000;
+      console.log(trackLengthMillis)
       Meteor.clearTimeout(previousTimer);
-      previousTimer = Meteor.setTimeout(function() {
-        var nextTrack = Tracklists.findOne({showId: track.showId, indexNumber: track.indexNumber + 1});
-        if(nextTrack) {
-          Meteor.call("startTrack", nextTrack._id);
-        }
-        else {
-          Shows.update({isActive: true}, {$set: {isAutoPlaying: false}});  
-        }
-      }, trackLengthMilliseconds);
+      if(trackLengthMillis > 0) {
+        previousTimer = Meteor.setTimeout(function() {
+          var nextTrack = Tracklists.findOne({showId: track.showId, indexNumber: track.indexNumber + 1});
+          if(nextTrack) {
+            Meteor.call("startTrack", nextTrack._id);
+          }
+          else {
+            Shows.update({isActive: true}, {$set: {isAutoPlaying: false}});  
+          }
+        }, trackLengthMillis);
+      }
 
 
     } else {
