@@ -36,7 +36,7 @@ Meteor.methods({
       description: show.description,
       isShowingDescription: show.isShowingDescription
     }, function(err, docInserted) {
-      var trackLists = Tracklists.find({showId: show._id}).fetch();
+      var trackLists = Tracklists.find({showId: show._id}, {sort: {indexNumber: 1}}).fetch();
       _.each(trackLists, function(trackList){
         Tracklists.insert({
           showId: docInserted,
@@ -44,9 +44,7 @@ Meteor.methods({
           artist: trackList.artist,
           album: trackList.album,
           label: trackList.label,
-          trackLength: trackList.trackLength,
-          playDateOffset: trackList.playDateOffset//,
-//					indexNumber: trackList.indexNumber
+          trackLength: trackList.trackLength
         })
       })
     });
@@ -99,11 +97,6 @@ Meteor.methods({
   removeShow(showId){
     Shows.remove(showId);
   },
-
-  // queueSong(trackId){
-  //   Tracklists.update({isQueuedForNext: true}, {$set: {isQueuedForNext: false}}, {multi: true});
-  //   Tracklists.update({_id: trackId}, {$set: {isQueuedForNext: true}});
-  //},
 });
 
 Meteor.method('removeUser',function(userId){
@@ -113,7 +106,3 @@ Meteor.method('removeUser',function(userId){
         Meteor.users.remove(userId);
     }
 });
-
-// Meteor.method('isQueuedForNext',function(showId){
-//     Tracklists.update({showId: showId}, {$set: {isQueuedForNext: true}});
-// });

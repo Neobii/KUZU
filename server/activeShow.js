@@ -54,9 +54,6 @@ Meteor.methods({
   toggleShowDescription(isShowing){
     Shows.update({isActive: true}, {$set: {isShowingDescription: isShowing}});
   },
-  /*toggleAutoPlay(showId, isAutoPlaying) {
-    Shows.update({_id:showId}, {$set: {isAutoPlaying: isAutoPlaying}});
-  },*/
   clearHighlighted() {
     Tracklists.update({isHighlighted:true}, {$set: {isHighlighted:false}}, {multi:true});
   }
