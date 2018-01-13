@@ -113,7 +113,6 @@ Meteor.methods({
 			}
 
 			Meteor.setTimeout(function() {
-        //console.log(track.indexNumber);
 				var nextTrack = Tracklists.findOne({indexNumber: track.indexNumber + 1});
 				Meteor.call("startTrack", nextTrack._id);
 			}, trackLengthMilliseconds);
@@ -122,6 +121,14 @@ Meteor.methods({
 			Shows.update({_id: track.showId}, {$set: {isAutoPlaying: false}});		
 		}
 
+  },
+  startNextTrack() {
+    var show = Shows.findOne({isActive: true});
+    var nextTrack = Tracklists.findOne({showId: show._id, playDate: {$exists: false}}, {sort: {indexNumber: 1}, limit: 1});
+    if(nextTrack) {
+      //console.log(nextTrack._id)
+      Meteor.call("startTrack", nextTrack._id);
+    }
   },
   stopDefaultTracking(showId) {
     Shows.update({_id: showId}, {$set: {isShowingDefaultMeta: false}});
