@@ -3,7 +3,12 @@ var previousTimer;
 Meteor.methods({
   startTrack(trackId) {
     var track = Tracklists.findOne({_id: trackId});
-    Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: false}});
+    if(track.trackType === "showMeta") {
+      Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: true}});
+    }
+    else {
+      Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: false}});
+    }
     Tracklists.update({_id: trackId}, {$set: {playDate: new Date(), isHighlighted:true}});
     var show = Shows.findOne({_id: track.showId});
     if(track.trackLength && show.isAutoPlaying) {
@@ -19,6 +24,9 @@ Meteor.methods({
         var nextTrack = Tracklists.findOne({showId: track.showId, indexNumber: track.indexNumber + 1});
         if(nextTrack) {
           Meteor.call("startTrack", nextTrack._id);
+        }
+        else {
+          Shows.update({isActive: true}, {$set: {isAutoPlaying: false}});  
         }
       }, trackLengthMilliseconds);
 
