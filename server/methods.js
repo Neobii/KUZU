@@ -69,6 +69,7 @@ Meteor.methods({
     Tracklists.remove(trackId);
   },
   deactivateShow(showId) {
+    console.log("deactivate show")
     Shows.update({_id: showId}, {$set: {isActive: false}});
   },
   incrementPosition(trackId) {

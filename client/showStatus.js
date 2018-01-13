@@ -5,7 +5,7 @@ Template.showStatus.onCreated(function(){
 		this.subscribe('activeShow');
 		this.subscribe('activeShowTracks');
     var show = Shows.findOne({isActive: true});
-    if(show && !show.isAutoPlaying && $("[name='isAutoPlaying']").val()) {
+    if(show && show.isAutoPlaying != $("[name='isAutoPlaying']").val()) {
       this.reloadAutoplay.set(true);
     }
 	})

@@ -1,3 +1,5 @@
+var previousTimer;
+
 Meteor.methods({
   startTrack(trackId) {
     var track = Tracklists.findOne({_id: trackId});
@@ -12,10 +14,14 @@ Meteor.methods({
       if(trackLenArray[3]) {
         trackLengthMilliseconds +=  trackLenArray[3];
       }
-      Meteor.setTimeout(function() {
+      Meteor.clearTimeout(previousTimer);
+      previousTimer = Meteor.setTimeout(function() {
         var nextTrack = Tracklists.findOne({showId: track.showId, indexNumber: track.indexNumber + 1});
-        Meteor.call("startTrack", nextTrack._id);
+        if(nextTrack) {
+          Meteor.call("startTrack", nextTrack._id);
+        }
       }, trackLengthMilliseconds);
+
 
     } else {
       Shows.update({_id: track.showId}, {$set: {isAutoPlaying: false}});    
