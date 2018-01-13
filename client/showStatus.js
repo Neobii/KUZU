@@ -1,26 +1,33 @@
 Template.showStatus.onCreated(function(){
+  this.reloadAutoplay = new ReactiveVar(false);
 	this.autorun(()=> {
+    //("[name=isAutoPlaying]").click()
 		this.subscribe('activeShow');
 		this.subscribe('activeShowTracks');
+    var show = Shows.findOne({isActive: true});
+    if(show && !show.isAutoPlaying && $("[name='isAutoPlaying']").val()) {
+      this.reloadAutoplay.set(true);
+    }
 	})
 });
 
 Template.showStatus.helpers({
+  reloadAutoplay() {
+    return Template.instance().reloadAutoplay.get();
+  },
 	currentActiveShow() {
-    console.log(Meteor.user())
     if(Meteor.user().isAdmin) {
-      console.log("I'm an admin")
-        return Shows.findOne({isActive:true});
-    }else{
-        return Shows.findOne({userId: Meteor.userId()}, {isActive: true});
+      return Shows.findOne({isActive:true});
+    } else{
+      return Shows.findOne({userId: Meteor.userId()}, {isActive: true});
     }
-  // },
-  // queuedNextSong() {
-  //   return Tracklists.findOne({isQueuedForNext: true});
 	},
 	highlightedTracks() {
 		return Tracklists.find({isHighlighted: true});
-	}
+	},
+  setAutoPlay() {
+    Template.instance().reloadAutoplay.set(false);
+  }
 });
 
 Template.showStatus.events({

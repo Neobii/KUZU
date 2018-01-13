@@ -76,7 +76,9 @@
 	</div>
 <div class="show-control-panel">
   <div class="pull-right">
+    {{#if hasNextTrack}}
     <div class="autoplay-label">AutoPlay</div>
+    {{/if}}
   <button class="btn btn-danger" data-stop-show>Stop Show</button>
  {{#if isShowingDefaultMeta}}
  {{#unless trackIsShowMeta}}
@@ -96,9 +98,15 @@
 {{/afModal}}
 </div>
 <div class="pull-left">
+  {{#if hasNextTrack}}
+  {{#unless reloadAutoplay}}
 {{#autoForm collection="Shows" type="update" id="autoplayToggle" doc=this autosave=true}}
  {{> afFieldInput name="isAutoPlaying"}}
  {{/autoForm}}
+ {{else}}
+ {{setAutoPlay}}
+ {{/unless}}
+ {{/if}}
 </div>
 </div>
 {{/with}}
