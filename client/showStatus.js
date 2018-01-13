@@ -66,10 +66,10 @@ Template.showStatus.events({
   "click [data-hide-description]"() {
     Meteor.call("toggleShowDescription", false)
   },
-  "click #autoplayToggle"(e, t) {
+  /*"click #autoplayToggle"(e, t) {
 		var showId = $(e.currentTarget).attr("");
- 	 Meteor.call("toggleAutoPlay", )
-  }
+ 	  Meteor.call("toggleAutoPlay", )
+  }*/
 })
 
 

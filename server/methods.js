@@ -73,12 +73,12 @@ Meteor.methods({
   },
   incrementPosition(trackId) {
 		var track = Tracklists.findOne({_id: trackId});
-		if(track.indexNumber) {
-			//console.log(track.showId, track.indexNumber);
+		if(track.indexNumber || track.indexNumber === 0) {
 			Tracklists.update({showId: track.showId, indexNumber: track.indexNumber + 1}, {$set: {indexNumber: track.indexNumber}});
 			Tracklists.update({_id: trackId}, {$inc: {indexNumber: 1}});
 		} else {
-			Tracklists.update({_id:trackId}, {$set: {indexNumber:0}})
+			var show = Shows.findOne({_id: track.showId});
+      Tracklists.update({_id:trackId}, {$set: {indexNumber: show.getHighestTrackNumber()+1}})
 		}
 	},
   decrementPosition(trackId) {
@@ -102,9 +102,8 @@ Meteor.methods({
     var track = Tracklists.findOne({_id: trackId});
     Shows.update({_id: track.showId}, {$set: {isShowingDefaultMeta: false}});
     Tracklists.update({_id: trackId}, {$set: {playDate: new Date(), isHighlighted:true}});
-
-		//console.log(track.trackLength);
-		if(track.trackLength) {
+    var show = Shows.findOne({_id: track.showId});
+		if(track.trackLength && show.isAutoPlaying) {
 
 			var trackLenArray = track.trackLength.match(/(\d*):(\d*)/);
 			var trackLengthMilliseconds = (((trackLenArray[1]*60) + (trackLenArray[2]))*1000);
@@ -112,18 +111,15 @@ Meteor.methods({
 			if(trackLenArray[3]) {
 				trackLengthMilliseconds +=  trackLenArray[3];
 			}
-			//console.log(trackLengthMilliseconds);
 
 			Meteor.setTimeout(function() {
+        //console.log(track.indexNumber);
 				var nextTrack = Tracklists.findOne({indexNumber: track.indexNumber + 1});
-				startTrack(nextTrack.trackId);
+				Meteor.call("startTrack", nextTrack._id);
 			}, trackLengthMilliseconds);
 
 		} else {
-		//	console.log("else " + track.showId);
-			Shows.update({_id:track.showId}, {$set: {isAutoPlaying: false}});
-			var check = Shows.findOne({_id: track.showId});
-		//	console.log(check.isAutoPlaying);
+			Shows.update({_id: track.showId}, {$set: {isAutoPlaying: false}});		
 		}
 
   },
@@ -136,9 +132,9 @@ Meteor.methods({
   toggleShowDescription(isShowing){
     Shows.update({isActive: true}, {$set: {isShowingDescription: isShowing}});
 	},
-	toggleAutoPlay(showId, isAutoPlaying) {
+	/*toggleAutoPlay(showId, isAutoPlaying) {
 		Shows.update({_id:showId}, {$set: {isAutoPlaying: isAutoPlaying}});
-	},
+	},*/
 	clearHighlighted() {
 		Tracklists.update({isHighlighted:true}, {$set: {isHighlighted:false}}, {multi:true});
 	}
