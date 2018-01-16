@@ -1,11 +1,11 @@
 Meteor.methods({
   reaperParseUpload(currentShowId, data ) {
     check( data, Array );
-    for ( let i = 1; i < data.length; i++ ) {
+    for ( let i = 0; i < data.length; i++ ) {
       let item   = data[ i ];
       var regex = /%(.*)%/;
       if(item && item.Name){
-        var match = item.albumName.match(regex)[1];
+        var match = item.Meta.match(regex)[1];
         if(!match) {
           var names = item.Name.split("|");
           if(!names[1]){
