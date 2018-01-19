@@ -52,7 +52,7 @@
                           {{else}}
                             <button class='btn btn-success' data-start-track-id="{{_id}}">Start Track</button>
                           {{/if}}
-                          <span class="pull-right">{{#afModal formId="updateTracklistModal" class="btn btn-primary" collection="Tracklists" operation="update" omitFields="isHighlighted,showId,indexNumber,playDate"}}
+                          <span class="pull-right">{{#afModal  doc=_id formId="updateTracklistModal" class="btn btn-primary" collection="Tracklists" operation="update" omitFields="isHighlighted,showId,indexNumber,playDate"}}
                               Edit
                           {{/afModal}}</span>
 													<h4 class="title">

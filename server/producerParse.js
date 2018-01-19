@@ -5,7 +5,7 @@ Meteor.methods({
       let item   = data[ i ];
       var regex = /%(.*)%/;
       if(item && item.Name){
-        var match = item.Meta.match(regex)[1];
+        var match = item.Meta && item.Meta.match(regex)[1];
         if(!match) {
           var names = item.Name.split("|");
           if(!names[1]){
