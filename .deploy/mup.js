@@ -23,10 +23,14 @@ module.exports = {
       image: 'abernix/meteord:node-8.4.0-base'
     },
     env: {
-      ROOT_URL: 'http://producer.kuzu.fm',
+      ROOT_URL: 'https://producer.kuzu.fm',
       MONGO_URL: 'mongodb://localhost/meteor'
     },
-
+    ssl: {
+       //pem: './producer.kuzu.fm.pem'
+      crt: './producer.kuzu.fm.crt', // this is a bundle of certificates
+      key: './producer.kuzu.fm.key', // this is the private key of the certificate
+    },
     //dockerImage: 'kadirahq/meteord'
     deployCheckWaitTime: 60
   },
