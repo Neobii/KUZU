@@ -4,6 +4,26 @@ Template.kuzuStats.onCreated(function(){
   })
 })
 
+Template.kuzuStats.rendered=function() {
+  $('#dateFrom').datepicker();
+  $('#dateTo').datepicker();
+}
+
+Template.kuzuStats.events({
+  "click [data-get-listening-hours]"(){
+    var startDate = $("#dateFrom").val()
+    var endDate = $("#dateTo").val();
+    if(startDate && endDate){
+      Meteor.call("getListenerHours", new Date(startDate), new Date(endDate) , function(err, res){
+        console.log(res);
+      } );
+    }
+    else {
+      alert("You need start date and end date");
+    }    
+  }
+})
+
 Template.kuzuStats.helpers({
   kuzuLineChart() {
     var listenerArray = ListenerStats.find({}, {sort: {"fetchDate": 1}}).fetch();//only look for last 8 hours

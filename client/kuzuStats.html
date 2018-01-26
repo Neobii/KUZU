@@ -1,4 +1,29 @@
 <template name="kuzuStats">
 {{> highchartsHelper width="100%" chartId="lineListeners" chartObject=kuzuLineChart}}
-<h1>Put date range here to export user listenership</h1>
+<hr>
+<div class="row">
+  <div class='col-md-4'>
+      <div class="form-group">
+          <div class='input-group date' id='datetimepicker6'>
+              <input type='datepicker' class="form-control" name="dateFrom" id="dateFrom"/>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+      </div>
+  </div>
+  <div class='col-md-4'>
+      <div class="form-group">
+          <div class='input-group date' id='datetimepicker7'>
+              <input type='datepicker' class="form-control" name="dateTo" id="dateTo"/>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-primary" data-get-listening-hours>Get Listening Hours</button>
+  </div>
+</div>
 </template>
