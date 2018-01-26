@@ -28,7 +28,8 @@ caching-compiler@1.1.11
 caching-html-compiler@1.1.2
 callback-hook@1.0.10
 check@1.2.5
-coffeescript@1.12.6_1
+coffeescript@1.12.7_3
+coffeescript-compiler@1.12.7_3
 daniel:auto-nprogress@0.2.9
 dburles:collection-helpers@1.1.0
 ddp@1.4.0
@@ -70,6 +71,7 @@ lfergon:exportcsv@0.0.8
 livedata@1.0.18
 localstorage@1.2.0
 logging@1.1.19
+maazalik:highcharts@0.4.0
 matb33:collection-hooks@0.8.4
 mayankchhabra:autoform-switchery@0.0.2
 mdg:validation-error@0.5.1
@@ -109,7 +111,7 @@ mrt:nprogress@0.2.0
 msavin:jetsetter@4.0.0
 msavin:mongol@4.0.1
 npm-bcrypt@0.9.3
-npm-mongo@2.2.33
+npm-mongo@2.2.34
 observe-sequence@1.0.16
 okgrow:router-autoscroll@0.1.8
 ordered-dict@1.0.9
