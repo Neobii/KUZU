@@ -15,7 +15,7 @@ Template.kuzuStats.events({
     var endDate = $("#dateTo").val();
     if(startDate && endDate){
       Meteor.call("getListenerHours", new Date(startDate), new Date(endDate) , function(err, res){
-        console.log(res);
+        alert(res);
       } );
     }
     else {
