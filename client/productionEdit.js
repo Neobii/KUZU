@@ -26,7 +26,7 @@ Template.productionEdit.events({
 AutoForm.hooks({
     productionUpdateForm: {
   		onSuccess() {
-			FlowRouter.go('productionlist');          	
-        }
+				FlowRouter.go('productionlist');          	
+      }
     }
 });
