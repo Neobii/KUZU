@@ -84,5 +84,5 @@ Meteor.publish('singleProduction',function(productionId){
 })
 
 Meteor.publish("featureRequests", function(){
-  return FeatureRequests.find({});
+  return FeatureRequests.find({}, {sort: {totalScore: -1}});
 })

@@ -6,7 +6,7 @@ Template.featureRequests.onCreated(function(){
 
 Template.featureRequests.helpers({
   featureRequests(){
-    return FeatureRequests.find({});
+    return FeatureRequests.find({}, {sort: {totalScore: -1}});
   }
 })
 
