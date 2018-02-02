@@ -82,3 +82,7 @@ Meteor.publish('listenerStats', function(){
 Meteor.publish('singleProduction',function(productionId){
   return ProductionStatuses.find({_id: productionId});
 })
+
+Meteor.publish("featureRequests", function(){
+  return FeatureRequests.find({});
+})
