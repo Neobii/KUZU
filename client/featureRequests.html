@@ -1,30 +1,30 @@
 <template name="featureRequests">
-<h1>Feature Requests</h1>
- {{#afModal formId="newFeatureRequest" class="btn btn-primary" collection="FeatureRequests" operation="insert" omitFields="userId,userVotesUp,userVotesDown,totalScore"}}
+<h2>Feature Requests<small class="pull-right">{{#afModal formId="newFeatureRequest" class="btn btn-primary" collection="FeatureRequests" operation="insert" omitFields="userId,userVotesUp,userVotesDown,totalScore"}}
     New Feature Request
-{{/afModal}}
+{{/afModal}}</small></h2>
+ 
 <hr>
 <table class="table table-filter">
   <tbody>
     {{#each featureRequests}}
     <tr class="track">
       <td>
-        {{#if $neq indexNumber 0}}
-          <a href="javascript:;" data-move-up="{{_id}}">
+        {{#unless currentUserHasVotedUp}}
+          <a href="javascript:;" data-vote-up="{{_id}}">
             <h3><i class="glyphicon glyphicon-chevron-up"></i></h3>
           </a>
-        {{/if}}
-        <h3>{{voteTotal}}</h3>
-        {{#if $neq indexNumber ../getHighestTrackNumber}}
-            <h3><a href="javascript:;" data-move-down="{{_id}}">
-                <i class="glyphicon glyphicon-chevron-down"></i>
-            </a></h3>
-        {{/if}}
+        {{/unless}}
+        <h3>{{totalScore}}</h3>
+        {{#unless currentUserHasVotedDown}}
+          <h3><a href="javascript:;" data-vote-down="{{_id}}">
+              <i class="glyphicon glyphicon-chevron-down"></i>
+          </a></h3>
+        {{/unless}}
       </td>
       <td>
         <div class="media">
           <div class="media-body">
-            <h2>{{name}}</h2>
+            <h3>{{name}}</h3>
             <p>{{description}}</p>
           </div>
         </div>
