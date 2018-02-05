@@ -97,6 +97,9 @@ Meteor.methods({
   removeShow(showId){
     Shows.remove(showId);
   },
+  deleteFeature(featureId){
+    FeatureRequests.remove({_id: featureId});
+  }
 });
 
 Meteor.method('removeUser',function(userId){

@@ -19,4 +19,8 @@ Template.featureRequests.events({
     var currentId = $(e.currentTarget).attr("data-vote-down");
     FeatureRequests.update({_id: currentId}, {$push: {userVotesDown: Meteor.userId()}, $pull: {userVotesUp: Meteor.userId()}})
   },
+  "click [data-delete-feature]"(e, t) {
+    var currentId = $(e.currentTarget).attr("data-delete-feature");
+    Meteor.call("deleteFeature", currentId);
+  }
 })

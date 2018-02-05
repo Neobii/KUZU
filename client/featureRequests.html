@@ -10,7 +10,7 @@
     <tr class="track">
       <td>
         {{#unless currentUserHasVotedUp}}
-          <a href="javascript:;" data-vote-up="{{_id}}">
+          <a href="" data-vote-up="{{_id}}">
             <h3><i class="glyphicon glyphicon-chevron-up"></i></h3>
           </a>
         {{/unless}}
@@ -25,6 +25,7 @@
         <div class="media">
           <div class="media-body">
             <h3>{{name}}</h3>
+            {{#if currentUser.isAdmin}}<button class="btn btn-warning" data-delete-feature="{{_id}}">Delete Feature</button>{{/if}}
             <p>{{description}}</p>
           </div>
         </div>

@@ -70,17 +70,13 @@ Denton, Texas." />
               </ul>
             </li>
           {{/if}}
-            {{#if currentUser}}
+            {{#if $or currentUser.isAdmin currentUser.isProducer}}
              <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">Producers <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{{pathFor 'producer'}}">Me</a></li>
                 <li><a href="{{pathFor 'showsList'}}">Shows</a></li>
                 <li><a href="{{pathFor 'startshow'}}">Create New Show</a></li>
-                  {{#if isAdmin}}
-                
-                  {{/if}}
-
               </ul>
             </li>
 

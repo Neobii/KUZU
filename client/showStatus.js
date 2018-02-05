@@ -9,8 +9,8 @@ Template.showStatus.helpers({
 	currentActiveShow() {
     if(Meteor.user().isAdmin) {
       return Shows.findOne({isActive:true});
-    } else{
-      return Shows.findOne({userId: Meteor.userId()}, {isActive: true});
+    } else {
+      return Shows.findOne({$or: [{userId: Meteor.userId()}, {helperUserId: Meteor.userId()}]}, {isActive: true});
     }
 	},
 	highlightedTracks() {

@@ -1,3 +1,9 @@
+Template.createShow.onCreated(function(){
+  this.autorun(()=>{
+    this.subscribe("allUsers");
+  })
+})
+
 AutoForm.hooks({
   insertShowForm: {
 		onSuccess: function() {
