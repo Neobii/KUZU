@@ -1,6 +1,17 @@
 <template name="editShow">
 		<h1>edit show</h1>
     <div class="form-holder">
-			{{> quickForm collection="Shows" doc=show id="editShowForm" type="update" omitFields="showStart,isShowingDefaultMeta,isActive,isAutoPlaying"	buttonContent="Save Changes"}}
+			{{#autoForm collection="Shows" id="editShowForm" type="update" doc=show}}
+       {{> afQuickField name="showName"}}
+       {{#if currentUser.isAdmin}}
+        {{> afQuickField name="userId"}}
+       {{/if}}
+       {{> afQuickField name="defaultMeta"}}
+       {{> afQuickField name="isShowingDefaultMeta"}}
+       {{> afQuickField name="description"}}
+       {{> afQuickField name="isShowingDescription"}}
+       {{> afQuickField name="helperUserId"}}
+       <button class="btn btn-primary" type="submit">Create Show</button>
+      {{/autoForm}}
     </div>
 </template>
