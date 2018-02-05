@@ -64,3 +64,7 @@
   color:#FFF;
   margin-right:20px;
 }
+
+.picker-switch.accordion-toggle .glyphicon.glyphicon-time, .picker-switch .glyphicon-calendar{
+  color:black;
+}

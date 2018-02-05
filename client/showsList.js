@@ -36,5 +36,13 @@ Template.showsList.events({
     if(showName && showId) {
       Meteor.call("duplicateShowWithTracks", showId, showName)
     }
+  },
+  "click [data-stop-auto-start-show-id]"(e, t) {
+    var showId = $(e.currentTarget).attr('data-stop-auto-start-show-id');
+    Meteor.call("removeAutoStartShow", showId);
+  },
+  "click [data-auto-start-show-id]"(e, t) {
+    var showId = $(e.currentTarget).attr('data-auto-start-show-id');
+    Meteor.call("addAutoStartShow", showId);
   }
 })

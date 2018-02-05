@@ -59,3 +59,4 @@ force-ssl
 http
 maazalik:highcharts
 aldeed:autoform-select2
+percolate:synced-cron
