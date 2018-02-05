@@ -21,6 +21,8 @@ Template.featureRequests.events({
   },
   "click [data-delete-feature]"(e, t) {
     var currentId = $(e.currentTarget).attr("data-delete-feature");
-    Meteor.call("deleteFeature", currentId);
+    if(confirm("Are You sure want to cancel?")){
+      Meteor.call("deleteFeature", currentId);
+    }
   }
 })
