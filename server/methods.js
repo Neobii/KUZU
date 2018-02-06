@@ -25,8 +25,8 @@ Meteor.methods({
       isShowingDefaultMeta: show.isShowingDefaultMeta,
       description: show.description,
       isShowingDescription: show.isShowingDescription,
-      showStart: show.showStart,
-      showEnd: show.showEnd
+      showStart: new Date(),
+      showEnd: new Date()
     });
   },
   duplicateShowWithTracks(showId, showName) {
@@ -37,8 +37,8 @@ Meteor.methods({
       isShowingDefaultMeta: show.isShowingDefaultMeta,
       description: show.description,
       isShowingDescription: show.isShowingDescription,
-      showStart: show.showStart,
-      showEnd: show.showEnd
+      showStart: new Date(),
+      showEnd: new Date()
     }, function(err, docInserted) {
       var trackLists = Tracklists.find({showId: show._id}, {sort: {indexNumber: 1}}).fetch();
       _.each(trackLists, function(trackList){

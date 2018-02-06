@@ -13,6 +13,7 @@ SyncedCron.add({
 */
 
 Meteor.startup(function(){
+  SyncedCron.stop();
   ////parser.recur().on(date).fullDate();
   //add all autostart to meteor
 })
@@ -20,29 +21,31 @@ Meteor.startup(function(){
 App.addAutoStartShow = function(showId){
   var show = Shows.findOne({_id: showId});
   SyncedCron.add({
-    name: 'AutoStart Show: ' + show.showName,
+    name: 'AutoStart_' + show._id,
     schedule: function(parser) {
       return parser.recur().on(show.showStart).fullDate();
     },
     job: function() {
-      Show.update({_id: show._id}, {$set: {isActive: false}}, {multi: true})
-      Show.update({_id: show._id}, {$set: {isActive: true}})
+      Shows.update({_id: show._id}, {$set: {isActive: false}}, {multi: true})
+      Shows.update({_id: show._id}, {$set: {isActive: true}});
+      Meteor.call("autoplayNextTrack");
     }
   });
   SyncedCron.add({
-    name: 'AutoEnd Show: ' + show.showName,
+    name: 'AutoEnd_' + show._id,
     schedule: function(parser) {
       return parser.recur().on(show.showEnd).fullDate();
     },
     job: function() {
-      Show.update({_id: show._id}, {$set: {isActive: false}})
+      Shows.update({_id: show._id}, {$set: {isActive: false, autoStartEnd: false}})
     }
   });
   SyncedCron.start();
 }
 
-App.removeAutoStartShow = function(){
-  
+App.removeAutoStartShow = function(showId){
+  SyncedCron.remove("AutoStart_" + showId);
+  SyncedCron.remove("AutoEnd_" + showId);
 }
 
 Meteor.methods({
