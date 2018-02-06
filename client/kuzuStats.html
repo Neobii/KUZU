@@ -1,6 +1,34 @@
 <template name="kuzuStats">
+<!--  
+<div class="row">
+  <div class='col-md-4'>
+      <div class="form-group">
+          <div class='input-group date' id='datetimepicker5'>
+              <input type='datepicker' class="form-control" name="dateFromRange" id="dateFromRange"/>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+      </div>
+  </div>
+  <div class='col-md-4'>
+      <div class="form-group">
+          <div class='input-group date' id='datetimepicker4'>
+              <input type='datepicker' class="form-control" name="dateToRange" id="dateToRange"/>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-primary" data-get-listening-hours>View Time Range</button>
+  </div>
+</div>
+-->
 {{> highchartsHelper width="100%" chartId="lineListeners" chartObject=kuzuLineChart}}
 <hr>
+{{#if currentUser.isAdmin}}
 <div class="row">
   <div class='col-md-4'>
       <div class="form-group">
@@ -26,4 +54,5 @@
     <button class="btn btn-primary" data-get-listening-hours>Get Listening Hours</button>
   </div>
 </div>
+{{/if}}
 </template>

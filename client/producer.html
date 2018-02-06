@@ -1,8 +1,4 @@
 <template name="producer">
-<!-- this will be a singular producer page	-->
-<!-- if this page is the current user's profile then add an edit button to take htem to edit profile page-->
-
-<h1>Producer Profile</h1>
 {{#each producer}}
 <h3>Producer {{profile.name}} <a href="{{pathFor 'editproducer' userId=_id}}" class="small btn btn-primary">Edit</a>
 

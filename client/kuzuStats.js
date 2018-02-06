@@ -7,6 +7,8 @@ Template.kuzuStats.onCreated(function(){
 Template.kuzuStats.rendered=function() {
   $('#dateFrom').datepicker();
   $('#dateTo').datepicker();
+  /*$('#dateFromRange').datepicker();
+  $('#dateToRange').datepicker();*/ //needs to be date time picker
 }
 
 Template.kuzuStats.events({
@@ -34,11 +36,11 @@ Template.kuzuStats.helpers({
     })
     return {
         chart: {
-            backgroundColor: 'rgba(255, 255, 255, 0.7)',
-            plotBorderWidth: null,
-            plotShadow: false,
-            plotBackgroundColor: 'rgba(255, 255, 255, 0.0)',
-            //marginTop: "20px"
+          backgroundColor: 'rgba(255, 255, 255, 0.7)',
+          plotBorderWidth: null,
+          plotShadow: false,
+          plotBackgroundColor: 'rgba(255, 255, 255, 0.0)',
+          //marginTop: "20px"
         },
         events: {
           load: function(){
@@ -56,25 +58,25 @@ Template.kuzuStats.helpers({
           }
         },
         xAxis: {
-            title: {
-                text: 'Time'
-            },
-            labels: {
-              formatter: function () {
-                return moment(new Date(this.value)).format("hh:mm");
-              }
+          type: 'datetime',
+          title: {
+            text: 'Time'
+          },
+          labels: {
+            formatter: function () {
+              return moment(new Date(this.value)).format("hh:mm a");
             }
+          }
         },
         yAxis: {
-            title: {
-                text: 'Kuzu Listeners'
-            },
+          title: {
+            text: 'Kuzu Listeners'
+          },
         },
         series: [{
-            type: 'line',
-            name: 'Kuzu Listeners',
-            data: plotListener
-            
+          type: 'line',
+          name: 'Kuzu Listeners',
+          data: plotListener
         }]
     };
   }
