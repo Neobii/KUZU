@@ -19,19 +19,26 @@ Meteor.startup(function(){
 
 App.addAutoStartShow = function(showId){
   var show = Shows.findOne({_id: showId});
-  /*SyncedCron.add({
-    name: 'AutoStart Show',
+  SyncedCron.add({
+    name: 'AutoStart Show: ' + show.showName,
     schedule: function(parser) {
-      // parser is a later.parse object
-      return parser.recur().on(date).fullDate();
+      return parser.recur().on(show.showStart).fullDate();
     },
     job: function() {
-      var numbersCrunched = CrushSomeNumbers();
-      return numbersCrunched;
+      Show.update({_id: show._id}, {$set: {isActive: false}}, {multi: true})
+      Show.update({_id: show._id}, {$set: {isActive: true}})
     }
-  });*/
-  console.log(show.showStart);
-
+  });
+  SyncedCron.add({
+    name: 'AutoEnd Show: ' + show.showName,
+    schedule: function(parser) {
+      return parser.recur().on(show.showEnd).fullDate();
+    },
+    job: function() {
+      Show.update({_id: show._id}, {$set: {isActive: false}})
+    }
+  });
+  SyncedCron.start();
 }
 
 App.removeAutoStartShow = function(){
