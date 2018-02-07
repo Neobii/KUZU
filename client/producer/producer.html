@@ -1,8 +1,7 @@
-<template name="producer">
-{{#each producer}}
+<template name="producerProfile">
+{{#with producer}}
 <h3>Producer {{profile.name}} <a href="{{pathFor 'editproducer' userId=_id}}" class="small btn btn-primary">Edit</a>
-
 </h3>
-<p>Producer {{{profile.bio }}}</p>
-{{/each}}
+<p>Producer {</p>
+{{/with}}
 </template>

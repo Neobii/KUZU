@@ -1,9 +1,6 @@
 Template.adminShows.helpers({
   showsIndex() {
     return ShowsIndex;
-  },
-  hasFullUI(){
-    return (this.helperUserId !== Meteor.userId() || Meteor.user().isAdmin || this.userId === Meteor.userId())
   }
 });
 
