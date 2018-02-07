@@ -5,14 +5,17 @@
       <th>Email</th>
       <th>Full Name</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
   	{{#each users}}
     <tr>
-      <td><a href="{{pathFor 'editproducer' userId=_id}}">{{getEmail emails}}</a></td>
+      <td>{{getEmail emails}}</td>
       <td>{{#if profile.name}}{{profile.name}}{{/if}}</td>
-      <td><button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
+      <td>{{#afModal  doc=_id formId="updateUser" class="btn btn-primary" collection="Meteor.users" operation="update" omitFields="heartbeat,roles,services,createdAt,registered_emails"}}
+                              Edit
+                          {{/afModal}}<button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
     </tr>
     {{/each}}
   </tbody>

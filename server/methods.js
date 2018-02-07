@@ -27,18 +27,6 @@ Meteor.methods({
       isShowingDescription: show.isShowingDescription,
       showStart: new Date(),
       showEnd: new Date()
-    });
-  },
-  duplicateShowWithTracks(showId, showName) {
-    var show = Shows.findOne({_id: showId});
-    Shows.insert({
-      showName: showName,
-      defaultMeta: show.defaultMeta,
-      isShowingDefaultMeta: show.isShowingDefaultMeta,
-      description: show.description,
-      isShowingDescription: show.isShowingDescription,
-      showStart: new Date(),
-      showEnd: new Date()
     }, function(err, docInserted) {
       var trackLists = Tracklists.find({showId: show._id}, {sort: {indexNumber: 1}}).fetch();
       _.each(trackLists, function(trackList){
