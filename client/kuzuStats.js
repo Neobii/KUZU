@@ -70,12 +70,12 @@ Template.kuzuStats.helpers({
         },
         yAxis: {
           title: {
-            text: 'Kuzu Listeners'
+            text: 'Kuzu Online Streaming Listeners'
           },
         },
         series: [{
           type: 'line',
-          name: 'Kuzu Listeners',
+          name: 'Kuzu Online Streaming Listeners',
           data: plotListener
         }]
     };

@@ -1,6 +1,4 @@
-<template name="users">
-		<h1>Users List</h1>
-
+<template name="adminUsers">
 		<table class="table table-inverse">
   <thead>
     <tr>
@@ -10,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-  	{{#each  users}}
+  	{{#each users}}
     <tr>
       <td><a href="{{pathFor 'editproducer' userId=_id}}">{{getEmail emails}}</a></td>
       <td>{{#if profile.name}}{{profile.name}}{{/if}}</td>

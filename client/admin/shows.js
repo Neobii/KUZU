@@ -1,4 +1,4 @@
-Template.showsList.helpers({
+Template.adminShows.helpers({
   showsIndex() {
     return ShowsIndex;
   },
@@ -7,7 +7,7 @@ Template.showsList.helpers({
   }
 });
 
-Template.showsList.events({
+Template.adminShows.events({
   "click [data-deactivate-show-id]"(e, t) {
     var showId = $(e.currentTarget).attr("data-deactivate-show-id");
     Meteor.call("deactivateShow", showId);

@@ -1,42 +1,20 @@
-Template.allTracks.onCreated(function(){
-	/*this.autorun(() => {
-		this.subscribe("TrackLists");
-		this.subscribe("showList");
-	});*/
+Template.adminTracks.onCreated(function(){
 	Session.set('dateFrom', false);
 	Session.set('showId', false);
-
 });
-Template.allTracks.rendered=function() {
+
+Template.adminTracks.rendered = function() {
 	$('#dateFrom').datepicker();
 	$('#dateTo').datepicker();
 }
 
-Template.allTracks.helpers({
+Template.adminTracks.helpers({
 	tracksIndex() {
 		return TracklistsIndex;
 	}
-	/*Tracklists:()=> {
-		if(Session.get('dateFrom')){
-			return Tracklists.find({userId: Meteor.userId()},{ 'playDate' : { $gte : Session.get('dateFrom'), $lt: Session.get('dateTo') }});
-		}else if (Session.get('showId')) {
-			return Tracklists.find({userId: Meteor.userId()},{showId: Session.get('showId')});
-		}else if(Meteor.user().isAdmin){
-			return Tracklists.find({}, {sort: {playDate: -1}});
-		}else{
-			return Tracklists.find({userId: Meteor.userId()}, {sort: {playDate: -1}});
-		}
-	},
-	shows:()=>{
-		  	if(Meteor.user().isAdmin){
-				return Shows.find({});
-		  	}else{
-				return Shows.find({userId: Meteor.userId()});
-		  	}
-	}*/
 });
 
-Template.allTracks.events({
+Template.adminTracks.events({
 	'click #exportcsv': function (event) {
 		  var dateFrom = Session.get('dateFrom');
 		  var dateTo   = Session.get('dateTo');

@@ -1,18 +1,16 @@
-Template.users.onCreated(function(){
+Template.adminUsers.onCreated(function(){
 	this.autorun(()=>{
-		this.subscribe('allProducers')
+		this.subscribe('allUsersAdmin')
 	})
 })
 
-Template.users.helpers({
+Template.adminUsers.helpers({
 	users(){
-		if(Meteor.user().isAdmin){
-			return Meteor.users.find({}).fetch();
-		}
+		return Meteor.users.find({}).fetch();
 	}
 })
 
-Template.users.events({
+Template.adminUsers.events({
 	'click [data-remove-userid]':function(e,t){
 		if(confirm("Are sure want to delete this?")){
 			var userId = $(e.currentTarget).attr("data-remove-userid");

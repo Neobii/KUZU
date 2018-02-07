@@ -57,43 +57,26 @@ Denton, Texas." />
             <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{{pathFor 'productionstatus'}}">Add Production Status</a></li>
-                <li><a href="{{pathFor 'productionlist'}}">Production Status List</a></li>
-                <li><a href="{{pathFor 'users'}}">Users</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="{{pathFor 'shows'}}" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
-              <ul class="dropdown-menu" role="menu">
-
-                <li><a href="{{pathFor 'allTracks'}}">Tracks</a></li>
-                <li><a href="{{pathFor 'producers'}}">Show Archive</a></li>
-                <li><a href="{{pathFor 'producers'}}">Producers</a></li>
-                <li><a href="{{pathFor 'producers'}}">Artists</a></li>
-                <li><a href="{{pathFor 'producers'}}">Events</a></li>
+                <li><a href="{{pathFor 'adminUsers'}}">Users</a></li>
+                <li><a href="{{pathFor 'adminShows'}}">Shows</a></li>
+                <li><a href="{{pathFor 'adminTracks'}}">Tracks</a></li>
+                <!--<li><a href="{{pathFor 'producers'}}">Show Archive</a></li>-->
+                <li><a href="{{pathFor 'adminProducers'}}">Producers</a></li>
+                <!--<li><a href="{{pathFor 'producers'}}">Artists</a></li>
+                <li><a href="{{pathFor 'producers'}}">Events</a></li>-->
+                <!--<li><a href="{{pathFor 'productionstatus'}}">Add Production Status</a></li>-->
+                <li><a href="{{pathFor 'adminProductions'}}">Kuzu Statuses</a></li>
               </ul>
             </li>
           {{/if}}
-            {{#if $or currentUser.isAdmin currentUser.isProducer}}
-             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">Producers <b class="caret"></b></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="{{pathFor 'producer'}}">Me</a></li>
-                <li><a href="{{pathFor 'showsList'}}">Shows</a></li>
-                <li><a href="{{pathFor 'startshow'}}">Create New Show</a></li>
-              </ul>
-            </li>
-
-            <li><a href="{{pathFor 'kuzuStats'}}">Listener Stats</a></li>
-            <!--<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tracks <b class="caret"></b></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="{{pathFor 'tracklists'}}">Add Track</a></li>
-                <li><a href="{{pathFor 'alltracks'}}">All Tracks</a></li>
-              </ul>
-            </li>-->
+            {{#if currentUser.isProducer}}
+              <li><a href="{{pathFor 'producerProfile'}}">Producer Profile</a></li>
+              <li><a href="{{pathFor 'producerShows'}}">My Shows</a></li>
             {{/if}}
-            {{#if currentUser}}<li><a href="{{pathFor 'featureRequests'}}">Feature Requests</a></li>{{/if}}
+            {{#if currentUser}}
+            <li><a href="{{pathFor 'featureRequests'}}">Feature Requests</a></li>
+            <li><a href="{{pathFor 'kuzuStats'}}">Listener Stats</a></li>
+            {{/if}}
             <li>
              <a>{{> loginButtons}}</a>
             </li>

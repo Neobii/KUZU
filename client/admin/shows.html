@@ -1,12 +1,10 @@
-<template name="showsList">
+<template name="adminShows">
 <!-- otherwise they will insert tracks attached to show-->
 <div class="form-holder"><h4>Search Shows {{> EasySearch.Input index=showsIndex}}</h4></div>
 {{#EasySearch.Each index=showsIndex}}
 <div>
-  <h3><a href="{{#if hasFullUI}}
-{{pathFor 'showTracks' showId=__originalId}}{{/if}}">{{showName}}<small>{{#if defaultShowMeta}} - {{defaultShowMeta}}{{/if}}</small></a></h3>
+  <h3><a href="{{pathFor 'showTracks' showId=__originalId}}">{{showName}}<small>{{#if defaultShowMeta}} - {{defaultShowMeta}}{{/if}}</small></a></h3>
 <h3><span class="small">{{prettifyDate showStart}}, {{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
-{{#if hasFullUI}}
 {{#unless autoStartEnd}}
 {{#if isActive}}
 <button class="btn btn-warning" data-deactivate-show-id="{{__originalId}}">Stop Show</button>{{else}}
@@ -21,7 +19,6 @@
 <button class="btn btn-danger" data-delete-id="{{__originalId}}">Delete</button>
 <button class="btn btn-success" data-duplicate-id="{{__originalId}}">Duplicate</button>
 <button class="btn btn-success" data-duplicate-tracks-id="{{__originalId}}">Duplicate w/ tracks</button>
-{{/if}}
 <hr>
 </div>
 {{/EasySearch.Each}}
