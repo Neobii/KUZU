@@ -1,19 +1,18 @@
 <template name="HomeLayout">
   {{> autoformModals}}
 	{{> header}}
-        {{#if currentUser}}
-
+    {{#if currentUser}}
+      {{#unless $eq currentRouteName "liveShow"}}
+        {{#with currentActiveShow}}
+        <div style="background-color:#e7d0ba;margin-top:-21px;padding:15px 5px;">
+          <a style="text-align:center;" href="{{pathFor 'liveShow'}}">
+            <h3 style="color:#333;margin-bottom:0;">{{showName}} is Live!</h3>
+          </a>
+        </div>
+        {{/with}}
+      {{/unless}}
 		 <div id="siteWrapper" class="clearfix">
-      </div>
-      {{#unless $eq currentRouteName "showStatus"}}
-				{{#with currentActiveShow}}
-				<div>
-					<a style="text-align:center;" href="{{pathFor 'showStatus'}}">
-						<h2>{{showName}} is active!</h2>
-					</a>
-				</div>
-				{{/with}}
-			{{/unless}}
+    </div>
 		{{> MainLayout }}
 
 	{{> Footer}}

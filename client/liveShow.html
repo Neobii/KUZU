@@ -1,6 +1,11 @@
-<template name='showStatus'>
+<template name='liveShow'>
 {{#if currentUser}}
 {{#with currentActiveShow}}
+<style>
+  body {
+    background-image:url("/images/black-twill.png");
+  }
+</style>
 <h2><a href="{{pathFor 'editShow' showId=_id}}">{{showName}}</a> is live!</h2>
 <h3>{{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}} <small>with {{#each user.emails}}{{address}}{{/each}}</small></h3>
 <h3>{{defaultMeta}}</h3>

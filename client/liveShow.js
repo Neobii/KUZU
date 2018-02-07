@@ -1,11 +1,11 @@
-Template.showStatus.onCreated(function(){
+Template.liveShow.onCreated(function(){
 	this.autorun(()=> {
 		this.subscribe('activeShow');
 		this.subscribe('activeShowTracks');
 	})
 });
 
-Template.showStatus.helpers({
+Template.liveShow.helpers({
 	currentActiveShow() {
     if(Meteor.user().isAdmin) {
       return Shows.findOne({isActive:true});
@@ -18,7 +18,7 @@ Template.showStatus.helpers({
 	},
 });
 
-Template.showStatus.events({
+Template.liveShow.events({
   "click [data-stop-show]"() {
     Meteor.call("deactivateShow", Shows.findOne({isActive: true})._id);
     FlowRouter.go("showsList")

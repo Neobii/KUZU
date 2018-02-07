@@ -68,3 +68,7 @@
 .picker-switch.accordion-toggle .glyphicon.glyphicon-time, .picker-switch .glyphicon-calendar{
   color:black;
 }
+
+#page {
+  padding: 30px 34px 100px 34px !important;
+}
