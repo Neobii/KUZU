@@ -3,8 +3,10 @@
 <div class="form-holder"><h4>Search Shows {{> EasySearch.Input index=showsIndex}}</h4></div>
 {{#EasySearch.Each index=showsIndex}}
 <div>
-  <h3><a href="{{pathFor 'showTracks' showId=__originalId}}">{{showName}}<small>{{#if defaultShowMeta}} - {{defaultShowMeta}}{{/if}}</small></a></h3>
-<h3><span class="small">{{prettifyDate showStart}}, {{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
+  <h3>{{showName}}</h3>
+   <h3><span class="small">{{prettifyDate showStart}}, {{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
+  {{#if defaultMeta}}<h3><small>{{defaultMeta}}</small></h3>{{/if}}
+  <h3><small><a href="{{pathFor 'showTracks' showId=__originalId}}">15 Tracks</a></small></h3>
 {{#unless autoStartEnd}}
 {{#if isActive}}
 <button class="btn btn-warning" data-deactivate-show-id="{{__originalId}}">Stop Show</button>{{else}}

@@ -3,7 +3,7 @@ Template.producerShows.helpers({
     return (this.helperUserId !== Meteor.userId() || Meteor.user().isAdmin || this.userId === Meteor.userId())
   },
   shows() {
-    return Shows.find({$or: [{userId: Meteor.userId()}, {helperUserId: Meteor.userId()}]});
+    return Shows.find({$or: [{userId: Meteor.userId()}, {helperUserId: Meteor.userId()}]}, {sort: {showStart: -1}});
   }
 });
 
