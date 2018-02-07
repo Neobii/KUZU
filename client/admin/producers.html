@@ -1,8 +1,9 @@
 <template name="adminProducers">
-<!-- this will list all producers-->
-<!-- you can click on their name and it will go to their page-->
-
+<h2>Producers {{#afModal  formId="insertProducer" class="btn btn-primary" collection="Producers" operation="insert"}}
+  New Producer
+{{/afModal}}</h2>
+<hr>
 {{#each producers}}
-<h3><a href="{{pathFor 'editproducer' userId=_id}}">{{#if profile.name}}{{profile.name}}{{else}}{{getEmail emails}}{{/if}}</a> <button class="btn btn-danger" data-delete-userid="{{_id}}">Delete</button></h3>
+<h3>{{name}} - {{showName}} {{#afModal  formId="editProducer" class="btn btn-primary" collection="Producers" operation="update" doc=_id}} Edit {{/afModal}} <button class="btn btn-danger" data-delete-producer="{{_id}}">Delete</button></h3>
 {{/each}}
 </template>

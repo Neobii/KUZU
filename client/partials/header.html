@@ -61,7 +61,7 @@ Denton, Texas." />
                 <li><a href="{{pathFor 'adminShows'}}">Shows</a></li>
                 <li><a href="{{pathFor 'adminTracks'}}">Tracks</a></li>
                 <!--<li><a href="{{pathFor 'producers'}}">Show Archive</a></li>-->
-                <li><a href="{{pathFor 'adminProducers'}}">Producers</a></li>
+                <!--<li><a href="{{pathFor 'adminProducers'}}">Producers</a></li>-->
                 <!--<li><a href="{{pathFor 'producers'}}">Artists</a></li>
                 <li><a href="{{pathFor 'producers'}}">Events</a></li>-->
                 <!--<li><a href="{{pathFor 'productionstatus'}}">Add Production Status</a></li>-->
@@ -70,7 +70,7 @@ Denton, Texas." />
             </li>
           {{/if}}
             {{#if currentUser.isProducer}}
-              <li><a href="{{pathFor 'producerProfile'}}">Producer Profile</a></li>
+              <li><a href="{{pathFor 'producerProfile'}}">My Producer Profile</a></li>
               <li><a href="{{pathFor 'producerShows'}}">My Shows</a></li>
             {{/if}}
             {{#if currentUser}}

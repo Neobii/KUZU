@@ -1,12 +1,13 @@
 Template.adminProducers.onCreated(function(){
 	this.autorun(()=>{
-		this.subscribe('allProducers');
+		this.subscribe('allProducersAdmin');
+		this.subscribe("allUsersAdmin")
 	})
 })
 
 Template.adminProducers.helpers({
-	producers(){
-		return Meteor.users.find({}).fetch();
+	producers() {
+		return Producers.find();
 	}
 })
 

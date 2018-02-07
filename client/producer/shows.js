@@ -22,7 +22,7 @@ Template.producerShows.events({
   "click [data-activate-show-id]"(e, t) {
     var showId = $(e.currentTarget).attr("data-activate-show-id");
     Meteor.call("activateShow", showId);
-    FlowRouter.go("showStatus")
+    FlowRouter.go("liveShow")
   },
  "click [data-delete-id]"(e, t) {
     if(confirm("Are You sure want to delete this?")){
