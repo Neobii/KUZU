@@ -1,8 +1,10 @@
 <template name="producerShows">
+  <h2>My Shows <button class="btn btn-primary" data-create-show>Create New Show</button></h2>
+  <hr>
 {{#each shows}}
 <div>
   <h3>{{showName}}<br><span class="small">{{prettifyDate showStart}}, {{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
-  <h3><a href="{{pathFor 'showTracks' showId=_id}}">15 Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
+  <h3><a href="{{pathFor 'showTracks' showId=_id}}">{{numTracks}} Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
   {{#unless autoStartEnd}}
   {{#if isActive}}
   <button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Stop Show</button>{{else}}

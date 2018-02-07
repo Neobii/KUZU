@@ -1,0 +1,22 @@
+<template name="adminProductionStatuses">
+	<h2>Production Statuses {{#afModal  formId="insertProductionStatuses" class="btn btn-primary" collection="ProductionStatuses" operation="insert"}}
+    New Production Status
+  {{/afModal}}</h2>
+	<hr>
+	{{#each prodlist}}
+		 <div class="media">
+			<div class="media-body">
+				
+				<h4 class="title">
+				 {{productionStatusName}} {{#afModal  doc=_id formId="editProductionStatuses" class="btn btn-primary" collection="ProductionStatuses" operation="update"}}
+              Edit
+          {{/afModal}}
+				</h4>
+				<h4 class="title">
+				<span >{{{additionalContent}}}</span>
+				</h4>
+			</div>
+		</div>
+	{{/each}}	 
+
+</template>

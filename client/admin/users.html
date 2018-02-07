@@ -15,7 +15,7 @@
       <td>{{#if profile.name}}{{profile.name}}{{/if}}</td>
       <td>{{#afModal  doc=_id formId="updateUser" class="btn btn-primary" collection="Meteor.users" operation="update" omitFields="heartbeat,roles,services,createdAt,registered_emails"}}
                               Edit
-                          {{/afModal}}<button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
+                          {{/afModal}} <button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
     </tr>
     {{/each}}
   </tbody>

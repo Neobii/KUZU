@@ -1,10 +1,10 @@
-Template.productionList.onCreated(function(){
+Template.adminProductionStatuses.onCreated(function(){
 	this.autorun(()=>{
 		this.subscribe('productionList');
 	})
 })
 
-Template.productionList.helpers({
+Template.adminProductionStatuses.helpers({
 	prodlist(){
 		if(Meteor.user().isAdmin) {
 				return ProductionStatuses.find({});
