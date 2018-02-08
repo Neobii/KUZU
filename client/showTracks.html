@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
           {{#each showMain.showTracks}}
-          <p>{{songTitle}} - {{prettifyTime playDate}}</p>
+          <p>{{songTitle}} - {{prettifySimpleTime playDate}}</p>
           {{/each}}
         </div>
       </div>
@@ -75,7 +75,7 @@
                           <div class="clearfix"></div>
 													<h4 class="title">
   													<span class="pull-right"> Album: {{album}}</span> 
-                            <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5>Played at: {{prettifyTime playDate}}
+                            <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5>Played at: {{prettifySimpleTime playDate}}
 													</h4>
 												</div>
 											</div>

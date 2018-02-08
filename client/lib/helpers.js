@@ -30,6 +30,6 @@ Template.registerHelper("prettifySimpleTime", (date) => {
   if(!date) {
     return "";
   }
-  var date = new moment(date).format("hh:mm a");
+  var date = new moment(date).format("h:mm a");
   return date;
 })
