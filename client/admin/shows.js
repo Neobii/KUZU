@@ -4,6 +4,14 @@ Template.adminShows.helpers({
   }
 });
 
+Template.adminShows.helpers({
+  endTimeAfterCurrentDate() {
+    var showEnd = moment(new Date(this.showEnd)).add(10, "minutes").valueOf();
+    var timeNow = new Date().getTime();
+    return timeNow <= showEnd;
+  }
+})
+
 Template.adminShows.events({
   "click [data-deactivate-show-id]"(e, t) {
     var showId = $(e.currentTarget).attr("data-deactivate-show-id");
