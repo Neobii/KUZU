@@ -7,15 +7,14 @@ Template.liveShow.onCreated(function(){
 
 Template.liveShow.helpers({
 	currentActiveShow() {
-    if(Meteor.user().isAdmin) {
-      return Shows.findOne({isActive:true});
-    } else {
-      return Shows.findOne({$or: [{userId: Meteor.userId()}, {helperUserId: Meteor.userId()}]}, {isActive: true});
-    }
+    return Shows.findOne({isActive: true});
 	},
 	highlightedTracks() {
 		return Tracklists.find({isHighlighted: true});
 	},
+  goBack() {
+    window.history.back();
+  }
 });
 
 Template.liveShow.events({
