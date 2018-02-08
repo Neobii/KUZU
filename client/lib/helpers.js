@@ -8,10 +8,6 @@ Template.registerHelper('json', function(a) {
 
 });
 
-Template.registerHelper('isAdmin',function(){
-		return 	Meteor.user().isAdmin;
-})
-
 Template.registerHelper('getEmail',function(emails){
 	 return emails[0].address != 'undefined'  ? emails[0].address : '';
 })

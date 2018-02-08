@@ -1,7 +1,16 @@
 <template name="producerProfile">
-{{#with producer}}
-<h3>Producer {{profile.name}} <a href="{{pathFor 'editproducer' userId=_id}}" class="small btn btn-primary">Edit</a>
-</h3>
-<p>Producer {</p>
+{{#with currentUser.producerProfile}}
+<h2>{{name}}<small> - {{#if isPioneer}}Pioneer{{else}}Evergreen{{/if}}</small>
+<span class="pull-right">{{#afModal  doc=currentUser._id formId="updateProducerProfile" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile.bio, producerProfile.name"}}
+    Edit Producer Profile
+{{/afModal}}</span></h2>
+<div class="clearfix"></div>
+{{{bio}}}
+<hr>
+<h2>{{showName}} <small>{{defaultMeta}}</small> <span class="pull-right">{{#afModal  doc=currentUser._id formId="updateProducerProfile" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile.showName, producerProfile.defaultMeta, producerProfile.description"}}
+    Edit Show Information
+{{/afModal}}</span></h2>
+<div class="clearfix"></div>
+{{{description}}}
 {{/with}}
 </template>

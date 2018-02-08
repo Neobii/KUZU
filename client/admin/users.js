@@ -7,6 +7,9 @@ Template.adminUsers.onCreated(function(){
 Template.adminUsers.helpers({
 	users(){
 		return Meteor.users.find({}).fetch();
+	},
+	getDoc(){
+		console.log(this)
 	}
 })
 
