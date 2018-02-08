@@ -8,7 +8,9 @@
   {{#unless autoStartEnd}}
   {{#if isActive}}
   <button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Stop Show</button>{{else}}
+  {{#if startTimeAfterCurrentDate}}
   <button class="btn btn-primary" data-activate-show-id="{{_id}}">Start Show</button>
+  {{/if}}
   {{/if}}
   {{#if currentUser.producerProfile.isPioneer}}
   <button class="btn btn-warning" data-auto-start-show-id="{{_id}}">Auto Start and End is Off</button>
