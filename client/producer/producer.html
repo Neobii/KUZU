@@ -1,16 +1,16 @@
 <template name="producerProfile">
-{{#with currentUser.producerProfile}}
-<h2>{{name}}<small> - {{#if isPioneer}}Pioneer{{else}}Evergreen{{/if}}</small>
-<span class="pull-right">{{#afModal  doc=currentUser._id formId="updateProducerProfile" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile.bio, producerProfile.name"}}
+{{#with currentUser}}
+<h2>{{producerProfile.name}}<small> - {{#if producerProfile.isPioneer}}Pioneer{{else}}Evergreen{{/if}}</small>
+<span class="pull-right">{{#afModal  doc=_id formId="updateProducerProfile" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile.bio, producerProfile.name"}}
     Edit Producer Profile
 {{/afModal}}</span></h2>
 <div class="clearfix"></div>
-{{{bio}}}
+{{{producerProfile.bio}}}
 <hr>
-<h2>{{showName}} <small>{{defaultMeta}}</small> <span class="pull-right">{{#afModal  doc=currentUser._id formId="updateProducerProfile" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile.showName, producerProfile.defaultMeta, producerProfile.description"}}
+<h2>{{producerProfile.showName}} <small>{{producerProfile.defaultMeta}}</small> <span class="pull-right">{{#afModal  doc=_id formId="updateProducerProfile" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile.showName, producerProfile.defaultMeta, producerProfile.description"}}
     Edit Show Information
 {{/afModal}}</span></h2>
 <div class="clearfix"></div>
-{{{description}}}
+{{{producerProfile.description}}}
 {{/with}}
 </template>
