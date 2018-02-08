@@ -1,5 +1,19 @@
 <template name="showTracks">
-
+<div class="modal fade" id="trackPlaytimesModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Track Playtimes</h4>
+        </div>
+        <div class="modal-body">
+          {{#each showMain.showTracks}}
+          <p>{{songTitle}} - {{prettifyTime playDate}}</p>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
 		<div class="container">
 
 	<div class="row">
@@ -8,8 +22,15 @@
 			<h3>{{showName}} <small><a href="{{pathFor 'addTrackToShow' showId=_id}}">Add Track To Show</a></small></h3>
 			<!-- <button data-download-csv class="btn btn-info">Download CSV</button> -->
 		</center>
-					{{{description}}}
-					<h4 class="page-header">Upload a CSV <a href="/help/Template.csv">Example</a></h4>
+		{{{description}}}
+		<div class="row">
+      <div class="col-md-6">
+        <h4 class="page-header">Upload a CSV <a href="/help/Template.csv">Example</a></h4>
+      </div>
+      <div class="col-mod-6">
+        {{#unless endTimeAfterCurrentDate}}<button class="btn btn-primary" data-get-track-playtimes>Track Playtimes</button>{{/unless}}
+      </div>
+    </div>
 
   {{#unless uploading}}
     <input type="file" name="uploadCSV">

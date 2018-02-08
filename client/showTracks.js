@@ -42,6 +42,9 @@ Template.showTracks.events({
     var trackId = $(e.currentTarget).attr("data-move-down");
     Meteor.call("incrementPosition", trackId);
   },
+  "click [data-get-track-playtimes]"(){
+    $("#trackPlaytimesModal").modal();
+  },
   'change [name="uploadCSV"]' ( event, template ) {
     template.uploading.set( true );
 

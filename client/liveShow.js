@@ -24,8 +24,11 @@ Template.liveShow.events({
       window.history.back();
     }
   },
-  'click [data-clear-highlighted]'(e, t) {
-    Meteor.call("clearHighlighted");
+  'click [data-recent-tracks]'(e, t) {
+    $("#recentlyPlayedSongs").modal();
+    $("#recentlyPlayedSongs").on("hide.bs.modal", function(e){
+      Meteor.call("clearHighlighted");
+    })
   },
   'click [data-move-up]'(e, t) {
     var trackId = $(e.currentTarget).attr("data-move-up");
