@@ -1,0 +1,9 @@
+<template name="producerMyProgram">
+  {{#with currentUser}}
+  <h2>{{producerProfile.showName}} <small>{{producerProfile.defaultMeta}}</small> <span class="pull-right">{{#afModal  doc=_id formId="updatePShow" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile.showName,producerProfile.defaultMeta, producerProfile.description"}}
+    Edit Show Information
+{{/afModal}}</span></h2>
+<div class="clearfix"></div>
+{{{producerProfile.description}}}
+{{/with}}
+</template>

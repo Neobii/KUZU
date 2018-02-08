@@ -4,6 +4,9 @@ Template.producerShows.helpers({
   },
   shows() {
     return Shows.find({$or: [{userId: Meteor.userId()}, {helperUserId: Meteor.userId()}]}, {sort: {showStart: -1}});
+  },
+  updateShowFormId() {
+    return "updateShow" + this._id;
   }
 });
 

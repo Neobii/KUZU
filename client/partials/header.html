@@ -70,10 +70,11 @@ Denton, Texas." />
             </li>
           {{/if}}
             {{#if currentUser.isProducer}}
-              <li><a href="{{pathFor 'producerProfile'}}">My Producer Profile</a></li>
               <li><a href="{{pathFor 'producerShows'}}">My Shows</a></li>
+              <li><a href="{{pathFor 'producerMyProfile'}}">My Producer Profile</a></li>
+              <li><a href="{{pathFor 'producerMyProgram'}}">My Program Information</a></li>
             {{/if}}
-            {{#if currentUser}}
+            {{#if $or currentUser.isAdmin currentUser.producerProfile.isPioneer}}
             <li><a href="{{pathFor 'featureRequests'}}">Feature Requests</a></li>
             <li><a href="{{pathFor 'kuzuStats'}}">Listener Stats</a></li>
             {{/if}}
