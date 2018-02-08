@@ -9,7 +9,7 @@
         <div class="modal-body">
           {{#each showMain.showTracksDate}}
           {{#if isExportable}}
-          <p>{{artist}} - {{songTitle}}: {{prettifySimpleTime playDate}}</p>
+          <p>{{#if artist}}{{artist}} - {{/if}}{{songTitle}}: {{prettifySimpleTime playDate}}</p>
           {{/if}}
           {{/each}}
         </div>
@@ -21,7 +21,7 @@
 	<div class="row">
 		{{#with showMain}}
 		<center>
-			<h3>{{showName}} <small><a href="{{pathFor 'addTrackToShow' showId=_id}}">Add Track To Show</a></small></h3>
+			<h3>{{showName}} <small><a href="{{pathFor 'addTrackToShow' showId=_id}}">Add Track To Show</a></small> {{#unless endTimeAfterCurrentDate}}<button class="btn btn-primary" data-get-track-playtimes>Track Playtimes</button>{{/unless}}</h3>
 			<!-- <button data-download-csv class="btn btn-info">Download CSV</button> -->
 		</center>
 		{{{description}}}
@@ -29,8 +29,8 @@
       <div class="col-md-6">
         <h4 class="page-header">Upload a CSV <a href="/help/Template.csv">Example</a></h4>
       </div>
-      <div class="col-mod-6">
-        {{#unless endTimeAfterCurrentDate}}<button class="btn btn-primary" data-get-track-playtimes>Track Playtimes</button>{{/unless}}
+      <div class="col-md-6">
+        
       </div>
     </div>
 
