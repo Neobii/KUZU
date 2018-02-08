@@ -9,9 +9,26 @@
           <h4 class="modal-title">Track Playtimes</h4>
         </div>
         <div class="modal-body">
-          {{#each recentlyPlayedSongs}}
-          <p>{{songTitle}} - {{prettifySimpleTime playDate}}</p>
-          {{/each}}
+          <table class="table" style="background-color:#FFF;">
+            <thead>
+              <tr>
+                <th>Artist</th>
+                <th>Song Title</th>
+                <th>Album</th>
+                <th>Played At</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each recentlyPlayedSongs}}
+              <tr>
+                <td>{{artist}}</td>
+                <td>{{songTitle}}</td>
+                <td>{{album}}</td>
+                <td>{{prettifySimpleTime playDate}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
