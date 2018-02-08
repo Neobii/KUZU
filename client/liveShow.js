@@ -19,8 +19,10 @@ Template.liveShow.helpers({
 
 Template.liveShow.events({
   "click [data-stop-show]"() {
-    Meteor.call("deactivateShow", Shows.findOne({isActive: true})._id);
-    FlowRouter.go("showsList")
+    if(confirm("Are You sure want to stop this show?")){
+      Meteor.call("deactivateShow", Shows.findOne({isActive: true})._id);
+      window.history.back();
+    }
   },
   'click [data-clear-highlighted]'(e, t) {
     Meteor.call("clearHighlighted");

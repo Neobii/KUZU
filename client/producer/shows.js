@@ -44,5 +44,8 @@ Template.producerShows.events({
   "click [data-auto-start-show-id]"(e, t) {
     var showId = $(e.currentTarget).attr('data-auto-start-show-id');
     Meteor.call("addAutoStartShow", showId);
+  },
+  "click [data-create-show]"(){
+    Meteor.call("createNewShow");
   }
 })

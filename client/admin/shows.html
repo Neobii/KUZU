@@ -4,15 +4,19 @@
 {{#EasySearch.Each index=showsIndex}}
 <div>
   <h3>{{showName}}<br><span class="small">{{prettifyDate showStart}}, {{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
-  <h3><a href="{{pathFor 'showTracks' showId=__originalId}}">{{numTracks}} Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
+  <h3><a href="{{pathFor 'showTracks' showId=__originalId}}"><!--{{numTracks}} -->Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
 {{#unless autoStartEnd}}
 {{#if isActive}}
 <button class="btn btn-warning" data-deactivate-show-id="{{__originalId}}">Stop Show</button>{{else}}
-{{#if startTimeAfterCurrentDate}}<button class="btn btn-primary" data-activate-show-id="{{__originalId}}">Start Show</button>{{/if}}
+<button class="btn btn-primary" data-activate-show-id="{{__originalId}}">Start Show</button>
 {{/if}}
+{{#if endTimeAfterCurrentDate}}
 <button class="btn btn-warning" data-auto-start-show-id="{{__originalId}}">Auto Start and End is Off</button>
+{{/if}}
 {{else}}
+{{#if endTimeAfterCurrentDate}}
 <button class="btn btn-success" data-stop-auto-start-show-id="{{__originalId}}">Auto Start and End is On</button>
+{{/if}}
 {{/unless}}
 &nbsp;
 <a href="{{pathFor 'editShow' showId=__originalId}}" class="btn btn-primary">Edit</a>

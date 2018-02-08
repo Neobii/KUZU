@@ -4,7 +4,7 @@
 {{#each shows}}
 <div>
   <h3>{{showName}}<br><span class="small">{{prettifyDate showStart}}, {{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
-  <h3><a href="{{pathFor 'showTracks' showId=_id}}">{{numTracks}} Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
+  <h3><a href="{{pathFor 'showTracks' showId=_id}}"><!--{{numTracks}} -->Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
   {{#unless autoStartEnd}}
   {{#if isActive}}
   <button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Stop Show</button>{{else}}
@@ -13,11 +13,15 @@
   {{/if}}
   {{/if}}
   {{#if currentUser.producerProfile.isPioneer}}
+  {{#if endTimeAfterCurrentDate}}
   <button class="btn btn-warning" data-auto-start-show-id="{{_id}}">Auto Start and End is Off</button>
+  {{/if}}
   {{/if}}
   {{else}}
   {{#if currentUser.producerProfile.isPioneer}}
+  {{#if endTimeAfterCurrentDate}}
   <button class="btn btn-success" data-stop-auto-start-show-id="{{_id}}">Auto Start and End is On</button>
+  {{/if}}
   {{/if}}
   {{/unless}}
   <button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>

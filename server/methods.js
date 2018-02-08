@@ -91,6 +91,25 @@ Meteor.methods({
   },
   deleteFeature(featureId){
     FeatureRequests.remove({_id: featureId});
+  },
+  createNewShow(){
+    var user = Meteor.users.findOne({_id: this.userId});
+    var showName;
+    var showDescription;
+    var defaultMeta;
+    if(user.producerProfile) {
+      showName = user.producerProfile.showName || "Kuzu Show";
+      showDescription = user.producerProfile.description || "";
+      defaultMeta = user.producerProfile.defaultMeta || "Kuzu Show";
+    }
+    Shows.insert({
+      userId: this.userId,
+      showName: showName,
+      showStart: new Date(),
+      showEnd: new Date(),
+      description: showDescription,
+      defaultMeta: defaultMeta
+    });
   }
 });
 
