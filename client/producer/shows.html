@@ -25,7 +25,9 @@
   {{/if}}
   {{/unless}}
   <button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
-  <a href="{{pathFor 'editShow' showId=_id}}" class="btn btn-primary">Edit</a>
+  {{#afModal formId="updateShow" class="btn btn-primary" collection="Shows" operation="update" doc=_id omitFields="userId,numTracks,isActive,isShowingDescription,isAutoPlaying,isShowingDefaultMeta,autoStartEnd"}}
+  Edit
+{{/afModal}}
   <button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
   <hr>
 </div>
