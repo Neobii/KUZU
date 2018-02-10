@@ -72,3 +72,7 @@
 #page {
   padding: 30px 34px 100px 34px !important;
 }
+
+.modal .table,.modal .panel {
+  background-color: #fff;
+}

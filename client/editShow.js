@@ -2,7 +2,7 @@ Template.editShow.onCreated(function(){
 	this.showId = FlowRouter.getParam('showId');
 	this.autorun(()=>{
 		this.subscribe('singleShow',this.showId);
-		this.subscribe("adminAllUsers");
+		this.subscribe("allUsersAdmin");
 	})
 })
 

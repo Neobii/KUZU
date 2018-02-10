@@ -56,8 +56,19 @@ Meteor.methods({
 var currentHash = "";
 
 Meteor.method("insertTrack", function(artist, songTitle, album, label, duration) {
-  if(!Shows.findOne({isActive: true})) {
+  var activeShow = Shows.findOne({isActive: true}) || false;
+  if(!activeShow || activeShow.hasRadioLogikTracking) {
     Tracklists.insert({artist: artist, songTitle: songTitle, album: album, label: label, trackLength: duration, playDate: new Date()})
+  }
+  else {
+    App.autoDJTrack = {
+      artist: artist,
+      songTitle: songTitle,
+      album: album,
+      label: label,
+      trackLength: trackLength,
+      playDate: new Date()
+    }
   }
   }, {
     getArgsFromRequest: function (request) {

@@ -15,7 +15,7 @@ App.addAutoStartShow = function(showId){
         return parser.recur().on(show.showStart).fullDate();
       },
       job: function() {
-        Shows.update({isActive: true}, {$set: {isActive: false}}, {multi: true})
+        Shows.update({isActive: true}, {$set: {isActive: false}}, {multi: true});
         Shows.update({_id: show._id}, {$set: {isActive: true}});
         Meteor.call("autoplayNextTrack");
         SyncedCron.remove("AutoStart_" + show._id);
@@ -31,6 +31,17 @@ App.addAutoStartShow = function(showId){
       job: function() {
         Shows.update({_id: show._id}, {$set: {isActive: false, autoStartEnd: false}});
         SyncedCron.remove("AutoEnd_" + show._id);
+        if(App.autoDJTrack && !Shows.findOne({_id: showId, hasRadioLogikTracking: true})) {
+          Tracklists.insert({
+            artist: App.autoDJTrack.artist,
+            songTitle: App.autoDJTrack.songTitle,
+            album: App.autoDJTrack.album,
+            label: App.autoDJTrack.label,
+            trackLength: App.autoDJTrack.duration,
+            playDate: App.autoDJTrack.playDate
+          })
+          delete App.autoDJTrack;
+        }
       }
     });
   }
