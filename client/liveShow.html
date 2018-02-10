@@ -91,7 +91,7 @@
                           {{#if playDate}}
                           <span class="media-meta"><button class="btn btn-warning" data-restart-track-id="{{_id}}">Restart Track</button>
                           </span>
-                          {{#if currentUser.producerProfile.isAutomationUIEnabled}}
+                          {{#if $or currentUser.isAdmin currentUser.producerProfile.isAutomationUIEnabled}}
                           <span class="media-meta"><button class="btn btn-warning" data-clear-playtime-id="{{_id}}">Clear Playtime</button></span>
                           {{/if}}
                           {{else}}
