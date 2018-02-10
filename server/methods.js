@@ -105,7 +105,7 @@ Meteor.methods({
   createNewShow(){
     var user = Meteor.users.findOne({_id: this.userId});
     var showName = "Kuzu Show";
-    var showDescription = "Kuzu Show";
+    var showDescription = " ";
     var defaultMeta = "Kuzu Show";
     if(user.producerProfile) {
       showName = user.producerProfile.showName || "Kuzu Show";
