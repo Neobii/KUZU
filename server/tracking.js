@@ -66,7 +66,7 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
       songTitle: songTitle,
       album: album,
       label: label,
-      trackLength: trackLength,
+      trackLength: duration,
       playDate: new Date()
     }
   }
