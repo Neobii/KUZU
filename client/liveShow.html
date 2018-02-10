@@ -42,8 +42,8 @@
   }
 </style>
 <h2>{{showName}} is live! <span class="pull-right">{{#afModal  doc=_id formId="updateLiveShow" class="btn btn-primary" collection="Shows" operation="update" fields="showName,showEnd,defaultMeta,description"}}
-                              Edit
-                          {{/afModal}}</span></h2>
+  Edit
+{{/afModal}}</span></h2>
 <h3>{{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}} <small>with {{#each user.emails}}{{address}}{{/each}}</small></h3>
 <h3>{{defaultMeta}}</h3>
 
@@ -91,6 +91,9 @@
                           {{#if playDate}}
                           <span class="media-meta"><button class="btn btn-warning" data-restart-track-id="{{_id}}">Restart Track</button>
                           </span>
+                          {{#if currentUser.producerProfile.isAutomationUIEnabled}}
+                          <span class="media-meta"><button class="btn btn-warning" data-clear-playtime-id="{{_id}}">Clear Playtime</button></span>
+                          {{/if}}
                           {{else}}
                             <button class='btn btn-success' data-start-track-id="{{_id}}">Start Track</button>
                           {{/if}}
@@ -117,7 +120,7 @@
 <div class="show-control-panel">
   <div class="text-center">
     {{#if hasNextTrack}}
-    {{#if currentUser.producerProfile.isPioneer}}
+    {{#if $or currentUser.producerProfile.isAutomationUIEnabled currentUser.isAdmin}}
     {{#if isAutoPlaying}}
     <button class="btn btn-info" data-pause-autoplay>Pause Autoplay</button>
     {{else}}

@@ -9,7 +9,7 @@
         <div class="modal-body">
           {{#each showMain.showTracksDate}}
           {{#if isExportable}}
-          <p>{{#if artist}}{{artist}} - {{/if}}{{songTitle}}: {{prettifySimpleTime playDate}}</p>
+          <p>{{#if artist}}{{artist}} - {{/if}}{{songTitle}} ({{prettifySimpleTime playDate}})</p>
           {{/if}}
           {{/each}}
         </div>

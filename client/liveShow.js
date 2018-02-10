@@ -71,6 +71,10 @@ Template.liveShow.events({
   },
   "click [data-pause-autoplay]"(){
     Meteor.call("pauseAutoplay");
+  },
+  "click [data-clear-playtime-id]"(e, t){
+    var trackId = $(e.currentTarget).attr("data-clear-playtime-id");
+    Meteor.call("clearPlaytime", trackId)
   }
 })
 

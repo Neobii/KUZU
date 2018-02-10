@@ -110,6 +110,9 @@ Meteor.methods({
       description: showDescription,
       defaultMeta: defaultMeta
     });
+  },
+  clearPlaytime(trackId) {
+    Tracklists.update({_id: trackId}, {$unset: {playDate: ""}})
   }
 });
 

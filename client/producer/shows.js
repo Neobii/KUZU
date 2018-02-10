@@ -13,6 +13,7 @@ Template.producerShows.helpers({
 Template.producerShows.onCreated(function(){
   this.autorun(() => {
     this.subscribe("producerShows");
+    this.subscribe("allUsersAdmin");
   })
 })
 

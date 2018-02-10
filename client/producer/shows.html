@@ -12,13 +12,13 @@
   <button class="btn btn-primary" data-activate-show-id="{{_id}}">Start Show</button>
   {{/if}}
   {{/if}}
-  {{#if currentUser.producerProfile.isPioneer}}
+  {{#if currentUser.producerProfile.isAutomationUIEnabled}}
   {{#if endTimeAfterCurrentDate}}
   <button class="btn btn-warning" data-auto-start-show-id="{{_id}}">Auto Start and End is Off</button>
   {{/if}}
   {{/if}}
   {{else}}
-  {{#if currentUser.producerProfile.isPioneer}}
+  {{#if currentUser.producerProfile.isAutomationUIEnabled}}
   {{#if endTimeAfterCurrentDate}}
   <button class="btn btn-success" data-stop-auto-start-show-id="{{_id}}">Auto Start and End is On</button>
   {{/if}}

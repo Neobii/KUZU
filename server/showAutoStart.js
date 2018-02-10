@@ -15,7 +15,7 @@ App.addAutoStartShow = function(showId){
         return parser.recur().on(show.showStart).fullDate();
       },
       job: function() {
-        Shows.update({_id: show._id}, {$set: {isActive: false}}, {multi: true})
+        Shows.update({isActive: true}, {$set: {isActive: false}}, {multi: true})
         Shows.update({_id: show._id}, {$set: {isActive: true}});
         Meteor.call("autoplayNextTrack");
         SyncedCron.remove("AutoStart_" + show._id);
