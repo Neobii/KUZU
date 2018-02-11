@@ -75,8 +75,8 @@ Meteor.publish('productionList',function(){
   return ProductionStatuses.find({});
 })
 
-Meteor.publish('listenerStats', function(){
-  return ListenerStats.find({}, {sort: {"fetchDate": -1}, limit: 50});
+Meteor.publish('listenerStats', function(timeFrom, timeTo){
+  return ListenerStats.find({fetchDate: {$gte: timeFrom, $lte: timeTo}}, {sort: {"fetchDate": -1}});
 })
 
 Meteor.publish('singleProduction',function(productionId){

@@ -1,17 +1,27 @@
 Template.kuzuStats.onCreated(function(){
+  this.timeFrom = new ReactiveVar(moment(new Date).subtract(2, "hours").toDate());
+  this.timeTo = new ReactiveVar(new Date());
   this.autorun(() => {
-    this.subscribe("listenerStats");
+    this.subscribe("listenerStats", this.timeFrom.get(), this.timeTo.get());
   })
 })
 
-Template.kuzuStats.rendered=function() {
+Template.kuzuStats.onRendered(function() {
   $('#dateFrom').datepicker();
   $('#dateTo').datepicker();
-  /*$('#dateFromRange').datepicker();
-  $('#dateToRange').datepicker();*/ //needs to be date time picker
-}
+  this.$('.datetimepicker').datetimepicker();
+});
+
 
 Template.kuzuStats.events({
+  "click [data-view-time-range]"(){
+    var dateFrom = $(".set-date-time-from").val();
+    var dateTo = $(".set-date-time-to").val();
+    if(dateFrom) {
+      Template.instance().timeFrom.set(new Date(dateFrom));
+      Template.instance().timeTo.set(new Date(dateTo));
+    }
+  },
   "click [data-get-listening-hours]"(){
     var startDate = $("#dateFrom").val()
     var endDate = $("#dateTo").val();
