@@ -44,6 +44,9 @@ Meteor.methods({
 });
 
 Meteor.methods({
+  getRadioLogikStatus(){
+    return App.isRadioLogicDown;
+  },
   changePrivledge(userId, userRole, action){
     var obj =  {};
     obj[userRole] = !!action;

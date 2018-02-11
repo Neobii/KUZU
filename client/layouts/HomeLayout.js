@@ -1,15 +1,21 @@
-Template.HomeLayout.helpers({
+Template.HomeLayout.onCreated(function(){
+  this.isRadioLogikDown = new ReactiveVar(false);
+  setInterval(() => {
+    Meteor.call("getRadioLogikStatus", (err, res) => {
+      this.isRadioLogikDown.set(res);
+    })
+  }, 5000)
+})
 
-  	currentActiveShow() {
-      console.log(Meteor.user())
-      if(Meteor.user().isAdmin) {
-        console.log("I'm an admin")
-          return Shows.findOne({isActive:true});
-      }else{
-          return Shows.findOne({userId: Meteor.userId()}, {isActive: true});
-      }
-    // },
-    // queuedNextSong() {
-    //   return Tracklists.findOne({isQueuedForNext: true});
+Template.HomeLayout.helpers({
+	currentActiveShow() {
+    if(Meteor.user().isAdmin) {
+      return Shows.findOne({isActive:true});
+    } else {
+      return Shows.findOne({userId: Meteor.userId()}, {isActive: true});
+    }
+  },
+  isRadioLogikDown() {
+    return Template.instance().isRadioLogikDown.get();
   }
 });
