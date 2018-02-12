@@ -65,7 +65,7 @@ Meteor.methods({
     Shows.update({_id: showId}, {$set: {isActive: false}});
     if(App.autoDJTrack && !Shows.findOne({_id: showId, hasRadioLogikTracking: true})) {
       Tracklists.insert({
-        showId: "Auto DJ"
+        showId: "Auto DJ",
         artist: App.autoDJTrack.artist,
         songTitle: App.autoDJTrack.songTitle,
         album: App.autoDJTrack.album,
