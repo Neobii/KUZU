@@ -27,7 +27,7 @@ aldeed:collection2
 arillo:flow-router-helpers
 dburles:collection-helpers
 underscore@1.0.10
-session@1.1.7
+session
 aldeed:autoform
 meteortoys:allthings
 rajit:bootstrap3-datepicker
