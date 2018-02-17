@@ -16,7 +16,6 @@ Meteor.methods({
       var min = track.trackLength.substr(0, splitIndex) || 0;
       var sec = track.trackLength.substr(splitIndex + 1, track.trackLength.length) || 0;
       var trackLengthMillis = ((+min * 60) + +sec) * 1000;
-      console.log(trackLengthMillis)
       Meteor.clearTimeout(previousTimer);
       if(trackLengthMillis > 0) {
         previousTimer = Meteor.setTimeout(function() {

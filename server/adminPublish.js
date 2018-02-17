@@ -5,3 +5,7 @@ Meteor.publish("allUsersAdmin", function() {
 Meteor.publish("allProducersAdmin", function() {
   return Producers.find();
 })
+
+Meteor.publish("allAutoDJPlaylists", function() {
+  return AutoDJPlaylists.find();
+})

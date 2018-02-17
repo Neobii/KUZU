@@ -1,0 +1,10 @@
+<template name="adminAutoDJPlaylists">
+<h3>Auto DJ Playlists {{#afModal  formId="insertAutoDJPlaylist" class="btn btn-primary" collection="AutoDJPlaylists" operation="insert"}}
+    New Auto DJ Playlist
+  {{/afModal}}</h3>
+{{#each autoDJPlaylists}}
+<hr>
+<h3>{{name}} {{#afModal  formId="editAutoDJPlaylist" class="btn btn-primary" collection="AutoDJPlaylists" operation="update" doc=_id}} edit {{/afModal}} {{#afModal  formId="deleteAutoDJPlaylist" class="btn btn-warning" collection="AutoDJPlaylists" operation="remove" doc=_id}} delete {{/afModal}}</h3>
+<h4>{{schedule}}</h4>
+{{/each}}
+</template>
