@@ -90,3 +90,7 @@ Meteor.publish("featureRequests", function(){
 Meteor.publish("allUsers", function() {
   return Meteor.users.find();
 })
+
+Meteor.publish("calendarShows", function(){
+  return Shows.find({}, {sort: {startDate: 1}, fields: {description: 0}})
+})

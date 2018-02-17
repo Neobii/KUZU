@@ -53,6 +53,25 @@ Denton, Texas." />
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li>
+             <a>{{> loginButtons align="left"}}</a>
+          </li>
+            {{#if currentUser.isProducer}}
+              <li><a href="{{pathFor 'producerShows'}}">My Shows</a></li>
+              <li><a href="{{pathFor 'producerMyProfile'}}">My Producer Profile</a></li>
+              <li><a href="{{pathFor 'producerMyProgram'}}">My Program Information</a></li>
+            {{/if}}            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          {{#if $or currentUser.isAdmin currentUser.producerProfile.isPioneer}}
+          
+            <li><a href="{{pathFor 'featureRequests'}}">Feature Requests</a></li>
+          
+          {{/if}}
+          {{#if $or currentUser.isAdmin currentUser.producerProfile.isPioneer}}
+              <li><a href="{{pathFor 'kuzuStats'}}">Listener Stats</a></li>
+            {{/if}}
+            <li><a href="{{pathFor 'calendar'}}">Calendar</a></li>
           {{#if currentUser.isAdmin}}
             <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
@@ -69,18 +88,6 @@ Denton, Texas." />
               </ul>
             </li>
           {{/if}}
-            {{#if currentUser.isProducer}}
-              <li><a href="{{pathFor 'producerShows'}}">My Shows</a></li>
-              <li><a href="{{pathFor 'producerMyProfile'}}">My Producer Profile</a></li>
-              <li><a href="{{pathFor 'producerMyProgram'}}">My Program Information</a></li>
-            {{/if}}
-            {{#if $or currentUser.isAdmin currentUser.producerProfile.isPioneer}}
-            <li><a href="{{pathFor 'featureRequests'}}">Feature Requests</a></li>
-            <li><a href="{{pathFor 'kuzuStats'}}">Listener Stats</a></li>
-            {{/if}}
-            <li>
-             <a>{{> loginButtons}}</a>
-            </li>
           </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

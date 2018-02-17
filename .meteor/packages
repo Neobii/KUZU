@@ -21,7 +21,6 @@ kadira:blaze-layout
 aldeed:simple-schema
 twbs:bootstrap
 jquery@1.11.10
-accounts-ui@1.2.0
 accounts-password@1.5.0
 aldeed:collection2
 arillo:flow-router-helpers
@@ -60,3 +59,6 @@ http
 maazalik:highcharts
 aldeed:autoform-select2
 percolate:synced-cron
+useraccounts:bootstrap
+accounts-ui
+rzymek:fullcalendar
