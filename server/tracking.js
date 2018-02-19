@@ -83,6 +83,43 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
   }
 )
 
+Meteor.method("getLastTracks", function(numTracks) {
+    numTracks = numTracks || 30;
+    var tracks = Tracklists.find({playDate: {$exists: 1}}, {sort: {playDate: -1}, limit: numTracks}).fetch();
+    var tracksString = "";
+    _.each(tracks, function(track) {
+      console.log(track)
+      var trackerString = "";
+      if(track.isExportable()){
+        if(track.artist && track.songTitle) {
+          trackerString = track.artist + " - " + track.songTitle;
+        }
+        else if(track.songTitle) {
+          trackerString = track.songTitle;
+        }
+        else if(track.artistName) {
+          trackerString = track.artist;
+        }
+        trackerString += " (" + track.prettifyPlaydate() + ")";
+      }
+      tracksString += trackerString + "</br>";
+    })
+    return tracksString;
+  }, {
+    getArgsFromRequest: function (request) {
+      // Let's say we want this function to accept a form-encoded request with
+      // fields named `a` and `b`.
+      var content = request.body;
+      // Since form enconding doesn't distinguish numbers and strings, we need
+      // to parse it manually
+      //put to array JSON.parse(content);
+      return [ content.numTracks];
+    },
+    httpMethod: "get"
+  }
+)
+
+
 JsonRoutes.setResponseHeaders({
   "Cache-Control": "no-store",
   "Pragma": "no-cache",
