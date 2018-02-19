@@ -6,6 +6,8 @@ Meteor.startup(function(){
   })
 })
 
+
+
 App.addAutoStartShow = function(showId){
   var show = Shows.findOne({_id: showId});
   if(new Date(show.showStart).getTime() > new Date().getTime()){
