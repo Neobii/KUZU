@@ -1,5 +1,6 @@
 Template.calendar.helpers({
   options: function() {
+    var self = Template.instance();
     return {
       header: {
         left:   'title',
@@ -8,9 +9,8 @@ Template.calendar.helpers({
       },
       // Add events to the calendar.
       events(start, end, timezone, callback) {
+        Meteor.subscribe("calendarShows", start.toDate(), end.toDate());
         let data = Shows.find().fetch().map((session) => {
-          // Don't allow already past study events to be editable.
-          //session.editable = !isPast(session.start);
           session.start = session.showStart;
           session.end = session.showEnd;
           return session;
@@ -39,12 +39,11 @@ Template.calendar.helpers({
 
 
 Template.calendar.onCreated(function(){
-  this.startDate = new ReactiveVar(moment(new Date).subtract(1, "month"));
-  this.endDate = new ReactiveVar(moment(new Date).add(1, "month"))
-  this.autorun(() => {
-    Meteor.subscribe("calendarShows");
+  this.startDate = new ReactiveVar(moment(new Date()).subtract(1, "month").toDate());
+  this.endDate = new ReactiveVar(moment(new Date()).add(1, "month").toDate());
+  setTimeout(function(){
     $('.fc.fc-unthemed.fc-ltr').fullCalendar('refetchEvents');
-  });
+  }, 1000);
 });
 
 //Template.calendar
