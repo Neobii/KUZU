@@ -94,3 +94,7 @@ Meteor.publish("allUsers", function() {
 Meteor.publish("calendarShows", function(startDate, endDate){
   return Shows.find({showStart: {$gte: startDate, $lte: endDate}}, {sort: {startDate: 1}, fields: {description: 0}})
 })
+
+Meteor.publish("posts", function(){
+  return Posts.find({}, {sort: {postDate: 1}});
+})

@@ -1,6 +1,11 @@
 Template.Home.helpers({
-  producersNote() {
-    var ps = ProductionStatuses.findOne({isActive: true});
-    return ps && ps.producersNote;
+  posts() {
+    return Posts.find({}, {sort: {postDate: 1}})
   }
+})
+
+Template.Home.onCreated(function(){
+  this.autorun(()=>{
+    this.subscribe("posts")
+  })
 })
