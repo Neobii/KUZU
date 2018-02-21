@@ -1,7 +1,7 @@
 <template name="Home">
 <h2>Kuzu Updates {{#if currentUser.isAdmin}}{{#afModal formId="newPost" class="btn btn-primary" collection="Posts" operation="insert" omitFields="postDate"}}New Post{{/afModal}}{{/if}}</h2>
 {{#each posts}}
-<h3>{{title}} {{#if currentUser.isAdmin}}{{#afModal formId="editPost" class="btn btn-primary" collection="Posts" operation="update" omitFields="postDate" doc=_id}}Edit{{/afModal}} {{#afModal formId="removePost" class="btn btn-warning" collection="Posts" operation="remove" doc=_id}}Remove{{/afModal}}{{/if}}</h3>
+<h3>{{title}} {{#if currentUser.isAdmin}}{{#afModal formId="editPost" class="btn btn-primary" collection="Posts" operation="update" omitFields="postDate" doc=_id}}Edit{{/afModal}} {{#afModal formId="removePost" class="btn btn-warning" collection="Posts" operation="remove" doc=_id}}Remove{{/afModal}}{{/if}}<br><small>{{postDate}}</small></h3>
 <hr>
 {{{content}}}
 {{/each}}

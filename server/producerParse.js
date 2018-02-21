@@ -1,6 +1,9 @@
 Meteor.methods({
   reaperParseUpload(currentShowId, data ) {
     check( data, Array );
+    if(!currentShowId) {
+      return;
+    }
     for ( let i = 0; i < data.length; i++ ) {
       let item   = data[ i ];
       var regex = /%(.*)%/;
