@@ -30,6 +30,12 @@ Template.liveShow.events({
       Meteor.call("clearHighlighted");
     })
   },
+  'click [data-recent-tracks]'(e, t) {
+    $("#showMessages").modal();
+    $("#showMessages").on("hide.bs.modal", function(e){
+      Meteor.call("markShowMessagesRead");
+    })
+  },
   'click [data-move-up]'(e, t) {
     var trackId = $(e.currentTarget).attr("data-move-up");
     Meteor.call("decrementPosition", trackId);

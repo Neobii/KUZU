@@ -1,0 +1,8 @@
+<template name="messages">
+  <h2>Messages</h2>
+{{#each messages}}
+<hr>
+Sent At: {{prettifyDate sentAt}}
+Message: {{content}}
+{{/each}}
+</template>

@@ -6,6 +6,34 @@
   <h3>WARNING! Tracking is set to come from Radio Logik instead of the Kuzu App</h3>
 </div>
 {{/if}}
+<div class="modal fade" id="showMessages">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Show Messages</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table" style="background-color:#FFF;">
+            <thead>
+              <tr>
+                <th>Sent At</th>
+                <th>Content</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each messages}}
+              <tr>
+                <td>{{prettifySimpleTime sentAt}}</td>
+                <td>{{content}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 <div class="modal fade" id="recentlyPlayedSongs">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -141,6 +169,7 @@
  {{else}}
  <button class="btn btn-primary" data-start-default-tracking>Display show title</button>
  {{/if}}
+ <button class="btn btn-primary" data-show-messages>Messages {{newMessages}}</button>
  <!--
  {{#unless isShowingDescription}}
  <button class="btn btn-warning" data-show-description>Show Description</button>

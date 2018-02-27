@@ -62,3 +62,4 @@ percolate:synced-cron
 useraccounts:bootstrap
 accounts-ui
 rzymek:fullcalendar
+tmeasday:publish-counts

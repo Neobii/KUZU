@@ -98,3 +98,11 @@ Meteor.publish("calendarShows", function(startDate, endDate){
 Meteor.publish("posts", function(){
   return Posts.find({}, {sort: {postDate: 1}});
 })
+
+Meteor.publish("userMessages", function(){
+  return Messages.find({producerId: this.userId});
+})
+
+Meteor.publish("showMessages", function(showId){
+  return Messages.find({showId: showId})
+})
