@@ -1,7 +1,7 @@
 <template name="producerMyProfile">
   {{#with currentUser}}
   <h2>{{producerProfile.name}}<small> - {{#if producerProfile.isPioneer}}Pioneer{{else}}Evergreen{{/if}}</small>
-  <span class="pull-right">{{#afModal  doc=_id formId="updatePProfile" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile.bio,producerProfile.name,producerProfile.isAutomationUIEnabled"}}
+  <span class="pull-right">{{#afModal  doc=_id formId="updatePProfile" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile.bio,producerProfile.name,producerProfile.isAutomationUIEnabled,producerProfile.isMessagingUIEnabled"}}
       Edit Producer Profile
   {{/afModal}}</span></h2>
   <div class="clearfix"></div>

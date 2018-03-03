@@ -14,6 +14,7 @@
        {{> afQuickField name="showStart"}}
        {{> afQuickField name="showEnd"}}
        {{> afQuickField name="hasRadioLogikTracking"}}
+       {{#if currentUser.producerProfile.isMessagingUIEnabled}}{{> afQuickField name="hasMessagingEnabled"}}{{/if}}
        <button class="btn btn-primary" type="submit">Save Changes</button>
       {{/autoForm}}
     </div>

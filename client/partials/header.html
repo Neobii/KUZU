@@ -61,6 +61,9 @@ Denton, Texas." />
               <li><a href="{{pathFor 'producerShows'}}">My Shows</a></li>
               <li><a href="{{pathFor 'producerMyProfile'}}">My Producer Profile</a></li>
               <li><a href="{{pathFor 'producerMyProgram'}}">My Program Information</a></li>
+              {{#if currentUser.producerProfile.isMessagingUIEnabled}}
+                <li><a href="{{pathFor 'producerMessages'}}">My Messages</a></li>
+              {{/if}}
             {{/if}}            
           </ul>
           <ul class="nav navbar-nav navbar-right">

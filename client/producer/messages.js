@@ -1,10 +1,10 @@
-Template.messages.onCreated(function(){
+Template.producerMessages.onCreated(function(){
   this.autorun(()=>{
     this.subscribe("userMessages");
   })
 })
 
-Template.messages.helpers({
+Template.producerMessages.helpers({
   messages(){
     return Messages.find({producerId: Meteor.userId()})
   }
