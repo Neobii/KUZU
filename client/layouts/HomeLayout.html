@@ -11,7 +11,9 @@
         {{#with currentActiveShow}}
         <div style="background-color:#e7d0ba;margin-top:-21px;padding:15px 5px;">
           <a style="text-align:center;" href="{{#if currentUser.canLookAtLiveShow}}{{pathFor 'liveShow'}}{{/if}}">
-            <h3 style="color:#333;margin-bottom:0;">{{showName}} is Live from {{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}!</h3>
+            <div class="container">
+            <h3 style="color:#333;margin-top:10px;">{{showName}} is Live from {{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}!</h3>
+          </div>
           </a>
         </div>
         {{/with}}
