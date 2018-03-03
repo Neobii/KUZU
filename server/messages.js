@@ -1,4 +1,4 @@
-Meteor.method("insertMessage", function(messageBody) {
+Meteor.method("insertMessage", function(messageBody, sentBy) {
   var activeShow = Shows.findOne({isActive: true}) || false;
   Messages.insert({artist: artist});
   }, {
@@ -9,7 +9,7 @@ Meteor.method("insertMessage", function(messageBody) {
       // Since form enconding doesn't distinguish numbers and strings, we need
       // to parse it manually
       //put to array JSON.parse(content);
-      return [ content.messageBody ];
+      return [ content.messageBody, content.sentBy ];
     }
   }
 )
