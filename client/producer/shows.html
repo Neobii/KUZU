@@ -3,7 +3,7 @@
   <hr>
 {{#each shows}}
 <div>
-  <h3>{{showName}}<br><span class="small">{{prettifyDate showStart}}, {{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
+  <h3>{{prettifyDate showStart}} - {{showName}}<br><span class="small">{{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
   <h3><a href="{{pathFor 'showTracks' showId=_id}}"><!--{{numTracks}} -->Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
   {{#unless autoStartEnd}}
   {{#if isActive}}
