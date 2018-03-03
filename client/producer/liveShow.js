@@ -18,7 +18,8 @@ Template.liveShow.helpers({
     window.history.back();
   },
   messages() {
-    return Messages.find({});
+    var show = Shows.findOne({isActive: true});
+    return Messages.find({showId: show._id}, {sort: { sentAt: -1}});
   },
   newMessagesCount(){
     return Counts.get("new-messages-count-show");
