@@ -8,6 +8,7 @@ Meteor.method("insertMessage", function(messageBody, sentBy) {
       // Let's say we want this function to accept a form-encoded request with
       // fields named `a` and `b`.
       var content = request.body;
+      console.log(content);
       return [ content.messageBody, content.sentBy ];
     }
   }
