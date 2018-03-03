@@ -15,10 +15,17 @@ Template.liveShow.helpers({
 	},
   goBack() {
     window.history.back();
+  },
+  messages() {
+    return Messages.find({});
   }
 });
 
 Template.liveShow.events({
+  "click [data-delete-message]"(e, t){
+    var messageId = $(e.currentTarget).attr("data-delete-message");
+    Meteor.call("removeMessage", messageId);
+  },
   "click [data-stop-show]"() {
     if(confirm("Are You sure want to stop this show?")){
       Meteor.call("deactivateShow", Shows.findOne({isActive: true})._id);
@@ -31,7 +38,7 @@ Template.liveShow.events({
       Meteor.call("clearHighlighted");
     })
   },
-  'click [data-recent-tracks]'(e, t) {
+  'click [data-show-messages]'(e, t) {
     $("#showMessages").modal();
     $("#showMessages").on("hide.bs.modal", function(e){
       Meteor.call("markShowMessagesRead");

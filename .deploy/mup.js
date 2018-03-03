@@ -9,7 +9,14 @@ module.exports = {
       // or leave blank for authenticate from ssh-agent
     }
   },
-
+  proxy: {
+    domains: 'producer.kuzu.fm,www.producer.kuzu.fm',
+    ssl: {
+      crt: './producer.kuzu.fm.crt',
+      key: './producer.kuzu.fm.key',
+      forceSSL: true
+    }
+  },
   meteor: {
     name: 'kuzu',
     path: '../',
@@ -23,21 +30,13 @@ module.exports = {
       image: 'abernix/meteord:node-8.4.0-base'
     },
     env: {
-      ROOT_URL: 'https://producer.kuzu.fm',
+      ROOT_URL: 'http://producer.kuzu.fm',
       MONGO_URL: 'mongodb://localhost/meteor'
     },
-    proxy: {
-      domains: 'producer.kuzu.fm,www.producer.kuzu.fm',
-      ssl: {
-        crt: './producer.kuzu.fm.crt',
-        key: './producer.kuzu.fm.key',
-        forceSSL: true
-      }
-    },
     //dockerImage: 'kadirahq/meteord'
-    deployCheckWaitTime: 60
+    deployCheckWaitTime: 60,
+    enableUploadProgressBar: true
   },
-
   mongo: {
     oplog: true,
     port: 27017,

@@ -115,6 +115,7 @@ Meteor.methods({
       showName = user.producerProfile.showName || "Kuzu Show";
       showDescription = user.producerProfile.description || "";
       defaultMeta = user.producerProfile.defaultMeta || "Kuzu Show";
+      hasMessagingEnabled = user.producerProfile.isMessagingUIEnbled;
     }
     Shows.insert({
       userId: this.userId,
@@ -122,7 +123,8 @@ Meteor.methods({
       showStart: new Date(),
       showEnd: new Date(),
       description: showDescription,
-      defaultMeta: defaultMeta
+      defaultMeta: defaultMeta,
+      hasMessgingEnbled: hasMessagingEnabled
     });
   },
   clearPlaytime(trackId) {

@@ -106,3 +106,8 @@ Meteor.publish("userMessages", function(){
 Meteor.publish("showMessages", function(showId){
   return Messages.find({showId: showId})
 })
+
+Meteor.publish("activeShowMessages", function(){
+  var show = Shows.findOne({isActive: true});
+  return Messages.find({showId: show._id})
+})

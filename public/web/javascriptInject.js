@@ -1,3 +1,4 @@
+<script type="text/javascript">
 setInterval(function(){
   document.querySelector(".secondary-controls").innerHTML = "";
   var ajax = new XMLHttpRequest();
@@ -9,7 +10,7 @@ setInterval(function(){
       }
     }
   }
-  ajax.open("GET", "http://producer.kuzu.fm/methods/getCurrentTrack", true);
+  ajax.open("GET", "https://producer.kuzu.fm/methods/getCurrentTrack", true);
 
   ajax.send();
 }, 1000);
@@ -35,14 +36,14 @@ setInterval(function() {
             document.querySelector("#additional-info-inject").innerHTML = res;  
           }
         }
-        reqAjax.open("GET", "http://producer.kuzu.fm/methods/getCurrentAdditionalInfo", true);
+        reqAjax.open("GET", "https://producer.kuzu.fm/methods/getCurrentAdditionalInfo", true);
 
         reqAjax.send();
       }
     }
   }
-  ajax.open("GET", "http://producer.kuzu.fm/methods/getCurrentAdditionalInfoHash", true);
+  ajax.open("GET", "https://producer.kuzu.fm/methods/getCurrentAdditionalInfoHash", true);
 
   ajax.send();
 }, 2000);
-
+</script>

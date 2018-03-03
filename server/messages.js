@@ -1,18 +1,29 @@
 Meteor.method("insertMessage", function(messageBody, sentBy) {
   var activeShow = Shows.findOne({isActive: true}) || false;
-  Messages.insert({artist: artist});
+  if(activeShow && messageBody){
+    Messages.insert({content: messageBody, sentBy: sentBy, showId: activeShow._id, producerId: activeShow.userId});
+  }
   }, {
     getArgsFromRequest: function (request) {
       // Let's say we want this function to accept a form-encoded request with
       // fields named `a` and `b`.
       var content = request.body;
-      // Since form enconding doesn't distinguish numbers and strings, we need
-      // to parse it manually
-      //put to array JSON.parse(content);
       return [ content.messageBody, content.sentBy ];
     }
   }
 )
+
+SimpleRest.setMethodOptions('hasMessagingEnabled', {httpMethod: "get"});
+
+Meteor.method("hasMessagingEnabled", function(){
+  var activeShow = Shows.findOne({isActive: true});
+  if(!activeShow) {
+    return false;
+  }
+  if(activeShow.hasMessagingEnabled){
+    return true;
+  }
+})
 
 Meteor.publish('new-messages-count-user', function() {
   Counts.publish(this, 'messages-count-user', 
@@ -33,5 +44,11 @@ Meteor.methods({
   },
   "markUserMessagesRead"() {
     Messages.update({producerId: this.userId}, {$set: {isRead: true}}, {multi: true})
+  }
+})
+
+Meteor.methods({
+  "removeMessage"(messageId){
+    Messages.remove({_id: messageId});
   }
 })
