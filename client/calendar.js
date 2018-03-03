@@ -23,8 +23,12 @@ Template.calendar.helpers({
 
       // Configure the information displayed for an "event."
       eventRender(session, element) {
+        var sd = new Date(session.showStart);
+        var ed = new Date(session.showEnd);
+        var startDate = moment(sd).format("h:mm a");
+        var endDate = moment(ed).format("h:mm a");
         element.find('.fc-content').html(
-            `<h4 class="title">${session.showName}</h4>`
+            `<p>${startDate} - ${endDate}</p><p class="title">${session.showName}</p>`
         );
       },
 
