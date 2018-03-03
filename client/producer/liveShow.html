@@ -131,7 +131,7 @@
                           <span class="media-meta"><button class="btn btn-warning" data-restart-track-id="{{_id}}">Restart Track</button>
                           </span>
                           {{#if $or currentUser.isAdmin currentUser.producerProfile.isAutomationUIEnabled}}
-                          <span class="media-meta"><button class="btn btn-warning" data-clear-playtime-id="{{_id}}">Clear Playtime</button></span>
+                          <span class="media-meta"><button class="btn btn-danger" data-clear-playtime-id="{{_id}}">Clear Playtime</button></span>
                           {{/if}}
                           {{else}}
                             <button class='btn btn-success' data-start-track-id="{{_id}}">Start Track</button>
@@ -161,29 +161,29 @@
     {{#if hasNextTrack}}
     {{#if $or currentUser.producerProfile.isAutomationUIEnabled currentUser.isAdmin}}
     {{#if isAutoPlaying}}
-    <button class="btn btn-info" data-pause-autoplay>Pause Autoplay</button>
+    <button class="btn btn-lg btn-info" data-pause-autoplay>Pause Autoplay</button>
     {{else}}
-    <button class="btn btn-success" data-autoplay>Autoplay</button>
+    <button class="btn btn-lg btn-success" data-autoplay>Autoplay</button>
    {{/if}}
    {{/if}}
  {{/if}}
-  <button class="btn btn-danger" data-stop-show>Stop Show</button>
+  <button class="btn btn-lg btn-danger" data-stop-show>Stop Show</button>
  {{#if isShowingDefaultMeta}}
  {{#unless trackIsShowMeta}}
- <button class="btn btn-warning" data-stop-default-tracking>Display song title</button>
+ <button class="btn btn-lg btn-warning" data-stop-default-tracking>Display song title</button>
  {{/unless}}
  {{else}}
- <button class="btn btn-primary" data-start-default-tracking>Display show title</button>
+ <button class="btn btn-lg btn-primary" data-start-default-tracking>Display show title</button>
  {{/if}}
- {{#if currentUser.producerProfile.isMessagingUIEnabled}}<button class="btn btn-primary" data-show-messages>Messages {{newMessages}}</button>{{/if}}
+ {{#if currentUser.producerProfile.isMessagingUIEnabled}}<button class="btn btn-lg btn-secondary" data-show-messages>Messages {{newMessagesCount}}</button>{{/if}}
  <!--
  {{#unless isShowingDescription}}
  <button class="btn btn-warning" data-show-description>Show Description</button>
  {{else}}
  <button class="btn btn-primary" data-hide-description>Hide Description</button>
  {{/unless}}-->
- {{#unless $eq recentlyPlayedSongs.count 0}}<button class="btn btn-warning" data-recent-tracks>Recent Tracks</button>{{/unless}}
- {{#afModal formId="insertTracklistModal" class="btn btn-primary" collection="Tracklists" operation="insert" omitFields="isHighlighted,showId,indexNumber,playDate"}}
+ {{#unless $eq recentlyPlayedSongs.count 0}}<button class="btn btn-lg btn-secondary" data-recent-tracks>Recent Tracks</button>{{/unless}}
+ {{#afModal formId="insertTracklistModal" class="btn btn-lg btn-success" collection="Tracklists" operation="insert" omitFields="isHighlighted,showId,indexNumber,playDate"}}
   Add a new track
 {{/afModal}}
 </div>

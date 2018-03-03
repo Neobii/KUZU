@@ -100,14 +100,14 @@ Meteor.publish("posts", function(){
 })
 
 Meteor.publish("userMessages", function(){
-  return Messages.find({producerId: this.userId});
+  return Messages.find({producerId: this.userId}, {sort: {sentAt: -1}});
 })
 
 Meteor.publish("showMessages", function(showId){
-  return Messages.find({showId: showId})
+  return Messages.find({showId: showId}, {sort: {sentAt: -1}})
 })
 
 Meteor.publish("activeShowMessages", function(){
   var show = Shows.findOne({isActive: true});
-  return Messages.find({showId: show._id})
+  return Messages.find({showId: show._id}, {sort: {sentAt: -1}})
 })

@@ -3,6 +3,7 @@ Template.liveShow.onCreated(function(){
 		this.subscribe('activeShow');
 		this.subscribe('activeShowTracks');
     this.subscribe("activeShowMessages");
+    this.subscribe("new-messages-count-show");
 	})
 });
 
@@ -18,6 +19,9 @@ Template.liveShow.helpers({
   },
   messages() {
     return Messages.find({});
+  },
+  newMessagesCount(){
+    return Counts.get("new-messages-count-show");
   }
 });
 

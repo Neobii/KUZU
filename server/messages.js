@@ -26,21 +26,24 @@ Meteor.method("hasMessagingEnabled", function(){
 })
 
 Meteor.publish('new-messages-count-user', function() {
-  Counts.publish(this, 'messages-count-user', 
+  Counts.publish(this, 'new-messages-count-user', 
     Messages.find({isRead: false, producerId: this.userId})
   )
 });
 
-Meteor.publish('new-messages-count-show', function(showId) {
-  Counts.publish(this, 'messages-count-show', 
-    Messages.find({isRead: false, showId: showId})
+Meteor.publish('new-messages-count-show', function() {
+  var show = Shows.findOne({isActive: true});
+  Counts.publish(this, 'new-messages-count-show', 
+    Messages.find({isRead: false, showId: show._id})
   )
 });
 
 Meteor.methods({
   "markShowMessagesRead"() {
-    var showId = Shows.findOne({isActive: true});
-    Messages.update({showId: showId}, {$set: {isRead: true}}, {multi: true})
+    var show = Shows.findOne({isActive: true});
+    if(show) {
+      Messages.update({showId: show._id}, {$set: {isRead: true}}, {multi: true})
+    }
   },
   "markUserMessagesRead"() {
     Messages.update({producerId: this.userId}, {$set: {isRead: true}}, {multi: true})
