@@ -111,6 +111,7 @@ Meteor.methods({
     var showName = "Kuzu Show";
     var showDescription = " ";
     var defaultMeta = "Kuzu Show";
+    var hasMessagingEnabled = false;
     if(user.producerProfile) {
       showName = user.producerProfile.showName || "Kuzu Show";
       showDescription = user.producerProfile.description || "";

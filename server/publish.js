@@ -109,5 +109,8 @@ Meteor.publish("showMessages", function(showId){
 
 Meteor.publish("activeShowMessages", function(){
   var show = Shows.findOne({isActive: true});
+  if(!show) {
+    return this.ready();
+  }
   return Messages.find({showId: show._id}, {sort: {sentAt: -1}})
 })

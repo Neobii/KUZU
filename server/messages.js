@@ -34,6 +34,9 @@ Meteor.publish('new-messages-count-user', function() {
 
 Meteor.publish('new-messages-count-show', function() {
   var show = Shows.findOne({isActive: true});
+  if(!show) {
+    return this.ready();
+  }
   Counts.publish(this, 'new-messages-count-show', 
     Messages.find({isRead: false, showId: show._id})
   )
