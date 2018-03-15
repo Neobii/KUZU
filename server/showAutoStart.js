@@ -13,13 +13,12 @@ App.addAutoStartShow = function(showId){
   if(new Date(show.showStart).getTime() > new Date().getTime()){
     SyncedCron.add({
       name: 'AutoStart_' + show._id,
-      schedule: function(parser) {
-        return parser.recur().on(show.showStart).fullDate();
+      schedule: function(parser) {//xxx subtract 5 minutes
+        var d = moment(show.showStart).subtract(5, "minutes").toDate();
+        return parser.recur().on(d).fullDate();
       },
       job: function() {
-        Shows.update({isActive: true}, {$set: {isActive: false}}, {multi: true});
-        Shows.update({_id: show._id}, {$set: {isActive: true}});
-        Meteor.call("autoplayNextTrack");
+        Shows.update({_id: show._id}, {isArmedForAutoStart: true});
         SyncedCron.remove("AutoStart_" + show._id);
       }
     });
