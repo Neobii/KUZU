@@ -18,7 +18,7 @@ App.addAutoStartShow = function(showId){
         return parser.recur().on(d).fullDate();
       },
       job: function() {
-        Shows.update({_id: show._id}, {isArmedForAutoStart: true});
+        Shows.update({_id: show._id}, {$set: {isArmedForAutoStart: true}});
         SyncedCron.remove("AutoStart_" + show._id);
       }
     });

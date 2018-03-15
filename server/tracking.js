@@ -57,8 +57,9 @@ var currentHash = "";
 
 Meteor.method("insertTrack", function(artist, songTitle, album, label, duration) {
   var activeShow = Shows.findOne({isActive: true}) || false;
-  if(!activeShow || activeShow.hasRadioLogikTracking) {
+  if(Shows.findOne({isArmedForAutoStart: true})){
     if(label.search(/<><>/g) !== -1) {
+      label = label.replace(/<><>/g, "");
       if(!App.preshowTracksStarted) {
         App.preshowTracksStarted = true;
       }
@@ -69,6 +70,12 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
       Shows.update({isArmedForAutoStart: true}, {$set: {isActive: true, isArmedForAutoStart: false}});
       Meteor.call("autoplayNextTrack");
     }
+  }
+  else {
+    App.preshowTracksStarted = false;
+  }
+
+  if(!activeShow || activeShow.hasRadioLogikTracking) {
     Tracklists.insert({artist: artist, songTitle: songTitle, album: album, label: label, trackLength: duration, playDate: new Date()})
   }
   else {

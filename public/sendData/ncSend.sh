@@ -35,6 +35,6 @@ while true;do
   done
   unset IFS
   echo $json > track.json
-  curl -X POST -H "Content-Type: application/json" --data @track.json "http://producer.kuzu.fm/methods/insertTrack" &
-  #curl -X POST -H "Content-Type: application/json" -d "$json" "http://localhost:3000/methods/insertTrack" &
+  #curl -X POST -H "Content-Type: application/json" --data @track.json "http://producer.kuzu.fm/methods/insertTrack" &
+  curl -X POST -H "Content-Type: application/json" -d "$json" "http://localhost:3000/methods/insertTrack" &
 done
