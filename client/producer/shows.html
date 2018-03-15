@@ -1,8 +1,23 @@
 <template name="producerShows">
   <h2>My Shows <button class="btn btn-primary" data-create-show>Create New Show</button></h2>
   <hr>
-{{#each shows}}
+  {{#each showsWithoutDates}}
+  <div>
+    {{#unless $eq ($.Session.get "showEditingId") _id}}
+  <h3>{{showName}}<br><a href="" data-edit-show-id="{{_id}}"><small style="color:red;">Warning, you cannot start a show without start and end times.</small></a></h3>
+  <h3><a href="{{pathFor 'showTracks' showId=_id}}"><!--{{numTracks}} -->Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
+  <button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
+  <button class="btn btn-info" data-edit-show-id="{{_id}}">Edit</button>
+  <button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
+  {{else}}
+  {{> editShowInline}}
+  {{/unless}}
+  <hr>
+</div>
+{{/each}}
+{{#each showsWithDates}}
 <div>
+  {{#unless $eq ($.Session.get "showEditingId") _id}}
   <h3>{{prettifyDate showStart}} - {{showName}}<br><span class="small">{{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
   <h3><a href="{{pathFor 'showTracks' showId=_id}}"><!--{{numTracks}} -->Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
   {{#unless autoStartEnd}}
@@ -25,8 +40,11 @@
   {{/if}}
   {{/unless}}
   <button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
-  <a href="{{pathFor 'editShow' showId=_id}}"><button class="btn btn-info">Edit</button></a>
+  <button class="btn btn-info" data-edit-show-id="{{_id}}">Edit</button>
   <button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
+  {{else}}
+  {{> editShowInline}}
+  {{/unless}}
   <hr>
 </div>
 {{/each}}

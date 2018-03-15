@@ -2,8 +2,11 @@ Template.producerShows.helpers({
   hasFullUI() {
     return (this.helperUserId !== Meteor.userId() || Meteor.user().isAdmin || this.userId === Meteor.userId())
   },
-  shows() {
-    return Shows.find({$or: [{userId: Meteor.userId()}, {helperUserId: Meteor.userId()}]}, {sort: {showStart: -1}});
+  showsWithDates() {
+    return Shows.find({showStart: {$exists: true}, $or: [{userId: Meteor.userId()}, {helperUserId: Meteor.userId()}]}, {sort: {showStart: -1}});
+  },
+  showsWithoutDates() {
+    return Shows.find({showStart: {$exists: false}, $or: [{userId: Meteor.userId()}, {helperUserId: Meteor.userId()}]});
   },
   updateShowFormId() {
     return "updateShow" + this._id;
@@ -51,5 +54,9 @@ Template.producerShows.events({
   },
   "click [data-create-show]"(){
     Meteor.call("createNewShow");
+  },
+  "click [data-edit-show-id]"(e, t){
+    var showId = $(e.currentTarget).attr("data-edit-show-id");
+    Session.set("showEditingId", showId);
   }
 })

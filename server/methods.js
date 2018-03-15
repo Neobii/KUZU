@@ -25,8 +25,6 @@ Meteor.methods({
       isShowingDefaultMeta: show.isShowingDefaultMeta,
       description: show.description,
       isShowingDescription: show.isShowingDescription,
-      showStart: new Date(),
-      showEnd: new Date()
     }, function(err, docInserted) {
       var trackLists = Tracklists.find({showId: show._id}, {sort: {indexNumber: 1}}).fetch();
       _.each(trackLists, function(trackList){
@@ -121,8 +119,6 @@ Meteor.methods({
     Shows.insert({
       userId: this.userId,
       showName: showName,
-      showStart: new Date(),
-      showEnd: new Date(),
       description: showDescription,
       defaultMeta: defaultMeta,
       hasMessgingEnbled: hasMessagingEnabled
