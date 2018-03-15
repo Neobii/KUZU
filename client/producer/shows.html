@@ -16,10 +16,13 @@
 </div>
 {{/each}}
 {{#each showsWithDates}}
+{{#if isActive}}
+  <a href="{{pathFor 'liveShow'}}"><div style="background-color:#e7d0ba; color:black;text-align:center; padding:20px 5px;font-size:18px;">Live Show Mode</div></a>
+{{/if}}
 <div>
   {{#unless $eq ($.Session.get "showEditingId") _id}}
   <h3>{{prettifyDate showStart}} - {{showName}}<br><span class="small">{{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
-  <h3><a href="{{pathFor 'showTracks' showId=_id}}"><!--{{numTracks}} -->Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
+  <h3>{{#unless isActive}}<a href="{{pathFor 'showTracks' showId=_id}}"><!--{{numTracks}} -->Tracks</a>{{/unless}} {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
   {{#unless autoStartEnd}}
   {{#if isActive}}
   <button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Stop Show</button>{{else}}
@@ -41,7 +44,9 @@
   {{/unless}}
   <button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
   <button class="btn btn-info" data-edit-show-id="{{_id}}">Edit</button>
+  {{#unless isActive}}
   <button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
+  {{/unless}}
   {{else}}
   {{> editShowInline}}
   {{/unless}}
