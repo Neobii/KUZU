@@ -5,9 +5,15 @@ Template.HomeLayout.onCreated(function(){
       this.isRadioLogikDown.set(res);
     })
   }, 5000)
+  this.autorun(()=>{
+    this.subscribe("armedShow");
+  })
 })
 
 Template.HomeLayout.helpers({
+  armedShow() {
+    return Shows.findOne({isArmedForAutoStart: true});
+  },
 	currentActiveShow() {
     if(Meteor.user().isAdmin) {
       return Shows.findOne({isActive:true});

@@ -114,3 +114,7 @@ Meteor.publish("activeShowMessages", function(){
   }
   return Messages.find({showId: show._id}, {sort: {sentAt: -1}})
 })
+
+Meteor.publish("armedShow", function(){
+  return Shows.find({isArmedForAutoStart: true});
+})

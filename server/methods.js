@@ -96,7 +96,7 @@ Meteor.methods({
   },
   activateShow(showId) {
     Shows.update({isActive: true}, {$set: {isActive: false}}, {multi: true});
-    Shows.update({_id: showId}, {$set: {isActive: true, isShowingDefaultMeta: true}});
+    Shows.update({_id: showId}, {$set: {isActive: true, isShowingDefaultMeta: true, isArmedForAutoStart: false}});
   },
   removeShow(showId){
     Shows.remove(showId);

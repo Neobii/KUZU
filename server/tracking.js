@@ -106,7 +106,6 @@ Meteor.method("getLastTracks", function(numTracks) {
     var tracks = Tracklists.find({playDate: {$exists: 1}}, {sort: {playDate: -1}, limit: numTracks}).fetch();
     var tracksString = "";
     _.each(tracks, function(track) {
-      console.log(track)
       var trackerString = "";
       if(track.isExportable()){
         if(track.artist && track.songTitle) {
