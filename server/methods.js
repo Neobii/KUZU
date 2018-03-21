@@ -61,18 +61,7 @@ Meteor.methods({
   },
   deactivateShow(showId) {
     Shows.update({_id: showId}, {$set: {isActive: false}});
-    if(App.autoDJTrack && !Shows.findOne({_id: showId, hasRadioLogikTracking: true})) {
-      Tracklists.insert({
-        showId: "Auto DJ",
-        artist: App.autoDJTrack.artist,
-        songTitle: App.autoDJTrack.songTitle,
-        album: App.autoDJTrack.album,
-        label: App.autoDJTrack.label,
-        trackLength: App.autoDJTrack.duration,
-        playDate: App.autoDJTrack.playDate
-      })
-      delete App.autoDJTrack;
-    }
+    App.fillAutoDJTrack();
   },
   incrementPosition(trackId) {
 		var track = Tracklists.findOne({_id: trackId});

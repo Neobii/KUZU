@@ -1,9 +1,3 @@
-Template.myTracklists.onCreated(function(){
-	this.autorun(()=>{
-		this.subscribe('activeShow');
-	})
-})
-
 Template.myTracklists.helpers({
   currentActiveShow(){
     if(Meteor.user().isAdmin){

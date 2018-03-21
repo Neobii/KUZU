@@ -1,6 +1,5 @@
 Template.liveShow.onCreated(function(){
 	this.autorun(()=> {
-		this.subscribe('activeShow');
 		this.subscribe('activeShowTracks');
     this.subscribe("activeShowMessages");
     this.subscribe("new-messages-count-show");

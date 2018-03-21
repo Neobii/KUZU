@@ -12,6 +12,14 @@ Meteor.publish(null, function(){
   return ProductionStatuses.find({isActive: true});
 })
 
+Meteor.publish(null, function(){
+  return Shows.find({isArmedForAutoStart: true});
+})
+
+Meteor.publish(null,function(){
+  return Shows.find({isActive: true});
+})
+
 Meteor.publish('TrackLists', function(){
   return Tracklists.find({}, {limit: 50});
 });
@@ -59,9 +67,7 @@ Meteor.publish("showsList", function(){
   }
 })
 
-Meteor.publish('activeShow',function(){
-  return Shows.find({isActive: true});
-})
+
 
 Meteor.publish('activeShowTracks', function(){
   var activeShow = Shows.findOne({isActive: true});
@@ -113,8 +119,4 @@ Meteor.publish("activeShowMessages", function(){
     return this.ready();
   }
   return Messages.find({showId: show._id}, {sort: {sentAt: -1}})
-})
-
-Meteor.publish("armedShow", function(){
-  return Shows.find({isArmedForAutoStart: true});
 })

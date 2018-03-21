@@ -5,9 +5,6 @@ Template.HomeLayout.onCreated(function(){
       this.isRadioLogikDown.set(res);
     })
   }, 5000)
-  this.autorun(()=>{
-    this.subscribe("armedShow");
-  })
 })
 
 Template.HomeLayout.helpers({
