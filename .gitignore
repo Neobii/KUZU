@@ -1,5 +1,6 @@
-node_modules/
+snode_modules/
 
 package-lock.json
 *.crt
 *.key
+*.DS_Store
