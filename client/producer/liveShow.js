@@ -32,7 +32,7 @@ Template.liveShow.events({
   },
   "click [data-stop-show]"() {
     if(confirm("Are You sure want to stop this show?")){
-      Meteor.call("deactivateShow", Shows.findOne({isActive: true})._id);
+      Meteor.call("deactivateShow");
       window.history.back();
     }
   },
