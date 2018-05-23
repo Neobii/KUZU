@@ -59,8 +59,8 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
   var activeShow = Shows.findOne({isActive: true}) || false;
   if(Shows.findOne({isArmedForAutoStart: true})){
     console.log(App.preshowTracksStarted);
-    if(label.search(/<><>/g) !== -1) {
-      label = label.replace(/<><>/g, "");
+    if(album.search(/<><>/g) !== -1) {
+      album = album.replace(/<><>/g, "");
       if(!App.preshowTracksStarted) {
         App.preshowTracksStarted = true;
       }
