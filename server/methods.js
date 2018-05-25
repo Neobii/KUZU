@@ -60,7 +60,6 @@ Meteor.methods({
     Tracklists.remove(trackId);
   },
   deactivateShow() {
-    check(showId, String)
     Shows.update({isActive: true}, {$set: {isActive: false}}, {multi: true});
     App.fillAutoDJTrack();
   },

@@ -1,6 +1,6 @@
 var previousTimer;
 
-App.startNextTrack = function(track) {
+App.startNextTrack = function() {
   var show = Shows.findOne({isActive: true});
   var nextTrack = Tracklists.findOne({showId: show._id, playDate: {$exists: false}}, {sort: {indexNumber: 1}, limit: 1});
   if(nextTrack) {
@@ -61,7 +61,7 @@ Meteor.methods({
 
   },
   startNextTrack() {
-    
+    App.startNextTrack();
   },
   autoplayNextTrack() {
     Shows.update({isActive: true}, {$set: {isAutoPlaying: true}})
