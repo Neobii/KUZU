@@ -1,6 +1,6 @@
 Template.Home.helpers({
   posts() {
-    return Posts.find({}, {sort: {postDate: 1}})
+    return Posts.find({}, {sort: {postDate: -1}})
   }
 })
 
