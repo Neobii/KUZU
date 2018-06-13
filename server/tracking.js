@@ -106,7 +106,7 @@ Meteor.method("getLastTracks", function(numTracks) {
     numTracks = numTracks || 30;
     var tracks = Tracklists.find({playDate: {$exists: 1}}, {sort: {playDate: -1}, limit: numTracks}).fetch();
     var tracksString = "<p><strong>Tracks Played This Hour</strong></p>";
-    var tracksString = "<p><strong>--------------------------</strong></p>";
+    tracksString += "<p><strong>--------------------------</strong></p>";
     _.each(tracks, function(track) {
       var trackerString = "";
       trackerString = "<p>";
@@ -120,7 +120,7 @@ Meteor.method("getLastTracks", function(numTracks) {
         else if(track.artistName) {
           trackerString = track.artist;
         }
-        trackerString += " // " + track.prettifyPlaydate();
+        trackerString += " // " + moment(track.playDate).subtract(5, "hours").format("h:mm a");
       }
       tracksString += trackerString + "<br></p>";
     })
