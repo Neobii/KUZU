@@ -103,22 +103,20 @@ Meteor.method("insertTrack", function(artist, songTitle, album, label, duration)
 )
 
 Meteor.method("getLastTracks", function(numTracks) {
-    numTracks = numTracks || 30;
+    numTracks = numTracks || 10;
     var tracks = Tracklists.find({playDate: {$exists: 1}}, {sort: {playDate: -1}, limit: numTracks}).fetch();
-    var tracksString = "<p><strong>Tracks Played This Hour</strong></p>";
-    tracksString += "<p><strong>--------------------------</strong></p>";
+    var tracksString = "";
     _.each(tracks, function(track) {
-      var trackerString = "";
-      trackerString = "<p>";
+      var trackerString = "<p>";
       if(track.isExportable()){
         if(track.artist && track.songTitle) {
-          trackerString = track.artist + " // " + track.songTitle;
+          trackerString += track.artist + " // " + track.songTitle;
         }
         else if(track.songTitle) {
-          trackerString = track.songTitle;
+          trackerString += track.songTitle;
         }
         else if(track.artistName) {
-          trackerString = track.artist;
+          trackerString += track.artist;
         }
         trackerString += " // " + moment(track.playDate).subtract(5, "hours").format("h:mm a");
       }

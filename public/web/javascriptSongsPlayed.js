@@ -1,6 +1,8 @@
 <script type="text/javascript">
-setInterval(function(){
-  //document.querySelector(".secondary-controls").innerHTML = "";
+getLastSongsPlayed();
+setInterval(getLastSongsPlayed, 5000);
+
+function getLastSongsPlayed(){
   var ajax = new XMLHttpRequest();
   ajax.onreadystatechange = function() {
     if (ajax.readyState == 4 && ajax.status == 200) {
@@ -11,6 +13,6 @@ setInterval(function(){
   ajax.open("GET", "https://producer.kuzu.fm/methods/getLastTracks", true);
 
   ajax.send();
-}, 5000);
+}
 
 </script>
