@@ -1,21 +1,21 @@
 <template name="editShowInline">
-<div class="form-holder">
-      {{#autoForm collection="Shows" id="editShowInlineForm" type="update" doc=.}}
-       {{> afQuickField name="showName"}}
-       {{#if currentUser.isAdmin}}
-        {{> afQuickField name="userId"}}
-       {{/if}}
-       {{> afQuickField name="defaultMeta"}}
-       {{> afQuickField name="isShowingDefaultMeta"}}
-       {{> afQuickField name="description"}}
-       {{> afQuickField name="isShowingDescription"}}
-       {{> afQuickField name="helperUserId"}}
-       {{> afQuickField name="showStart"}}
-       {{> afQuickField name="showEnd"}}
-       {{> afQuickField name="hasRadioLogikTracking"}}
-       {{#if currentUser.producerProfile.isMessagingUIEnabled}}{{> afQuickField name="hasMessagingEnabled"}}{{/if}}
-       <button class="btn btn-primary" type="submit">Save Changes</button>
-       <button class="btn btn-warning" data-cancel-show-edit>Cancel</button>
-      {{/autoForm}}
-    </div>
+  <div class="form-holder">
+    {{#autoForm collection="Shows" id="editShowInlineForm" type="update" doc=.}}
+    {{> afQuickField name="showName"}}
+    {{#if currentUser.isAdmin}}
+    {{> afQuickField name="userId"}}
+    {{/if}}
+    {{> afQuickField name="defaultMeta"}}
+    {{> afQuickField name="isShowingDefaultMeta"}}
+    {{> afQuickField name="description"}}
+    {{> afQuickField name="isShowingDescription"}}
+    {{> afQuickField name="helperUserId"}}
+    {{> afQuickField name="showStart"}}
+    {{> afQuickField name="showEnd"}}
+    {{> afQuickField name="hasRadioLogikTracking"}}
+    {{#if currentUser.producerProfile.isMessagingUIEnabled}}{{> afQuickField name="hasMessagingEnabled"}}{{/if}}
+    <button class="btn btn-primary" type="submit">Save Changes</button>
+    <button class="btn btn-warning" data-cancel-show-edit>Cancel</button>
+    {{/autoForm}}
+  </div>
 </template>

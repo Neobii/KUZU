@@ -4,53 +4,60 @@
   {{#each showsWithoutDates}}
   <div>
     {{#unless $eq ($.Session.get "showEditingId") _id}}
-  <h3>{{showName}}<br><a href="" data-edit-show-id="{{_id}}"><small style="color:red;">Warning, you cannot start a show without start and end times.</small></a></h3>
-  <h3><a href="{{pathFor 'showTracks' showId=_id}}"><!--{{numTracks}} -->Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
-  <button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
-  <button class="btn btn-info" data-edit-show-id="{{_id}}">Edit</button>
-  <button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
-  {{else}}
-  {{> editShowInline}}
-  {{/unless}}
-  <hr>
-</div>
-{{/each}}
-{{#each showsWithDates}}
-{{#if isActive}}
-  <a href="{{pathFor 'liveShow'}}"><div style="background-color:#e7d0ba; color:black;text-align:center; padding:20px 5px;font-size:18px;">Live Show Mode</div></a>
-{{/if}}
-<div>
-  {{#unless $eq ($.Session.get "showEditingId") _id}}
-  <h3>{{prettifyDate showStart}} - {{showName}}<br><span class="small">{{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}}</span></h3>
-  <h3>{{#unless isActive}}<a href="{{pathFor 'showTracks' showId=_id}}"><!--{{numTracks}} -->Tracks</a>{{/unless}} {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
-  {{#unless autoStartEnd}}
+    <h3>{{showName}}<br><a href="" data-edit-show-id="{{_id}}"><small style="color:red;">Warning, you cannot start a
+          show without start and end times.</small></a></h3>
+    <h3><a href="{{pathFor 'showTracks' showId=_id}}">
+        <!--{{numTracks}} -->Tracks</a> {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
+    <button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
+    <button class="btn btn-info" data-edit-show-id="{{_id}}">Edit</button>
+    <button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
+    {{else}}
+    {{> editShowInline}}
+    {{/unless}}
+    <hr>
+  </div>
+  {{/each}}
+  {{#each showsWithDates}}
   {{#if isActive}}
-  <button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Stop Show</button>{{else}}
-  {{#if startTimeAfterCurrentDate}}
-  <button class="btn btn-primary" data-activate-show-id="{{_id}}">Start Show</button>
+  <a href="{{pathFor 'liveShow'}}">
+    <div style="background-color:#e7d0ba; color:black;text-align:center; padding:20px 5px;font-size:18px;">Live Show
+      Mode</div>
+  </a>
   {{/if}}
-  {{/if}}
-  {{#if currentUser.producerProfile.isAutomationUIEnabled}}
-  {{#if endTimeAfterCurrentDate}}
-  <button class="btn btn-warning" data-auto-start-show-id="{{_id}}">Auto Start and End is Off</button>
-  {{/if}}
-  {{/if}}
-  {{else}}
-  {{#if currentUser.producerProfile.isAutomationUIEnabled}}
-  {{#if endTimeAfterCurrentDate}}
-  <button class="btn btn-success" data-stop-auto-start-show-id="{{_id}}">Auto Start and End is On</button>
-  {{/if}}
-  {{/if}}
-  {{/unless}}
-  <button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
-  <button class="btn btn-info" data-edit-show-id="{{_id}}">Edit</button>
-  {{#unless isActive}}
-  <button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
-  {{/unless}}
-  {{else}}
-  {{> editShowInline}}
-  {{/unless}}
-  <hr>
-</div>
-{{/each}}
+  <div>
+    {{#unless $eq ($.Session.get "showEditingId") _id}}
+    <h3>{{prettifyDate showStart}} - {{showName}}<br><span class="small">{{prettifySimpleTime showStart}} -
+        {{prettifySimpleTime showEnd}}</span></h3>
+    <h3>{{#unless isActive}}<a href="{{pathFor 'showTracks' showId=_id}}">
+        <!--{{numTracks}} -->Tracks</a>{{/unless}} {{#if defaultMeta}}<small>{{defaultMeta}}</small>{{/if}}</h3>
+    {{#unless autoStartEnd}}
+    {{#if isActive}}
+    <button class="btn btn-warning" data-deactivate-show-id="{{_id}}">Stop Show</button>{{else}}
+    {{#if startTimeAfterCurrentDate}}
+    <button class="btn btn-primary" data-activate-show-id="{{_id}}">Start Show</button>
+    {{/if}}
+    {{/if}}
+    {{#if currentUser.producerProfile.isAutomationUIEnabled}}
+    {{#if endTimeAfterCurrentDate}}
+    <button class="btn btn-warning" data-auto-start-show-id="{{_id}}">Auto Start and End is Off</button>
+    {{/if}}
+    {{/if}}
+    {{else}}
+    {{#if currentUser.producerProfile.isAutomationUIEnabled}}
+    {{#if endTimeAfterCurrentDate}}
+    <button class="btn btn-success" data-stop-auto-start-show-id="{{_id}}">Auto Start and End is On</button>
+    {{/if}}
+    {{/if}}
+    {{/unless}}
+    <button class="btn btn-success" data-duplicate-id="{{_id}}">Duplicate</button>
+    <button class="btn btn-info" data-edit-show-id="{{_id}}">Edit</button>
+    {{#unless isActive}}
+    <button class="btn btn-danger" data-delete-id="{{_id}}">Delete</button>
+    {{/unless}}
+    {{else}}
+    {{> editShowInline}}
+    {{/unless}}
+    <hr>
+  </div>
+  {{/each}}
 </template>
