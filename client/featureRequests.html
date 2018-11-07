@@ -1,36 +1,37 @@
 <template name="featureRequests">
-<h2>Feature Requests<small class="pull-right">{{#afModal formId="newFeatureRequest" class="btn btn-primary" collection="FeatureRequests" operation="insert" omitFields="userId,userVotesUp,userVotesDown,totalScore"}}
-    New Feature Request
-{{/afModal}}</small></h2>
- 
-<table class="table table-filter">
-  <tbody>
-    {{#each featureRequests}}
-    <tr class="track">
-      <td>
-        {{#unless currentUserHasVotedUp}}
+  <h2>Feature Requests<small class="pull-right">{{#afModal formId="newFeatureRequest" class="btn btn-primary"
+      collection="FeatureRequests" operation="insert" omitFields="userId,userVotesUp,userVotesDown,totalScore"}}
+      New Feature Request
+      {{/afModal}}</small></h2>
+
+  <table class="table table-filter">
+    <tbody>
+      {{#each featureRequests}}
+      <tr class="track">
+        <td>
+          {{#unless currentUserHasVotedUp}}
           <a href="" data-vote-up="{{_id}}">
             <h3><i class="glyphicon glyphicon-chevron-up"></i></h3>
           </a>
-        {{/unless}}
-        <h3>{{totalScore}}</h3>
-        {{#unless currentUserHasVotedDown}}
+          {{/unless}}
+          <h3>{{totalScore}}</h3>
+          {{#unless currentUserHasVotedDown}}
           <h3><a href="javascript:;" data-vote-down="{{_id}}">
               <i class="glyphicon glyphicon-chevron-down"></i>
-          </a></h3>
-        {{/unless}}
-      </td>
-      <td>
-        <div class="media">
-          <div class="media-body">
-            <h3>{{name}}</h3>
-            {{#if currentUser.isAdmin}}<button class="btn btn-warning" data-delete-feature="{{_id}}">Delete Feature</button>{{/if}}
-            <p>{{description}}</p>
+            </a></h3>
+          {{/unless}}
+        </td>
+        <td>
+          <div class="media">
+            <div class="media-body">
+              <h3>{{name}}</h3>
+              {{#if currentUser.isAdmin}}<button class="btn btn-warning" data-delete-feature="{{_id}}">Delete Feature</button>{{/if}}
+              <p>{{description}}</p>
+            </div>
           </div>
-        </div>
-      </td>
-    </tr>
-{{/each}}
-</tbody>
-</table>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>

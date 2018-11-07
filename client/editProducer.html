@@ -1,17 +1,17 @@
 <template name="editProducer">
-<div class="form-holder">
-{{#autoForm collection="Meteor.users" doc=profile id="profileUpdateForm" type="update"}}
-	{{> afQuickField name="profile.name"}}
-	{{#if isAdmin}}
-	{{> afQuickField name="isProducer"}}
-	{{> afQuickField name="isAdmin"}}
-	{{/if}}
-	{{> afQuickField name="profile.bio"}}
-	{{> afQuickField name="profile.image"}}
-  <div>
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-      <button type="button" class="btn btn-default cancel">Cancel</button>
-  </div>
-{{/autoForm}}
-</div>
+	<div class="form-holder">
+		{{#autoForm collection="Meteor.users" doc=profile id="profileUpdateForm" type="update"}}
+		{{> afQuickField name="profile.name"}}
+		{{#if isAdmin}}
+		{{> afQuickField name="isProducer"}}
+		{{> afQuickField name="isAdmin"}}
+		{{/if}}
+		{{> afQuickField name="profile.bio"}}
+		{{> afQuickField name="profile.image"}}
+		<div>
+			<button type="submit" class="btn btn-primary">Save Changes</button>
+			<button type="button" class="btn btn-default cancel">Cancel</button>
+		</div>
+		{{/autoForm}}
+	</div>
 </template>

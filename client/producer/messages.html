@@ -1,26 +1,27 @@
 <template name="producerMessages">
   <h2>Messages</h2>
-<hr>
-<table class="table" style="background-color:#FFF;">
-  <thead>
-    <tr>
-      <th>Is Read</th>
-      <th>Sent At</th>
-      <th>Content</th>
-      <th>Sent By</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each messages}}
-    <tr>
-      <td>{{isRead}}</td>
-      <td>{{prettifySimpleTime sentAt}}</td>
-      <td>{{content}}</td>
-      <th>{{sentBy}}</th>
-      <th>{{#afModal formId="removeMessage" class="btn btn-warning" collection="Messages" operation="remove" doc=_id}}Remove{{/afModal}}</th>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+  <hr>
+  <table class="table" style="background-color:#FFF;">
+    <thead>
+      <tr>
+        <th>Is Read</th>
+        <th>Sent At</th>
+        <th>Content</th>
+        <th>Sent By</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each messages}}
+      <tr>
+        <td>{{isRead}}</td>
+        <td>{{prettifySimpleTime sentAt}}</td>
+        <td>{{content}}</td>
+        <th>{{sentBy}}</th>
+        <th>{{#afModal formId="removeMessage" class="btn btn-warning" collection="Messages" operation="remove"
+          doc=_id}}Remove{{/afModal}}</th>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>

@@ -1,7 +1,7 @@
 <template name="myTracklists">
-<!-- this is where the track lists will be put per show -->
-{{#if currentActiveShow}}
- <h1>Add Track to <a href="">{{currentActiveShow.showName}}</a></h1>
+  <!-- this is where the track lists will be put per show -->
+  {{#if currentActiveShow}}
+  <h1>Add Track to <a href="">{{currentActiveShow.showName}}</a></h1>
   {{#autoForm collection="Tracklists" id="insertTracklistForm" type="insert"}}
   {{> afQuickField name="songTitle"}}
   {{> afQuickField name="artist"}}

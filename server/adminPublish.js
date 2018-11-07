@@ -1,11 +1,14 @@
-Meteor.publish("allUsersAdmin", function() {
-  return Meteor.users.find({}, {fields: {"producerProfile.description": 0, "producerProfile.bio": 0, }});
+Meteor.publish('allUsersAdmin', function() {
+  return Meteor.users.find(
+    {},
+    { fields: { 'producerProfile.description': 0, 'producerProfile.bio': 0 } }
+  )
 })
 
-Meteor.publish("allProducersAdmin", function() {
-  return Producers.find();
+Meteor.publish('allProducersAdmin', function() {
+  return Producers.find()
 })
 
-Meteor.publish("allAutoDJPlaylists", function() {
-  return AutoDJPlaylists.find();
+Meteor.publish('allAutoDJPlaylists', function() {
+  return AutoDJPlaylists.find()
 })

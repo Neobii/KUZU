@@ -1,11 +1,11 @@
-Template.HomeLayout.onCreated(function(){
+Template.HomeLayout.onCreated(function() {
   this.autorun(() => {
-    this.subscribe("new-messages-count-user");
+    this.subscribe('new-messages-count-user')
   })
-});
+})
 
 Template.HomeLayout.helpers({
-  currentActiveShow(){
-    return Shows.findOne({isActive: true})
-  }
+  currentActiveShow() {
+    return Shows.findOne({ isActive: true })
+  },
 })

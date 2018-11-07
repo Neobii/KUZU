@@ -1,16 +1,16 @@
 <template name="createShow">
-<!-- this is where the producer will make a new show -->
-<div class="form-holder">
- {{#autoForm collection="Shows" id="insertShowForm" type="insert"}}
- {{> afQuickField name="showName"}}
- {{> afQuickField name="defaultMeta"}}
- {{> afQuickField name="isShowingDefaultMeta"}}
- {{> afQuickField name="description"}}
- {{> afQuickField name="isShowingDescription"}}
- {{> afQuickField name="helperUserId"}}
- {{> afQuickField name="showStart"}}
- {{> afQuickField name="showEnd"}}
- <button class="btn btn-primary" type="submit">Create Show</button>
- {{/autoForm}}
- </div>
+  <!-- this is where the producer will make a new show -->
+  <div class="form-holder">
+    {{#autoForm collection="Shows" id="insertShowForm" type="insert"}}
+    {{> afQuickField name="showName"}}
+    {{> afQuickField name="defaultMeta"}}
+    {{> afQuickField name="isShowingDefaultMeta"}}
+    {{> afQuickField name="description"}}
+    {{> afQuickField name="isShowingDescription"}}
+    {{> afQuickField name="helperUserId"}}
+    {{> afQuickField name="showStart"}}
+    {{> afQuickField name="showEnd"}}
+    <button class="btn btn-primary" type="submit">Create Show</button>
+    {{/autoForm}}
+  </div>
 </template>

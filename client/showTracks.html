@@ -1,5 +1,5 @@
 <template name="showTracks">
-<div class="modal fade" id="trackPlaytimesModal">
+  <div class="modal fade" id="trackPlaytimesModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -16,83 +16,87 @@
       </div>
     </div>
   </div>
-		<div class="container">
+  <div class="container">
 
-	<div class="row">
-		{{#with showMain}}
-		<center>
-			<h3>{{showName}} <small><a href="{{pathFor 'addTrackToShow' showId=_id}}">Add Track To Show</a></small> {{#unless endTimeAfterCurrentDate}}<button class="btn btn-primary" data-get-track-playtimes>Track Playtimes</button>{{/unless}}</h3>
-			<!-- <button data-download-csv class="btn btn-info">Download CSV</button> -->
-		</center>
-		{{{description}}}
-		<div class="row">
-      <div class="col-md-6">
-        <h4 class="page-header">Upload a CSV <a href="/help/Template.csv">Example</a></h4>
+    <div class="row">
+      {{#with showMain}}
+      <center>
+        <h3>{{showName}} <small><a href="{{pathFor 'addTrackToShow' showId=_id}}">Add Track To Show</a></small>
+          {{#unless endTimeAfterCurrentDate}}<button class="btn btn-primary" data-get-track-playtimes>Track Playtimes</button>{{/unless}}</h3>
+        <!-- <button data-download-csv class="btn btn-info">Download CSV</button> -->
+      </center>
+      {{{description}}}
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="page-header">Upload a CSV <a href="/help/Template.csv">Example</a></h4>
+        </div>
+        <div class="col-md-6">
+
+        </div>
       </div>
-      <div class="col-md-6">
-        
-      </div>
-    </div>
 
-  {{#unless uploading}}
-    <input type="file" name="uploadCSV">
-  {{else}}
-    <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
-  {{/unless}}
-  <br>
-		<section class="content" >
+      {{#unless uploading}}
+      <input type="file" name="uploadCSV">
+      {{else}}
+      <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+      {{/unless}}
+      <br>
+      <section class="content">
 
-				<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-default">
 
-					<div class="panel-body">
-						<div class="table-container">
-							<table class="table table-filter">
-								<tbody>
-							{{#each showTracks}}
-									<tr class="track {{#unless $eq trackType 'song'}}special-track{{/unless}}">
-										<td>
-                      {{#if $neq indexNumber 0}}
+            <div class="panel-body">
+              <div class="table-container">
+                <table class="table table-filter">
+                  <tbody>
+                    {{#each showTracks}}
+                    <tr class="track {{#unless $eq trackType 'song'}}special-track{{/unless}}">
+                      <td>
+                        {{#if $neq indexNumber 0}}
                         <a href="javascript:;" data-move-up="{{_id}}">
                           <h3><i class="glyphicon glyphicon-chevron-up"></i></h3>
                         </a>
-                      {{/if}}
-                      <h3>{{indexNumber}}</h3>
-                      {{#if $neq indexNumber ../getHighestTrackNumber}}
-                          <h3><a href="javascript:;" data-move-down="{{_id}}">
-                              <i class="glyphicon glyphicon-chevron-down"></i>
+                        {{/if}}
+                        <h3>{{indexNumber}}</h3>
+                        {{#if $neq indexNumber ../getHighestTrackNumber}}
+                        <h3><a href="javascript:;" data-move-down="{{_id}}">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
                           </a></h3>
-                      {{/if}}
-                    </td>
-										<td>
-											<div class="media">
-												<div class="media-body">
-													<!-- {{#unless isQueuedForNext}}
+                        {{/if}}
+                      </td>
+                      <td>
+                        <div class="media">
+                          <div class="media-body">
+                            <!-- {{#unless isQueuedForNext}}
 														<button class="btn btn-info" data-queue-song-id="{{_id}}">Queue Song</button>
 													{{/unless}} -->
-													<h3 class="title">{{songTitle}} - {{artist}}</h3>
-                          <span class="pull-right">{{#afModal  doc=_id formId="updateTracklistModal" class="btn btn-primary" collection="Tracklists" operation="update" omitFields="isHighlighted,showId,indexNumber"}}
+                            <h3 class="title">{{songTitle}} - {{artist}}</h3>
+                            <span class="pull-right">{{#afModal doc=_id formId="updateTracklistModal" class="btn
+                              btn-primary" collection="Tracklists" operation="update"
+                              omitFields="isHighlighted,showId,indexNumber"}}
                               Edit
-                          {{/afModal}} <button class="btn btn-warning" data-remove-track="{{_id}}">Remove Track</button></span>
-                          <div class="clearfix"></div>
-													<h4 class="title">
-  													<span class="pull-right"> Album: {{album}}</span> 
-                            <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5>Played at: {{prettifySimpleTime playDate}}
-													</h4>
-												</div>
-											</div>
-										</td>
-									</tr>
-									{{/each}}
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-				{{/with}}
-	</div>
-</div>
+                              {{/afModal}} <button class="btn btn-warning" data-remove-track="{{_id}}">Remove Track</button></span>
+                            <div class="clearfix"></div>
+                            <h4 class="title">
+                              <span class="pull-right"> Album: {{album}}</span>
+                              <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5>Played at:
+                              {{prettifySimpleTime playDate}}
+                            </h4>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {{/with}}
+    </div>
+  </div>
 
 </template>
