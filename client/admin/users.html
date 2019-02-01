@@ -1,28 +1,31 @@
 <template name="adminUsers">
-		<table class="table" style="color:#DDD;">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Username</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  	{{#each users}}
-    <tr>
-      <td>{{#if profile.name}}{{profile.name}}{{/if}}</td>
-      <td>{{getEmail emails}}</td>
-      <td>{{username}}</td>
-      <td>{{#if isAdmin}} Admin{{/if}} {{#if producerProfile.isPioneer}}Pioneer{{else}}{{#if isProducer}} Evergreen{{/if}}{{/if}}</td>
-      <td>{{#afModal  doc=_id formId="updateUser" class="btn btn-primary" collection="Meteor.users" operation="update" omitFields="heartbeat,roles,services,createdAt,registered_emails,producerProfile"}}
-                              Edit
-                          {{/afModal}} {{#if isProducer}}{{#afModal  doc=_id formId="updateProducerProfile" class="btn btn-primary" collection="Meteor.users" operation="update" fields="producerProfile"}}
-                              Edit Producer Profile
-                          {{/afModal}} {{/if}}<button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+  <table class="table" style="color:#DDD;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+      <tr>
+        <td>{{#if profile.name}}{{profile.name}}{{/if}}</td>
+        <td>{{getEmail emails}}</td>
+        <td>{{username}}</td>
+        <td>{{#if isAdmin}} Admin{{/if}} {{#if producerProfile.isPioneer}}Pioneer{{else}}{{#if isProducer}}
+          Evergreen{{/if}}{{/if}}</td>
+        <td>{{#afModal doc=_id formId="updateUser" class="btn btn-primary" collection="Meteor.users" operation="update"
+          omitFields="heartbeat,roles,services,createdAt,registered_emails,producerProfile"}}
+            Edit
+          {{/afModal}} {{#if isProducer}}{{#afModal doc=_id formId="updateProducerProfile" class="btn btn-primary"
+          collection="Meteor.users" operation="update" fields="producerProfile"}}
+            Edit Producer Profile
+          {{/afModal}} {{/if}}<button class="btn btn-danger" data-remove-userid="{{_id}}">Delete</button></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>

@@ -1,12 +1,12 @@
 <template name='liveShow'>
-{{#if currentUser}}
-{{#with currentActiveShow}}
-{{#if currentActiveShow.hasRadioLogikTracking}}
-<div style="background-color:#c0a821;margin-top:-21px;padding:15px 5px;text-align:center;">
-  <h3>WARNING! Tracking is set to come from Radio Logik instead of the Kuzu App</h3>
-</div>
-{{/if}}
-<div class="modal fade" id="showMessages">
+  {{#if currentUser}}
+  {{#with currentActiveShow}}
+  {{#if currentActiveShow.hasRadioLogikTracking}}
+  <div style="background-color:#c0a821;margin-top:-21px;padding:15px 5px;text-align:center;">
+    <h3>WARNING! Tracking is set to come from Radio Logik instead of the Kuzu App</h3>
+  </div>
+  {{/if}}
+  <div class="modal fade" id="showMessages">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -40,7 +40,7 @@
       </div>
     </div>
   </div>
-<div class="modal fade" id="recentlyPlayedSongs">
+  <div class="modal fade" id="recentlyPlayedSongs">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -72,122 +72,132 @@
       </div>
     </div>
   </div>
-{{#unless currentUser.canLookAtLiveShow}}
-{{goBack}}
-{{/unless}}
-<style>
-  body {
-    background-image:url("/images/black-twill.png");
-  }
-</style>
-<h2>{{showName}} is live! <span class="pull-right">{{#afModal  doc=_id formId="updateLiveShow" class="btn btn-primary" collection="Shows" operation="update" fields="showName,showEnd,defaultMeta,description"}}
-  Edit
-{{/afModal}}</span></h2>
-<h3>{{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}} <small>with {{#each user.emails}}{{address}}{{/each}}</small></h3>
-<h3>{{defaultMeta}}</h3>
+  {{#unless currentUser.canLookAtLiveShow}}
+  {{goBack}}
+  {{/unless}}
+  <style>
+    body {
+      background-image: url("/images/black-twill.png");
+    }
+  </style>
+  <h2>{{showName}} is live! <span class="pull-right">{{#afModal doc=_id formId="updateLiveShow" class="btn btn-primary"
+      collection="Shows" operation="update" fields="showName,showEnd,defaultMeta,description"}}
+      Edit
+      {{/afModal}}</span></h2>
+  <h3>{{prettifySimpleTime showStart}} - {{prettifySimpleTime showEnd}} <small>with {{#each
+      user.emails}}{{address}}{{/each}}</small></h3>
+  <h3>{{defaultMeta}}</h3>
 
-<!--   Add song track to this show here-->
-<hr>
-<div class="row">
-		<section class="content">
-				<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
+  <!--   Add song track to this show here-->
+  <hr>
+  <div class="row">
+    <section class="content">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
 
-					<div class="panel-body">
-						<div class="table-container">
-							<table class="table table-filter">
-								<tbody>
-								<h3>Active show tracks</h3>
-							{{#each showTracks}}
-									<tr class="track {{#unless $eq trackType 'song'}}special-track{{/unless}}">
+          <div class="panel-body">
+            <div class="table-container">
+              <table class="table table-filter">
+                <tbody>
+                  <h3>Active show tracks</h3>
+                  {{#each showTracks}}
+                  <tr class="track {{#unless $eq trackType 'song'}}special-track{{/unless}}">
                     <td>
                       {{#if $neq indexNumber 0}}
-                        <a href="javascript:;" data-move-up="{{_id}}">
-                          <h3><i class="glyphicon glyphicon-chevron-up"></i></h3>
-                        </a>
+                      <a href="javascript:;" data-move-up="{{_id}}">
+                        <h3><i class="glyphicon glyphicon-chevron-up"></i></h3>
+                      </a>
                       {{/if}}
                       <h3>{{indexNumber}}</h3>
                       {{#if $neq indexNumber ../getHighestTrackNumber}}
-                          <h3><a href="javascript:;" data-move-down="{{_id}}">
-                              <i class="glyphicon glyphicon-chevron-down"></i>
-                          </a></h3>
+                      <h3><a href="javascript:;" data-move-down="{{_id}}">
+                          <i class="glyphicon glyphicon-chevron-down"></i>
+                        </a></h3>
                       {{/if}}
                     </td>
-										<td>
+                    <td>
                       {{#if isHighlighted}}
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
+                      <a href="javascript:;" class="star">
+                        <i class="glyphicon glyphicon-star"></i>
+                      </a>
                       {{/if}}
-										</td>
-										<td>
-											<div class="media">
-												<div class="media-body">
-													<!-- {{#unless isQueuedForNext}}
+                    </td>
+                    <td>
+                      <div class="media">
+                        <div class="media-body">
+                          <!-- {{#unless isQueuedForNext}}
 														<button class="btn btn-info" data-queue-song-id="{{_id}}">Queue Song</button>
 													{{/unless}} -->
-													<h3 class="title">{{songTitle}} - {{artist}}</h3>
+                          <h3 class="title">{{songTitle}} - {{artist}}</h3>
                           {{#if playDate}}
-                          <span class="media-meta"><button class="btn btn-warning" data-restart-track-id="{{_id}}">Restart Track</button>
+                          <span class="media-meta"><button class="btn btn-warning" data-restart-track-id="{{_id}}">Restart
+                              Track</button>
                           </span>
                           {{#if $or currentUser.isAdmin currentUser.producerProfile.isAutomationUIEnabled}}
-                          <span class="media-meta"><button class="btn btn-danger" data-clear-playtime-id="{{_id}}">Clear Playtime</button></span>
+                          <span class="media-meta"><button class="btn btn-danger" data-clear-playtime-id="{{_id}}">Clear
+                              Playtime</button></span>
                           {{/if}}
                           {{else}}
-                            <button class='btn btn-success' data-start-track-id="{{_id}}">Start Track</button>
+                          <button class='btn btn-success' data-start-track-id="{{_id}}">Start Track</button>
                           {{/if}}
-                          <span class="pull-right">{{#afModal  doc=_id formId="updateTracklistModal" class="btn btn-primary" collection="Tracklists" operation="update" omitFields="isHighlighted,showId,indexNumber,playDate"}}
-                              Edit
-                          {{/afModal}}</span>
-													<h4 class="title">
-  													<span class="pull-right"> Album: {{album}}</span> 
-                            <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5>Played at: {{prettifySimpleTime playDate}}
-													</h4>
-												</div>
-											</div>
-										</td>
-									</tr>
-									{{/each}}
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-<div class="show-control-panel">
-  <div class="text-center">
-    {{#if hasNextTrack}}
-    {{#if $or currentUser.producerProfile.isAutomationUIEnabled currentUser.isAdmin}}
-    {{#if isAutoPlaying}}
-    <button class="btn btn-lg btn-info" data-pause-autoplay>Pause Autoplay</button>
-    {{else}}
-    <button class="btn btn-lg btn-success" data-autoplay>Autoplay</button>
-   {{/if}}
-   {{/if}}
- {{/if}}
-  <button class="btn btn-lg btn-danger" data-stop-show>Stop Show</button>
- {{#if isShowingDefaultMeta}}
- {{#unless trackIsShowMeta}}
- <button class="btn btn-lg btn-warning" data-stop-default-tracking>Display song title</button>
- {{/unless}}
- {{else}}
- <button class="btn btn-lg btn-primary" data-start-default-tracking>Display show title</button>
- {{/if}}
- {{#if currentUser.producerProfile.isMessagingUIEnabled}}<button class="btn btn-lg btn-secondary" data-show-messages>Messages {{newMessagesCount}}</button>{{/if}}
- <!--
+                          <span class="pull-right">{{#afModal doc=_id formId="updateTracklistModal" class="btn
+                            btn-primary" collection="Tracklists" operation="update"
+                            omitFields="isHighlighted,showId,indexNumber,playDate"}}
+                            Edit
+                            {{/afModal}}</span>
+                          <h4 class="title">
+                            <span class="pull-right"> Album: {{album}}</span>
+                            <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5>Played at:
+                            {{prettifySimpleTime playDate}}
+                          </h4>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="show-control-panel">
+    <div class="text-center">
+      {{#if hasNextTrack}}
+      {{#if $or currentUser.producerProfile.isAutomationUIEnabled currentUser.isAdmin}}
+      {{#if isAutoPlaying}}
+      <button class="btn btn-lg btn-info" data-pause-autoplay>Pause Autoplay</button>
+      {{else}}
+      <button class="btn btn-lg btn-success" data-autoplay>Autoplay</button>
+      {{/if}}
+      {{/if}}
+      {{/if}}
+      <button class="btn btn-lg btn-danger" data-stop-show>Stop Show</button>
+      {{#if isShowingDefaultMeta}}
+      {{#unless trackIsShowMeta}}
+      <button class="btn btn-lg btn-warning" data-stop-default-tracking>Display song title</button>
+      {{/unless}}
+      {{else}}
+      <button class="btn btn-lg btn-primary" data-start-default-tracking>Display show title</button>
+      {{/if}}
+      {{#if currentUser.producerProfile.isMessagingUIEnabled}}<button class="btn btn-lg btn-secondary"
+        data-show-messages>Messages {{newMessagesCount}}</button>{{/if}}
+      <!--
  {{#unless isShowingDescription}}
  <button class="btn btn-warning" data-show-description>Show Description</button>
  {{else}}
  <button class="btn btn-primary" data-hide-description>Hide Description</button>
  {{/unless}}-->
- {{#unless $eq recentlyPlayedSongs.count 0}}<button class="btn btn-lg btn-secondary" data-recent-tracks>Recent Tracks</button>{{/unless}}
- {{#afModal formId="insertTracklistModal" class="btn btn-lg btn-success" collection="Tracklists" operation="insert" omitFields="isHighlighted,showId,indexNumber,playDate"}}
-  Add a new track
-{{/afModal}}
-</div>
-</div>
-{{/with}}
-{{/if}}
+      {{#unless $eq recentlyPlayedSongs.count 0}}<button class="btn btn-lg btn-secondary" data-recent-tracks>Recent
+        Tracks</button>{{/unless}}
+      {{#afModal formId="insertTracklistModal" class="btn btn-lg btn-success" collection="Tracklists"
+      operation="insert" omitFields="isHighlighted,showId,indexNumber,playDate"}}
+      Add a new track
+      {{/afModal}}
+    </div>
+  </div>
+  {{/with}}
+  {{/if}}
 </template>

@@ -1,15 +1,18 @@
-Template.producerMessages.onCreated(function(){
+Template.producerMessages.onCreated(function() {
   this.autorun(() => {
-    this.subscribe("userMessages");
+    this.subscribe('userMessages')
   })
 })
 
 Template.producerMessages.helpers({
   messages() {
-    return Messages.find({producerId: Meteor.userId()}, {sort: {sentAt: -1}});
-  }
+    return Messages.find(
+      { producerId: Meteor.userId() },
+      { sort: { sentAt: -1 } }
+    )
+  },
 })
 
-Template.producerMessages.onDestroyed(function(){
-  Meteor.call("markUserMessagesRead");
+Template.producerMessages.onDestroyed(function() {
+  Meteor.call('markUserMessagesRead')
 })

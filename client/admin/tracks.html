@@ -1,94 +1,95 @@
 <template name="adminTracks">
 
-<!-- this will list all tracks so the admin can export all the producers tracks for licencing authority-->
-<!-- also they will be able to select tracks from certain date frange from date picekr -->
+	<!-- this will list all tracks so the admin can export all the producers tracks for licencing authority-->
+	<!-- also they will be able to select tracks from certain date frange from date picekr -->
 
 
-<div class="container">
+	<div class="container">
 
-	<div class="row">
+		<div class="row">
 
-		<section class="content" >
+			<section class="content">
 				<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
+					<div class="panel panel-default">
 
-					<div class="panel-body">
-						 <div class='col-md-4'>
-					        <div class="form-group">
-					            <div class='input-group date' id='datetimepicker6'>
-					                <input type='datepicker' class="form-control" name="dateFrom" id="dateFrom"/>
-					                <span class="input-group-addon">
-					                    <span class="glyphicon glyphicon-calendar"></span>
-					                </span>
-					            </div>
-					        </div>
-					    </div>
-					    <div class='col-md-4'>
-					        <div class="form-group">
-					            <div class='input-group date' id='datetimepicker7'>
-					                <input type='datepicker' class="form-control" name="dateTo" id="dateTo"/>
-					                <span class="input-group-addon">
-					                    <span class="glyphicon glyphicon-calendar"></span>
-					                </span>
-					            </div>
-					        </div>
-					    </div>
-					    <div class="col-md-4">
-					    	<div class="form-group">
-					    		  <button type="submit" id="exportcsv" class="btn btn-primary">Export as csv</button>
-					    	</div>
-					    </div>
+						<div class="panel-body">
+							<div class='col-md-4'>
+								<div class="form-group">
+									<div class='input-group date' id='datetimepicker6'>
+										<input type='datepicker' class="form-control" name="dateFrom" id="dateFrom" />
+										<span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class='col-md-4'>
+								<div class="form-group">
+									<div class='input-group date' id='datetimepicker7'>
+										<input type='datepicker' class="form-control" name="dateTo" id="dateTo" />
+										<span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<button type="submit" id="exportcsv" class="btn btn-primary">Export as csv</button>
+								</div>
+							</div>
 
-						<div class="table-container">
-							<div class="row">
-									 <div class="col-md-4">
-								<div class="dropdown">
-							  <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">By Show
+							<div class="table-container">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="dropdown">
+											<!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">By Show
 							  <span class="caret"></span></button>
 							  <ul class="dropdown-menu">
 							  	{{#each shows}}
 							    <li><a href="#" data-id="{{_id}}">{{showName}}</a></li>
 							    {{/each}}
 							  </ul>-->
-							</div>
-									 </div>	
-							</div>
-							<h4>Search Tracks <small>{{> EasySearch.Input index=tracksIndex}}</small></h4>
-							<table class="table table-filter">
-								<tbody>
-									{{#EasySearch.Each index=tracksIndex}}
+										</div>
+									</div>
+								</div>
+								<h4>Search Tracks <small>{{> EasySearch.Input index=tracksIndex}}</small></h4>
+								<table class="table table-filter">
+									<tbody>
+										{{#EasySearch.Each index=tracksIndex}}
 
-									<tr>
-										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
-											<div class="media">
-												<div class="media-body">
-													<span class="media-meta pull-right">	{{playDate}}</span>
-													<h4 class="title">
-													 <a href="{{pathFor 'edittrack' trackId=__originalId}}">Title: {{songTitle}}</a>
-													</h4>
-													<h4 class="title">
-													<span class="pull-right"> Album: {{album}}</span>
-													Artist: {{artist}}  <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5> <button class="btn btn-danger pull-right" data-delete-trackid="{{__originalId}}">Delete</button>
-													</h4>
+										<tr>
+											<td>
+												<a href="javascript:;" class="star">
+													<i class="glyphicon glyphicon-star"></i>
+												</a>
+											</td>
+											<td>
+												<div class="media">
+													<div class="media-body">
+														<span class="media-meta pull-right"> {{playDate}}</span>
+														<h4 class="title">
+															<a href="{{pathFor 'edittrack' trackId=__originalId}}">Title: {{songTitle}}</a>
+														</h4>
+														<h4 class="title">
+															<span class="pull-right"> Album: {{album}}</span>
+															Artist: {{artist}} <h5>Length: <span class="media-meta"> {{trackLength}} </span></h5> <button class="btn btn-danger pull-right"
+															 data-delete-trackid="{{__originalId}}">Delete</button>
+														</h4>
+													</div>
 												</div>
-											</div>
-										</td>
-									</tr>
-									{{/EasySearch.Each}}
-								</tbody>
-							</table>
+											</td>
+										</tr>
+										{{/EasySearch.Each}}
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
-		
+			</section>
+
+		</div>
 	</div>
-</div>
 
 </template>

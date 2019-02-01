@@ -1,6 +1,7 @@
 <template name="editTrack">
   <div class="form-holder">
-	  {{#autoForm id="editTrackForm" collection="Tracklists" doc=singleTrack meteormethod="editTrack" type="method-update"}}
+    {{#autoForm id="editTrackForm" collection="Tracklists" doc=singleTrack meteormethod="editTrack"
+    type="method-update"}}
     <fieldset>
       <legend>Edit Track</legend>
       {{> afQuickField name='artist'}}
@@ -11,8 +12,8 @@
       {{> afQuickField name='playDate'}}
       {{> afQuickField name='trackType'}}
     </fieldset>
-    <br/>
+    <br />
     <button type="submit" class="btn btn-primary">Update</button>
- 	 {{/autoForm}}
+    {{/autoForm}}
   </div>
 </template>
