@@ -160,21 +160,11 @@ Meteor.method(
 )
 
 JsonRoutes.setResponseHeaders({
-<<<<<<< HEAD
   "Cache-Control": "no-store",
   "Pragma": "no-cache",
   "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
 });
-=======
-  'Cache-Control': 'no-store',
-  Pragma: 'no-cache',
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers':
-    'Content-Type, Authorization, X-Requested-With',
-})
->>>>>>> b0bae013218b22039d3667efe0285e0a34e65c49
 
 Meteor.startup(function() {
   Meteor.setInterval(function() {
