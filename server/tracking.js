@@ -161,6 +161,7 @@ Meteor.method(
 
 JsonRoutes.setResponseHeaders({
   "Cache-Control": "no-store",
+  "Access-Control-Allow-Origin": "*",
   "Pragma": "no-cache",
   "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
