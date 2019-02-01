@@ -7,6 +7,7 @@ SimpleRest.setMethodOptions('getNicecastMeta', { httpMethod: 'get' })
 
 Meteor.methods({
   getCurrentTrack() {
+    return 'Kuzu FM'
     var show = Shows.findOne({ isActive: true })
     if (show && show.isShowingDefaultMeta) {
       return show.defaultMeta || ' '
