@@ -72,11 +72,12 @@
 														<button class="btn btn-info" data-queue-song-id="{{_id}}">Queue Song</button>
 													{{/unless}} -->
                             <h3 class="title">{{songTitle}} - {{artist}}</h3>
-                            <span class="pull-right">{{#afModal doc=_id formId="updateTracklistModal" class="btn
-                              btn-primary" collection="Tracklists" operation="update"
-                              omitFields="isHighlighted,showId,indexNumber"}}
+                            <span class="pull-right">
+                              {{#afModal doc=_id formId="updateTracklistModal" class="btn btn-primary" collection="Tracklists" operation="update" omitFields="isHighlighted,showId,indexNumber"}}
                               Edit
-                              {{/afModal}} <button class="btn btn-warning" data-remove-track="{{_id}}">Remove Track</button></span>
+                              {{/afModal}}
+                              <button class="btn btn-warning" data-remove-track="{{_id}}">Remove Track</button>
+                            </span>
                             <div class="clearfix"></div>
                             <h4 class="title">
                               <span class="pull-right"> Album: {{album}}</span>
