@@ -2,9 +2,10 @@
   "name": "intermedite",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "MONGO_URL=mongodb://localhost:27017/kuzu meteor --port 3000"
   },
   "dependencies": {
+    "@babel/runtime": "^7.3.1",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.3",
     "meteor-node-stubs": "~0.2.4",
