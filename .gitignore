@@ -4,3 +4,4 @@ package-lock.json
 *.crt
 *.key
 *.DS_Store
+node_modules/
